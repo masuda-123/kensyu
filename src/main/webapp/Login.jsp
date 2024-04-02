@@ -11,7 +11,7 @@
 	  <ul>
 	    <li>
 	      <label for="user_id">ID:</label>
-	      <input type="text" id="user_id" name="user_id">
+	      <input type="number" id="user_id" name="user_id">
 	    </li>
 	    <li>
 	      <label for="password">パスワード:</label>

@@ -38,7 +38,12 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//		doGet(request, response);
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		String password = request.getParameter("password");
+		
+		System.out.println(user_id);
+		System.out.println(password);
 	}
 
 }
