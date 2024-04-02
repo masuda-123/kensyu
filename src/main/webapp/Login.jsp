@@ -15,7 +15,7 @@
 	    </li>
 	    <li>
 	      <label for="password">パスワード:</label>
-	      <input type="password">
+	      <input type="password" id="password" name="password">
 	    </li>
 	    <div>
 	    <input type="submit" value="ログイン">

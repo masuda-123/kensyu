@@ -7,6 +7,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kensyu.UserBean;
+import kensyu.UsersDao;
 
 /**
  * Servlet implementation class Login
@@ -44,6 +46,29 @@ public class Login extends HttpServlet {
 		
 		System.out.println(user_id);
 		System.out.println(password);
+		
+		UserBean bean;
+		UsersDao dao;
+		
+		try {
+			dao = new UsersDao();
+			bean = dao.search_userid(user_id);
+			
+			if(bean.getId() == 0) {
+				RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
+				//foward(...)で定義された転送先に処理が移る
+				rd.forward(request, response);
+			} else if(!(bean.getPassword().equals(password))) {
+				RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
+				//foward(...)で定義された転送先に処理が移る
+				rd.forward(request, response);
+			} else {
+				
+			}
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	}
 
 }

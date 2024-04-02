@@ -1,7 +1,7 @@
 package kensyu;
 
 import java.sql.Timestamp;
-class UserBean {
+public class UserBean {
 	private int id;
 	private String name;
 	private String password;
