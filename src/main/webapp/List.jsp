@@ -9,7 +9,7 @@
 <body>
 	<ul>
 		<li>
-			<button  onclick="location.href='./Top'">top</button>
+			<button  onclick="./Top'">top</button>
 			<button>logout</button>
 		</li>
 		<li>

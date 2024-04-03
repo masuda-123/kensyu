@@ -14,7 +14,7 @@ public class UserBean {
  * コンストラクタ
  */
 public UserBean (int id, String name, String password){
-this.id = id;
+	this.id = id;
 		this.name = name;
 		this.password = password;
 	}
