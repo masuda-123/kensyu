@@ -63,7 +63,9 @@ public class Login extends HttpServlet {
 				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
 			} else {
-				
+				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
+				//foward(...)で定義された転送先に処理が移る
+				rd.forward(request, response);
 			}
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
