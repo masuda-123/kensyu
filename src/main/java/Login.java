@@ -47,18 +47,11 @@ public class Login extends HttpServlet {
 		System.out.println(user_id);
 		System.out.println(password);
 		
-		UserBean bean;
-		UsersDao dao;
-		
 		try {
-			dao = new UsersDao();
-			bean = dao.search_userid(user_id);
+			UsersDao dao = new UsersDao();
+			UserBean bean = dao.search_userid(user_id);
 			
-			if(bean.getId() == 0) {
-				RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
-				//foward(...)で定義された転送先に処理が移る
-				rd.forward(request, response);
-			} else if(!(bean.getPassword().equals(password))) {
+			if(bean.getId() == 0 || !(bean.getPassword().equals(password))) {
 				RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
 				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
