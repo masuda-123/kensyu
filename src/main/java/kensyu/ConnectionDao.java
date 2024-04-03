@@ -8,9 +8,9 @@ import java.text.SimpleDateFormat;
 
 public class ConnectionDao {
 final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-	final String DB_NAME = "test";
+	final String DB_NAME = "mydatabase";
 	final String DB_USER = "root";
-	final String DB_PASSWORD = "123456789";
+	final String DB_PASSWORD = "masuda99";
 
 	public Connection con;
 
