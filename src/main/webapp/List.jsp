@@ -9,17 +9,13 @@
 <body>
 	<ul>
 		<li>
+			<button  onclick="location.href='./Top'">top</button>
 			<button>logout</button>
 		</li>
 		<li>
-			<button>問題と答えを確認・登録する ></button>
-		</li>
-		<li>
-			<button>テストをする ></button>
-		</li>
-		<li>
-			<button>過去の採点結果をみる ></button>
+			<button>新規作成</button>
 		</li>
 	</ul>
+
 </body>
 </html>
