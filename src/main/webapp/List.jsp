@@ -1,21 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="java.util.ArrayList"
+	import="kensyu.QuestionBean"
+	import="kensyu.QuestionsDao"
+%>
+    
+    
+ <%
+	ArrayList<QuestionBean> q_list = (ArrayList<QuestionBean>)request.getAttribute("q_bean_list");
+%>
+
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<ul>
-		<li>
-			<button  onclick="./Top'">top</button>
-			<button>logout</button>
-		</li>
-		<li>
-			<button>新規作成</button>
-		</li>
-	</ul>
-
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>問題一覧画面</title>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<button  onclick="location.href='./Top'">top</button>
+				<button>logout</button>
+			</li>
+			<li>
+				<button>新規作成</button>
+			</li>
+			<% for (int i = 0; i < q_list.size(); i++ ){ %>
+				<!-- getメソッドを使ってリストから関数を取得 -->
+				<% QuestionBean que = q_list.get(i); %>
+				<li>
+					問題:<%= que.getId() %>
+					<%= que.getQuestion() %>
+				</li>
+			<% } %>
+		</ul>
+	</body>
 </html>

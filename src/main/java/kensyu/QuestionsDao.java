@@ -3,7 +3,6 @@ package kensyu;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 public class QuestionsDao extends ConnectionDao {
 
@@ -18,7 +17,7 @@ public class QuestionsDao extends ConnectionDao {
 	/**
 	 * users テーブルを全件取得
 	 */
-	public List<QuestionBean> findAll() throws Exception {
+	public ArrayList<QuestionBean> findAll() throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -32,7 +31,7 @@ public class QuestionsDao extends ConnectionDao {
 			/** SQL 実行 **/
 			rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/
-			List<QuestionBean> list = new ArrayList<QuestionBean>();
+			ArrayList<QuestionBean> list = new ArrayList<QuestionBean>();
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String question = rs.getString("question");
