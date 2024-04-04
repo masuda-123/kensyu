@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.ArrayList"
-	import="kensyu.QuestionBean"
+	import="kensyu.QuestionsBean"
 	import="kensyu.QuestionsDao"
 %>
     
     
  <%
-	ArrayList<QuestionBean> q_list = (ArrayList<QuestionBean>)request.getAttribute("q_bean_list");
+	ArrayList<QuestionsBean> q_list = (ArrayList<QuestionsBean>)request.getAttribute("q_bean_list");
 %>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
 			</li>
 			<% for (int i = 0; i < q_list.size(); i++ ){ %>
 				<!-- getメソッドを使ってリストから関数を取得 -->
-				<% QuestionBean que = q_list.get(i); %>
+				<% QuestionsBean que = q_list.get(i); %>
 				<li>
 					問題:<%= que.getId() %>
 					<%= que.getQuestion() %>

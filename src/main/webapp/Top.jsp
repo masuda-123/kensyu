@@ -12,7 +12,7 @@
 			<button>logout</button>
 		</li>
 		<li>
-			<button>問題と答えを確認・登録する ></button>
+			<button onclick="location.href='./List'">問題と答えを確認・登録する ></button>
 		</li>
 		<li>
 			<button>テストをする ></button>
