@@ -28,6 +28,7 @@ public class Top extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);

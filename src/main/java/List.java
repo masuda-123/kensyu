@@ -31,14 +31,15 @@ public class List extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		RequestDispatcher rd = request.getRequestDispatcher("/List.jsp");
-		//foward(...)で定義された転送先に処理が移る
-		rd.forward(request, response);
 		
 		try {
 			QuestionsDao q_dao = new QuestionsDao();
 			ArrayList<QuestionsBean> q_bean_list = q_dao.findAll();
-			request.setAttribute("q_bean_list", q_bean_list );
+			request.setAttribute("q_bean_list", q_bean_list);
+
+			RequestDispatcher rd = request.getRequestDispatcher("/List.jsp");
+			rd.forward(request, response);
+			
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
