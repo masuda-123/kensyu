@@ -27,7 +27,7 @@
 				<button>logout</button>
 			</li>
 			<li>
-				<button>新規作成</button>
+				<button>新規登録</button>
 			</li>
 			<% for (int i = 0; i < q_list.size(); i++ ){ %>
 				<% QuestionsBean que = q_list.get(i); %>
