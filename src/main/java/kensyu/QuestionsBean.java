@@ -7,10 +7,10 @@ public class QuestionsBean {
 	private Timestamp created_at;
 	private Timestamp updated_at;
 
-/**
- * コンストラクタ
- */
-public QuestionsBean (int id, String question){
+	/**
+	 * コンストラクタ
+	 */
+	public QuestionsBean (int id, String question){
 		this.id = id;
 		this.question = question;
 	}
