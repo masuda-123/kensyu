@@ -44,6 +44,10 @@
 						</li>
 					<% } %>
 				<% } %>
+				<li>
+					<button>編集</button>
+					<button>削除</button>
+				</li>
 			<% } %>
 		</ul>
 	</body>
