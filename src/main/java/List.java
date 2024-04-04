@@ -8,6 +8,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kensyu.CorrectAnswersBean;
+import kensyu.CorrectAnswersDao;
 import kensyu.QuestionsBean;
 import kensyu.QuestionsDao;
 
@@ -36,9 +38,14 @@ public class List extends HttpServlet {
 			QuestionsDao q_dao = new QuestionsDao();
 			ArrayList<QuestionsBean> q_bean_list = q_dao.findAll();
 			request.setAttribute("q_bean_list", q_bean_list);
+			CorrectAnswersDao a_dao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> a_bean_list = a_dao.findAll();
+			request.setAttribute("a_bean_list", a_bean_list);
+			
 
 			RequestDispatcher rd = request.getRequestDispatcher("/List.jsp");
 			rd.forward(request, response);
+			return;
 			
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック

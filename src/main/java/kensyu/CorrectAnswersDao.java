@@ -23,8 +23,8 @@ public class CorrectAnswersDao extends ConnectionDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			// correct_answersからidとquestion_id、answerを取得
-			String sql = "SELECT id, question_id, answer FROM correct_answers";
+			// correct_answersからidとquestions_id、answerを取得
+			String sql = "SELECT id, questions_id, answer FROM correct_answers";
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			/** SQL 実行 **/
@@ -33,9 +33,9 @@ public class CorrectAnswersDao extends ConnectionDao {
 			ArrayList<CorrectAnswersBean> list = new ArrayList<CorrectAnswersBean>();
 			while (rs.next()) {
 				int id = rs.getInt("id");
-				int question_id = rs.getInt("question_id");
+				int questions_id = rs.getInt("questions_id");
 				String answer = rs.getString("answer");
-				CorrectAnswersBean bean = new CorrectAnswersBean(id, question_id, answer);
+				CorrectAnswersBean bean = new CorrectAnswersBean(id, questions_id, answer);
 				list.add(bean);
 			}
 			return list;
@@ -69,8 +69,8 @@ public class CorrectAnswersDao extends ConnectionDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			// CorrectAnswers tableのidとquestion_id、answerを取得
-			String sql = "SELECT id, question_id, answer FROM correct_answers WHERE id = ? ";
+			// CorrectAnswers tableのidとquestions_id、answerを取得
+			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id = ? ";
 		
 			
 			/** PreparedStatement オブジェクトの取得**/
@@ -84,10 +84,10 @@ public class CorrectAnswersDao extends ConnectionDao {
 			while (rs.next()) {
 				// 一旦変数で受ける
 				int correct_answer_id = rs.getInt("id");
-				int question_id = rs.getInt("question_id");
+				int questions_id = rs.getInt("questions_id");
 				String answer = rs.getString("answer");
 				// ListはCorrectAnswers型
-				list = new CorrectAnswersBean(correct_answer_id, question_id, answer);
+				list = new CorrectAnswersBean(correct_answer_id, questions_id, answer);
 			
 			}
 			return list;
