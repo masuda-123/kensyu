@@ -18,7 +18,7 @@ public class UsersDao extends ConnectionDao {
 	/**
 	 * users テーブルを全件取得
 	 */
-	public List<UserBean> findAll() throws Exception {
+	public List<UsersBean> findAll() throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -32,12 +32,12 @@ public class UsersDao extends ConnectionDao {
 			/** SQL 実行 **/
 			rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/
-			List<UserBean> list = new ArrayList<UserBean>();
+			List<UsersBean> list = new ArrayList<UsersBean>();
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String name = rs.getString("name");
 				String pass = rs.getString("password");
-				UserBean bean = new UserBean(id, name, pass);
+				UsersBean bean = new UsersBean(id, name, pass);
 				list.add(bean);
 			}
 			return list;
@@ -63,7 +63,7 @@ public class UsersDao extends ConnectionDao {
 		}
 	}
 	// UserBean型　idを引数として受け取る
-	public UserBean search_userid(int id) throws Exception {
+	public UsersBean search_userid(int id) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -82,14 +82,14 @@ public class UsersDao extends ConnectionDao {
 			/** SQL 実行 **/
 			rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/ 
-			UserBean list = new UserBean();
+			UsersBean list = new UsersBean();
 			while (rs.next()) {
 				// 一旦変数で受ける
 				int userid = rs.getInt("id");
 				String name = rs.getString("name");
 				String pass = rs.getString("password");
 				// ListはUserBean型
-				list = new UserBean(userid, name, pass);
+				list = new UsersBean(userid, name, pass);
 			
 			}
 			return list;

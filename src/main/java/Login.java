@@ -7,7 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kensyu.UserBean;
+import kensyu.UsersBean;
 import kensyu.UsersDao;
 
 /**
@@ -47,7 +47,7 @@ public class Login extends HttpServlet {
 		System.out.println(user_id);
 		System.out.println(password);
 		
-		UserBean bean;
+		UsersBean bean;
 		UsersDao dao;
 		
 		try {

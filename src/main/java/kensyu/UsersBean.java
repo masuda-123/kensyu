@@ -1,7 +1,7 @@
 package kensyu;
 
 import java.sql.Timestamp;
-public class UserBean {
+public class UsersBean {
 	private int id;
 	private String name;
 	private String password;
@@ -13,14 +13,14 @@ public class UserBean {
 /**
  * コンストラクタ
  */
-public UserBean (int id, String name, String password){
+public UsersBean (int id, String name, String password){
 	this.id = id;
 		this.name = name;
 		this.password = password;
 	}
 	
 	/** 引数無しのコンストラクタ **/
-	public UserBean() {
+	public UsersBean() {
 
 	}
 

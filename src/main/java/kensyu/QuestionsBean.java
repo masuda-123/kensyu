@@ -1,7 +1,7 @@
 package kensyu;
 import java.sql.Timestamp;
 
-public class QuestionBean {
+public class QuestionsBean {
 	private int id;
 	private String question;
 	private Timestamp created_at;
@@ -10,13 +10,13 @@ public class QuestionBean {
 /**
  * コンストラクタ
  */
-public QuestionBean (int id, String question){
+public QuestionsBean (int id, String question){
 		this.id = id;
 		this.question = question;
 	}
 	
 	/** 引数無しのコンストラクタ **/
-	public QuestionBean() {
+	public QuestionsBean() {
 
 	}
 

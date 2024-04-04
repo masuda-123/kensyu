@@ -8,7 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kensyu.QuestionBean;
+import kensyu.QuestionsBean;
 import kensyu.QuestionsDao;
 
 /**
@@ -37,7 +37,7 @@ public class List extends HttpServlet {
 		
 		try {
 			QuestionsDao q_dao = new QuestionsDao();
-			ArrayList<QuestionBean> q_bean_list = q_dao.findAll();
+			ArrayList<QuestionsBean> q_bean_list = q_dao.findAll();
 			request.setAttribute("q_bean_list", q_bean_list );
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック

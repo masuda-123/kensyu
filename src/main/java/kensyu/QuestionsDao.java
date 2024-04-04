@@ -17,7 +17,7 @@ public class QuestionsDao extends ConnectionDao {
 	/**
 	 * users テーブルを全件取得
 	 */
-	public ArrayList<QuestionBean> findAll() throws Exception {
+	public ArrayList<QuestionsBean> findAll() throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -31,11 +31,11 @@ public class QuestionsDao extends ConnectionDao {
 			/** SQL 実行 **/
 			rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/
-			ArrayList<QuestionBean> list = new ArrayList<QuestionBean>();
+			ArrayList<QuestionsBean> list = new ArrayList<QuestionsBean>();
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String question = rs.getString("question");
-				QuestionBean bean = new QuestionBean(id, question);
+				QuestionsBean bean = new QuestionsBean(id, question);
 				list.add(bean);
 			}
 			return list;
@@ -61,7 +61,7 @@ public class QuestionsDao extends ConnectionDao {
 		}
 	}
 	// UserBean型　idを引数として受け取る
-	public QuestionBean search_questionid(int id) throws Exception {
+	public QuestionsBean search_questionid(int id) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -80,13 +80,13 @@ public class QuestionsDao extends ConnectionDao {
 			/** SQL 実行 **/
 			rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/ 
-			QuestionBean list = new QuestionBean();
+			QuestionsBean list = new QuestionsBean();
 			while (rs.next()) {
 				// 一旦変数で受ける
 				int questionid = rs.getInt("id");
 				String question = rs.getString("question");
 				// ListはUserBean型
-				list = new QuestionBean(questionid, question);
+				list = new QuestionsBean(questionid, question);
 			
 			}
 			return list;
