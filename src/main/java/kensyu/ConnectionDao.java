@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 public class ConnectionDao {
-final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
+	final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 	final String DB_NAME = "mydatabase";
 	final String DB_USER = "root";
 	final String DB_PASSWORD = "masuda99";
@@ -25,19 +25,19 @@ final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 			con = DriverManager.getConnection(url, DB_USER, DB_PASSWORD);
 		} catch(SQLException e) {
 			e.printStackTrace();
-throw new Exception();
-} catch(Exception e) {
+			throw new Exception();
+		} catch(Exception e) {
 			e.printStackTrace();
 			throw new Exception();
-}
-}
-protected String getStringCurrentTimestamp() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		}
+	}
+	protected String getStringCurrentTimestamp() {
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/ddHH:mm:ss");
         String strTimestamp = sdf.format(timestamp);
         return strTimestamp;
-}
-public void close() throws SQLException{
+	}
+	public void close() throws SQLException{
 		if(con != null) {
 			con.close();
 			con = null;

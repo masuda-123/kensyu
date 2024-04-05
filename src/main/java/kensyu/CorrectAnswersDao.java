@@ -3,41 +3,39 @@ package kensyu;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
-public class UsersDao extends ConnectionDao {
-
+public class CorrectAnswersDao extends ConnectionDao {
 	/**
 	 * コンストラクタ（戻り値のない）
 	 */
 	// 初期値化
-	public UsersDao() throws Exception {
+	public CorrectAnswersDao() throws Exception {
 		setConnection();
 	}
 
 	/**
 	 * users テーブルを全件取得
 	 */
-	public List<UsersBean> findAll() throws Exception {
+	public ArrayList<CorrectAnswersBean> findAll() throws Exception {
 		if (con == null) {
 			setConnection();
 		}
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			// userwsからidとnameとpasswordを取得（条件：deleted_atが空であること）
-			String sql = "SELECT id, name, password FROM users WHERE deleted_at is null";
+			// correct_answersからidとquestions_id、answerを取得
+			String sql = "SELECT id, questions_id, answer FROM correct_answers";
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
 			/** SQL 実行 **/
 			rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/
-			List<UsersBean> list = new ArrayList<UsersBean>();
+			ArrayList<CorrectAnswersBean> list = new ArrayList<CorrectAnswersBean>();
 			while (rs.next()) {
 				int id = rs.getInt("id");
-				String name = rs.getString("name");
-				String pass = rs.getString("password");
-				UsersBean bean = new UsersBean(id, name, pass);
+				int questions_id = rs.getInt("questions_id");
+				String answer = rs.getString("answer");
+				CorrectAnswersBean bean = new CorrectAnswersBean(id, questions_id, answer);
 				list.add(bean);
 			}
 			return list;
@@ -62,17 +60,17 @@ public class UsersDao extends ConnectionDao {
 			}
 		}
 	}
-	// UserBean型　idを引数として受け取る
-	public UsersBean search_userid(int id) throws Exception {
+	
+	// CorrectAnswersBean型　idを引数として受け取る
+	public CorrectAnswersBean search_correct_answer_id(int id) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			// Users tableのidとpassword、nameを取得
-			String sql = "SELECT id, name, password FROM users WHERE deleted_at is null and id = ? ";
-			
+			// CorrectAnswers tableのidとquestions_id、answerを取得
+			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id = ? ";
 		
 			
 			/** PreparedStatement オブジェクトの取得**/
@@ -82,14 +80,14 @@ public class UsersDao extends ConnectionDao {
 			/** SQL 実行 **/
 			rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/ 
-			UsersBean list = new UsersBean();
+			CorrectAnswersBean list = new CorrectAnswersBean();
 			while (rs.next()) {
 				// 一旦変数で受ける
-				int userid = rs.getInt("id");
-				String name = rs.getString("name");
-				String pass = rs.getString("password");
-				// ListはUserBean型
-				list = new UsersBean(userid, name, pass);
+				int correct_answer_id = rs.getInt("id");
+				int questions_id = rs.getInt("questions_id");
+				String answer = rs.getString("answer");
+				// ListはCorrectAnswers型
+				list = new CorrectAnswersBean(correct_answer_id, questions_id, answer);
 			
 			}
 			return list;
@@ -116,5 +114,4 @@ public class UsersDao extends ConnectionDao {
 	/**
 	 * 指定IDのレコードを取得する
 	 */
-	
 }
