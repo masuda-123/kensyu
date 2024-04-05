@@ -43,9 +43,8 @@ public class List extends HttpServlet {
 			request.setAttribute("a_bean_list", a_bean_list);
 			
 			if(q_bean_list.isEmpty()) {
-				response.sendRedirect("/Top");
+				response.sendRedirect("./Top");
 				return;
-				
 			} else {
 				RequestDispatcher rd = request.getRequestDispatcher("/List.jsp");
 				rd.forward(request, response);
