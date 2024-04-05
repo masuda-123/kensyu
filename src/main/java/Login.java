@@ -44,9 +44,6 @@ public class Login extends HttpServlet {
 		int user_id = Integer.parseInt(request.getParameter("user_id"));
 		String password = request.getParameter("password");
 		
-		System.out.println(user_id);
-		System.out.println(password);
-		
 		UsersBean bean;
 		UsersDao dao;
 		
