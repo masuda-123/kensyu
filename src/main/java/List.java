@@ -42,10 +42,15 @@ public class List extends HttpServlet {
 			ArrayList<CorrectAnswersBean> a_bean_list = a_dao.findAll();
 			request.setAttribute("a_bean_list", a_bean_list);
 			
-
-			RequestDispatcher rd = request.getRequestDispatcher("/List.jsp");
-			rd.forward(request, response);
-			return;
+			if(q_bean_list.isEmpty()) {
+				response.sendRedirect("/Top");
+				return;
+				
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("/List.jsp");
+				rd.forward(request, response);
+				return;
+			}
 			
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
