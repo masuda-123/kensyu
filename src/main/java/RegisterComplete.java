@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import kensyu.QuestionsBean;
+import kensyu.CorrectAnswersDao;
 import kensyu.QuestionsDao;
 
 /**
@@ -42,13 +42,14 @@ public class RegisterComplete extends HttpServlet {
 		try {
 			HttpSession session = request.getSession(false);
 			
-			QuestionsDao dao = new QuestionsDao();
-			QuestionsBean bean = new QuestionsBean();
+			QuestionsDao q_dao = new QuestionsDao();
+			CorrectAnswersDao a_dao = new CorrectAnswersDao(); 
 			
 			String question = String.valueOf(session.getAttribute("reg_question"));
 			String[] answers = (String[])session.getAttribute("reg_answers");
 			
-			dao.register_question(question);
+			int questions_id = q_dao.register_question(question);
+			a_dao.register_answers(questions_id, answers);
 			
 			response.sendRedirect("./List");
 			

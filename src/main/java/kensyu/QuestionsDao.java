@@ -74,11 +74,8 @@ public class QuestionsDao extends ConnectionDao {
 		try {
 			// Questions tableのidとquestionを取得
 			String sql = "SELECT id, question FROM users WHERE id = ? ";
-			
-			
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
-			
 			st.setInt(1, id);
 			/** SQL 実行 **/
 			rs = st.executeQuery();
@@ -90,7 +87,6 @@ public class QuestionsDao extends ConnectionDao {
 				String question = rs.getString("question");
 				// ListはQuestionsBean型
 				list = new QuestionsBean(questionid, question);
-			
 			}
 			return list;
 		} catch (Exception e) { 
@@ -117,29 +113,47 @@ public class QuestionsDao extends ConnectionDao {
 	/**
 	 * 問題を登録する
 	*/
-	public void register_question(String question) throws Exception {
+	public int register_question(String question) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
 		PreparedStatement st = null;
-		
+		ResultSet rs = null;
 		try {
 			// Questions table にデータを追加
-			String sql = "INSERT INTO questions (question) VALUES (?);";
-			
-			st = con.prepareStatement(sql);
-			
+			String insert_sql = "INSERT INTO questions (question) VALUES (?);";
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(insert_sql);
 			st.setString(1, question);
-			
+			/** SQL 実行 **/
 			st.executeUpdate();
+	
+			// Questions table のidの最大値を取得
+			String select_sql = "SELECT MAX(id) from questions;";
+			/** PreparedStatement オブジェクトの取得**/
+			st = con.prepareStatement(select_sql);
+			/** SQL 実行 **/
+			rs = st.executeQuery();
+			/** select文で取得したidを変数に格納 **/ 
+			int questions_id = 0;
+			while (rs.next()) {
+				questions_id = rs.getInt("MAX(id)");
+			}
+			return questions_id;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの登録に失敗しました");
 		} finally {
 			try {				
+				if (rs != null) {
+					rs.close();
+				}
+				
 				if (st != null) {
 					st.close();
 				}
+				close();
 			} catch (Exception e) {
 				e.printStackTrace();
 				throw new DAOException("リソースの開放に失敗しました");
