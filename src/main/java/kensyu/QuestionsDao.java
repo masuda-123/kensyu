@@ -60,7 +60,11 @@ public class QuestionsDao extends ConnectionDao {
 			}
 		}
 	}
-	// QuestionsBean型　idを引数として受け取る
+	
+	/**
+	 * 指定IDのレコードを取得する
+	*/
+	// QuestionsBean型のidを引数として受け取る
 	public QuestionsBean search_question_id(int id) throws Exception {
 		if (con == null) {
 			setConnection();
@@ -109,8 +113,42 @@ public class QuestionsDao extends ConnectionDao {
 			}
 		}
 	}
-	/**
-	 * 指定IDのレコードを取得する
-	 */
 	
+	/**
+	 * 問題を登録する
+	*/
+	public void register_question(String question) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		PreparedStatement st = null;
+		
+		try {
+			// Questions table にデータを追加
+			String sql = "INSERT INTO questions (question) VALUES (?);";
+			
+			st = con.prepareStatement(sql);
+			
+			st.setString(1, question);
+			
+			st.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの登録に失敗しました")
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				
+				if (st != null) {
+					st.clone();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new DAOException("リソースの開放に失敗しました");
+			}
+		}
+		
+	}
 }
