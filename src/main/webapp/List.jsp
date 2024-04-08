@@ -11,7 +11,7 @@
  <%
 	ArrayList<QuestionsBean> q_list = (ArrayList<QuestionsBean>)request.getAttribute("q_bean_list");
  	ArrayList<CorrectAnswersBean> a_list = (ArrayList<CorrectAnswersBean>)request.getAttribute("a_bean_list");
- 
+
 %>
 
 <!DOCTYPE html>
