@@ -61,7 +61,11 @@ public class CorrectAnswersDao extends ConnectionDao {
 		}
 	}
 	
-	// CorrectAnswersBean型　idを引数として受け取る
+	/**
+	 * 指定IDのレコードを取得する
+	 */
+	
+	// CorrectAnswersBean型のidを引数として受け取る
 	public CorrectAnswersBean search_correct_answer_id(int id) throws Exception {
 		if (con == null) {
 			setConnection();
@@ -111,7 +115,4 @@ public class CorrectAnswersDao extends ConnectionDao {
 			}
 		}
 	}
-	/**
-	 * 指定IDのレコードを取得する
-	 */
 }
