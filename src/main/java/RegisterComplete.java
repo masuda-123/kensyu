@@ -1,11 +1,14 @@
 
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import jakarta.servlet.http.HttpSession;
+import kensyu.QuestionsBean;
+import kensyu.QuestionsDao;
 
 /**
  * Servlet implementation class RegisterComplete
@@ -34,7 +37,25 @@ public class RegisterComplete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+		
+		try {
+			HttpSession session = request.getSession(false);
+			
+			QuestionsDao dao = new QuestionsDao();
+			QuestionsBean bean = new QuestionsBean();
+			
+			String question = String.valueOf(session.getAttribute("reg_question"));
+			String[] answers = (String[])session.getAttribute("reg_answers");
+			
+			dao.register_question(question);
+			
+			response.sendRedirect("./List");
+			
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	}
 
 }
