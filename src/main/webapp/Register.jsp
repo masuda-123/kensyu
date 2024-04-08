@@ -10,7 +10,7 @@
 <body>
 	<ul>
 		<li>
-			<button  onclick="location.href='./Top'">top</button>
+			<button onclick="location.href='./Top'">top</button>
 			<button>logout</button>
 		</li>
 		<form action="./Confirm" method="post">
@@ -22,7 +22,7 @@
 		      <label for="answer">答え:</label>
 		      <input type="text" id="answer" name="answer">
 		    </li>
-		    <button onclick="history.back()">戻る</button>
+		    <button type="button" onclick="history.back()">戻る</button>
 		    <input type="submit" value="確認">
 		    <button>追加</button>
 		</form>

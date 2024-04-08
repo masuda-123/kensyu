@@ -23,11 +23,11 @@
 	<body>
 		<ul>
 			<li>
-				<button  onclick="location.href='./Top'">top</button>
+				<button onclick="location.href='./Top'">top</button>
 				<button>logout</button>
 			</li>
 			<li>
-				<button>新規登録</button>
+				<button onclick="location.href='./Register'">新規登録</button>
 			</li>
 			<% for (int i = 0; i < q_list.size(); i++ ){ %>
 				<% QuestionsBean que = q_list.get(i); %>
