@@ -28,7 +28,7 @@
 						<%= answers[i] %>
 			<% } %>
 		</li>
-		<form action="./Confirm" method="post">
+		<form action="./RegisterComplete" method="post">
 			<button type="button" onclick="history.back()">戻る</button>
 			<input type="submit" value="登録">
 		</form>

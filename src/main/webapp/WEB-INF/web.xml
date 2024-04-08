@@ -59,4 +59,14 @@
     <servlet-name>Confirm</servlet-name>
     <url-pattern>/Confirm</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterComplete</display-name>
+    <servlet-name>RegisterComplete</servlet-name>
+    <servlet-class>RegisterComplete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterComplete</servlet-name>
+    <url-pattern>/RegisterComplete</url-pattern>
+  </servlet-mapping>
 </web-app>

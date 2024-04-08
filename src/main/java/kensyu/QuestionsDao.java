@@ -134,15 +134,11 @@ public class QuestionsDao extends ConnectionDao {
 			st.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new DAOException("レコードの登録に失敗しました")
+			throw new DAOException("レコードの登録に失敗しました");
 		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				
+			try {				
 				if (st != null) {
-					st.clone();
+					st.close();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
