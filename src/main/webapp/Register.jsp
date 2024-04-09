@@ -7,6 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Register</title>
+	<script src="<%= request.getContextPath() %>/js/add_answer_form.js"></script>
 </head>
 
 <body>
@@ -21,22 +22,24 @@
 		    	<input type="text" id="question" name="question">
 		    </li>
 		    </li>
-		    <li>
-		    	<label for="answer">答え:</label>
-		      	<input type="text" id="answer" name="answer">
-		    </li>
-		    <li>
-		    	<label for="answer">答え:</label>
-		      	<input type="text" id="answer" name="answer">
-		    </li>
-		    <li>
-		    	<label for="answer">答え:</label>
-		      	<input type="text" id="answer" name="answer">
-		    </li>
+		    <div class="answer_form_area">
+			    <li>
+			    	<label for="answer">答え:</label>
+			      	<input type="text" id="answer" name="answer">
+			    </li>
+			    <li>
+			    	<label for="answer">答え:</label>
+			      	<input type="text" id="answer" name="answer">
+			    </li>
+			    <li>
+			    	<label for="answer">答え:</label>
+			      	<input type="text" id="answer" name="answer">
+			    </li>
+			 </div>
 		    <div>
 		    	<button type="button" onclick="history.back()">戻る</button>
 		    	<input type="submit" value="確認">
-		    	<button>追加</button>
+		    	<button type="button" class="btn">追加</button>
 		    </div>
 		</form>
 	</ul>
