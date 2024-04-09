@@ -38,9 +38,11 @@
 				<% for (int j = 0; j < a_list.size(); j++ ) { %>
 					<% CorrectAnswersBean ans = a_list.get(j); %>
 					<% if(ans.getQuestionsId() == que.getId()){ %>
-						<li>
-							答え:<%= ++cnt %> <%= ans.getAnswer() %>
-						</li>
+						<ul>
+							<li>
+								答え<%= ++cnt %>: <%= ans.getAnswer() %>
+							</li>
+						</ul>
 					<% } %>
 				<% } %>
 				<li>

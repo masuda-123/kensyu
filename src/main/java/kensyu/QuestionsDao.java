@@ -117,47 +117,33 @@ public class QuestionsDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		try {
-			// Questions table にデータを追加
-			String insert_sql = "INSERT INTO questions (question) VALUES (?);";
-			/** PreparedStatement オブジェクトの取得**/
-			st = con.prepareStatement(insert_sql);
-			st.setString(1, question);
+		
+		// Questions table にデータを追加
+		String insert_sql = "INSERT INTO questions (question) VALUES (?);";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement insert_st = con.prepareStatement(insert_sql);) {
+			insert_st.setString(1, question);
 			/** SQL 実行 **/
-			st.executeUpdate();
-	
+			insert_st.executeUpdate();
+			
 			// Questions table のidの最大値を取得
 			String select_sql = "SELECT MAX(id) from questions;";
-			/** PreparedStatement オブジェクトの取得**/
-			st = con.prepareStatement(select_sql);
-			/** SQL 実行 **/
-			rs = st.executeQuery();
-			/** select文で取得したidを変数に格納 **/ 
-			int questions_id = 0;
-			while (rs.next()) {
-				questions_id = rs.getInt("MAX(id)");
+			/** PreparedStatement オブジェクトの取得とSQLの実行**/
+			try(PreparedStatement select_st = con.prepareStatement(select_sql);
+					ResultSet rs = select_st.executeQuery()) {
+				/** select文で取得したidを変数に格納 **/ 
+				int questions_id = 0;
+				while (rs.next()) {
+					questions_id = rs.getInt("MAX(id)");
+				}
+				return questions_id;
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました");
 			}
-			return questions_id;
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの登録に失敗しました");
-		} finally {
-			try {				
-				if (rs != null) {
-					rs.close();
-				}
-				
-				if (st != null) {
-					st.close();
-				}
-				close();
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new DAOException("リソースの開放に失敗しました");
-			}
 		}
 		
 	}

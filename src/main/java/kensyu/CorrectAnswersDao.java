@@ -119,12 +119,10 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		PreparedStatement st = null;
-		try {
-			// Correct_answers table にデータを追加
-			String sql = "INSERT INTO correct_answers (questions_id, answer) VALUES (?, ?);";
-			/** PreparedStatement オブジェクトの取得**/
-			st = con.prepareStatement(sql);
+		// Correct_answers table にデータを追加
+		String sql = "INSERT INTO correct_answers (questions_id, answer) VALUES (?, ?);";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql);) {
 			// answersの要素数の分、SQLを実行
 			for(int i = 0; i < answers.length; i++) {
 				st.setInt(1, questions_id);
@@ -135,16 +133,6 @@ public class CorrectAnswersDao extends ConnectionDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの登録に失敗しました");
-		} finally {
-			try {				
-				if (st != null) {
-					st.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new DAOException("リソースの開放に失敗しました");
-			}
-		}
-		
+		}	
 	}
 }
