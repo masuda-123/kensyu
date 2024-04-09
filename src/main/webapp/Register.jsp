@@ -15,7 +15,7 @@
 			<button onclick="location.href='./Top'">top</button>
 			<button>logout</button>
 		</li>
-		<form action="./Confirm" method="post">
+		<form action="./Register/Confirm" method="post">
 		    <li>
 		    	<label for="question">問題:</label>
 		    	<input type="text" id="question" name="question">

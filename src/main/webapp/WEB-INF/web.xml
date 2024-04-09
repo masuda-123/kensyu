@@ -57,7 +57,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Confirm</servlet-name>
-    <url-pattern>/Confirm</url-pattern>
+    <url-pattern>/Register/Confirm</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -67,6 +67,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterComplete</servlet-name>
-    <url-pattern>/RegisterComplete</url-pattern>
+    <url-pattern>/Register/RegisterComplete</url-pattern>
   </servlet-mapping>
 </web-app>

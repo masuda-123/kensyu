@@ -29,7 +29,6 @@ public class Register extends HttpServlet {
 		// TODO Auto-generated method stub
 		//	response.getWriter().append("Served at: ").append(request.getContextPath());
 		RequestDispatcher rd = request.getRequestDispatcher("/Register.jsp");
-		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);
 	}
 
@@ -38,7 +37,7 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
 }

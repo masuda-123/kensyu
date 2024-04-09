@@ -117,7 +117,6 @@ public class QuestionsDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		
 		// Questions table にデータを追加
 		String insert_sql = "INSERT INTO questions (question, created_at) VALUES (?, CURRENT_TIMESTAMP());";
 		/** PreparedStatement オブジェクトの取得**/

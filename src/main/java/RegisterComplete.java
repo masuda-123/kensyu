@@ -29,7 +29,7 @@ public class RegisterComplete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -51,8 +51,7 @@ public class RegisterComplete extends HttpServlet {
 			int questions_id = q_dao.register_question(question);
 			a_dao.register_answers(questions_id, answers);
 			
-			response.sendRedirect("./List");
-			
+			response.sendRedirect("../List");
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
