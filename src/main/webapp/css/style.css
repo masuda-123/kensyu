@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+body {
+	width: 600px;
+}
+
+.question_area input {
+	 width: 500px;
+	 height: 100px;
+}
+
+.question_area label {
+	vertical-align:top
+}
+
+.question_area {
+	margin-top: 20px;
+	display: flex;
+}
+
+.answer_area {
+	margin-top: 20px;
+	display: flex;
+}
+
+.answer_form {
+	flex-direction: column;
+}
+
+.answer_form input {
+	margin-bottom: 10px;
+	display: block;
+	width: 500px;
+}
+
+label {
+	margin-right: 10px;
+}
+
+.btn_area {
+	width: 100%;
+	text-align: right;
+}

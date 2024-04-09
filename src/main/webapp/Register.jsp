@@ -8,40 +8,34 @@
 	<meta charset="UTF-8">
 	<title>Register</title>
 	<script src="<%= request.getContextPath() %>/js/add_answer_form.js"></script>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 
 <body>
-	<ul>
-		<li>
-			<button onclick="location.href='./Top'">top</button>
-			<button>logout</button>
-		</li>
-		<form action="./Register/Confirm" method="post">
-		    <li>
-		    	<label for="question">問題:</label>
+	 <div class="btn_area">
+		<button onclick="location.href='./Top'">top</button>
+		<button>logout</button>
+	</div>
+	<form action="./Register/Confirm" method="post">
+		<div class="question_area">
+		    <label for="question">問題:</label>
+		    <div class="question_form">
 		    	<input type="text" id="question" name="question">
-		    </li>
-		    </li>
-		    <div class="answer_form_area">
-			    <li>
-			    	<label for="answer">答え:</label>
-			      	<input type="text" id="answer" name="answer">
-			    </li>
-			    <li>
-			    	<label for="answer">答え:</label>
-			      	<input type="text" id="answer" name="answer">
-			    </li>
-			    <li>
-			    	<label for="answer">答え:</label>
-			      	<input type="text" id="answer" name="answer">
-			    </li>
-			 </div>
-		    <div>
-		    	<button type="button" onclick="history.back()">戻る</button>
+		    </div>
+		</div>
+		    
+		<div class="answer_area">
+			<label for="answer">答え:</label>
+			<div class="answer_form">
+		    	<input type="text" id="answer" name="answer">
+		    	<input type="text" id="answer" name="answer">
+		    </div>
+		</div>
+		<div class="btn_area">
+			<button type="button" onclick="history.back()">戻る</button>
 		    	<input type="submit" value="確認">
 		    	<button type="button" class="btn">追加</button>
-		    </div>
-		</form>
-	</ul>
+		 </div>
+	</form>
 </body>
 </html>
