@@ -59,21 +59,18 @@ public class Confirm extends HttpServlet {
 		session.setAttribute("reg_question", question);
 		session.setAttribute("reg_answers", answers);
 		
+		//questionが空だった場合
+		if(question.isEmpty()) {
+			request.setAttribute("error_empty_question", "※問題文を入力してください。");
 		//questionの文字数が500文字を超えていた場合
-		if(question.length() > 500) {
-			request.setAttribute("error_question", "※問題の文字数が制限（500文字）を超えています。");
-			RequestDispatcher rd = request.getRequestDispatcher("/Register.jsp");
-			rd.forward(request, response);
-			return ;
+		} else if(question.length() > 500) {
+			request.setAttribute("error_length_question", "※問題の文字数が制限（500文字）を超えています。");
 		}
 		
-		//答えの文字数が200文字を超えていた場合
+		//answerの文字数が200文字を超えていた場合
 		for(int i = 0; i < answers.length; i++) {
 			if(answers[i].length() > 200) {
-				request.setAttribute("error_answer", "※答えの文字数が制限（200文字）を超えています。");
-				RequestDispatcher rd = request.getRequestDispatcher("/Register.jsp");
-				rd.forward(request, response);
-				return ;
+				request.setAttribute("error_length_answer", "※答えの文字数が制限（200文字）を超えています。");
 			}
 		}
 		
