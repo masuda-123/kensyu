@@ -120,7 +120,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 			setConnection();
 		}
 		// Correct_answers table にデータを追加
-		String sql = "INSERT INTO correct_answers (questions_id, answer) VALUES (?, ?);";
+		String sql = "INSERT INTO correct_answers (questions_id, answer, created_at) VALUES (?, ?, CURRENT_TIMESTAMP());";
 		/** PreparedStatement オブジェクトの取得**/
 		try(PreparedStatement st = con.prepareStatement(sql);) {
 			// answersの要素数の分、SQLを実行
