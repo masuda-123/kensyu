@@ -18,38 +18,37 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>問題一覧</title>
+		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 	</head>
 	<body>
-		<ul>
-			<li>
-				<button onclick="location.href='./Top'">top</button>
-				<button>logout</button>
-			</li>
-			<li>
-				<button onclick="location.href='./Register'">新規登録</button>
-			</li>
-			<% for (int i = 0; i < q_list.size(); i++ ){ %>
-				<% QuestionsBean que = q_list.get(i); %>
-				<li>
-					問題:<%= que.getId() %>
-					<%= que.getQuestion() %>
-				</li>
-				<% int cnt = 0; %>
-				<% for (int j = 0; j < a_list.size(); j++ ) { %>
-					<% CorrectAnswersBean ans = a_list.get(j); %>
-					<% if(ans.getQuestionsId() == que.getId()){ %>
-						<ul>
-							<li>
-								答え<%= ++cnt %>: <%= ans.getAnswer() %>
-							</li>
-						</ul>
+		<div class="btn_area">
+			<button onclick="location.href='./Top'">top</button>
+			<button>logout</button>
+		</div>
+		<button class="new_btn" onclick="location.href='./Register'" >新規登録</button>
+		<% for (int i = 0; i < q_list.size(); i++ ){ %>
+			<div class="list_area">
+				<div class="list">
+					<% QuestionsBean que = q_list.get(i); %>
+					<div class="questions_list">
+						<label>問題:<%= que.getId() %></label>
+						<p><%= que.getQuestion() %></p>
+					</div>
+					<% int cnt = 0; %>
+					<% for (int j = 0; j < a_list.size(); j++ ) { %>
+						<% CorrectAnswersBean ans = a_list.get(j); %>
+						<% if(ans.getQuestionsId() == que.getId()){ %>
+							<div class="answers_list">
+								<p>答え<%= ++cnt %>: <%= ans.getAnswer() %></p>
+							</div>
+						<% } %>
 					<% } %>
-				<% } %>
-				<li>
+				</div>
+				<div class="edit_delete_btn_area">
 					<button>編集</button>
 					<button>削除</button>
-				</li>
-			<% } %>
-		</ul>
+				</div>
+			</div>
+		<% } %>
 	</body>
 </html>

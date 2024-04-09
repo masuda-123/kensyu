@@ -51,3 +51,32 @@ label {
 	width: 300px;
 	margin: 10px auto;
 }
+
+.new_btn {
+	display: flex;
+	margin: 0 auto;
+}
+
+.questions_list {
+	display: flex;
+	margin-bottom: 5px;
+}
+
+.answers_list {
+	margin-left: 20px;
+}
+
+p {
+	margin: 0;
+}
+
+.list_area {
+	width: 100%;
+	margin-bottom: 10px;
+	display: flex;
+}
+
+.list {
+	width: 84.5%;
+}
+
