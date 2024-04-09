@@ -35,19 +35,20 @@
 			<label>問題:</label>
 			<%= question %>
 		</li>
-				<% if(error_empty_answer != null) { %>
+		<% if(error_empty_answer != null) { %>
 			<li>
-		    	<%= error_empty_answer %>
-		    </li>
+			    <%= error_empty_answer %>
+			</li>
 		<% } else if(error_length_answer != null) { %>
 		    <li>
 		    	<%= error_length_answer %>
 		    </li>
 		<% } %>
-		<li>
-			<label>答え:</label>
-			<% for(int i = 0; i < answers.length; i++){  %>
-				<%= answers[i] %>
+		<% for(int i = 0; i < answers.length; i++){  %>
+				<li>
+					<label>答え:</label>
+					<%= answers[i] %>
+				</li>
 			<% } %>
 		</li>
 		<form action="./RegisterComplete" method="post">

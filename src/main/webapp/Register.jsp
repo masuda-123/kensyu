@@ -25,7 +25,14 @@
 		    	<label for="answer">答え:</label>
 		      	<input type="text" id="answer" name="answer">
 		    </li>
-		    
+		    <li>
+		    	<label for="answer">答え:</label>
+		      	<input type="text" id="answer" name="answer">
+		    </li>
+		    <li>
+		    	<label for="answer">答え:</label>
+		      	<input type="text" id="answer" name="answer">
+		    </li>
 		    <div>
 		    	<button type="button" onclick="history.back()">戻る</button>
 		    	<input type="submit" value="確認">
