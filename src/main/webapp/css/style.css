@@ -41,3 +41,13 @@ label {
 	width: 100%;
 	text-align: right;
 }
+
+.menu_area {
+	width: 100%;
+}
+
+.menu_area button {
+	display: block;
+	width: 300px;
+	margin: 10px auto;
+}
