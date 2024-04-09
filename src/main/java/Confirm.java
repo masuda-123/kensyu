@@ -67,9 +67,12 @@ public class Confirm extends HttpServlet {
 			request.setAttribute("error_length_question", "※問題の文字数が制限（500文字）を超えています。");
 		}
 		
-		//answerの文字数が200文字を超えていた場合
 		for(int i = 0; i < answers.length; i++) {
-			if(answers[i].length() > 200) {
+			//answerが空だった場合
+			if(answers[i].isEmpty()) {
+				request.setAttribute("error_length_answer", "※答えを入力してください。");
+			//answerの文字数が200文字を超えていた場合
+			}else if(answers[i].length() > 200) {
 				request.setAttribute("error_length_answer", "※答えの文字数が制限（200文字）を超えています。");
 			}
 		}

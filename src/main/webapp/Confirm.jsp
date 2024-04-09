@@ -6,6 +6,7 @@
 	String question = (String)request.getAttribute("reg_question");
 	String[] answers = (String[])request.getAttribute("reg_answers");
 	String error_empty_question = (String)request.getAttribute("error_empty_question");
+	String error_empty_answer = (String)request.getAttribute("error_empty_answer");
 	String error_length_question = (String)request.getAttribute("error_length_question");
 	String error_length_answer = (String)request.getAttribute("error_length_answer");
 %>
@@ -34,7 +35,11 @@
 			<label>問題:</label>
 			<%= question %>
 		</li>
-		<% if(error_length_answer != null) { %>
+				<% if(error_empty_answer != null) { %>
+			<li>
+		    	<%= error_empty_answer %>
+		    </li>
+		<% } else if(error_length_answer != null) { %>
 		    <li>
 		    	<%= error_length_answer %>
 		    </li>
@@ -47,7 +52,7 @@
 		</li>
 		<form action="./RegisterComplete" method="post">
 			<button type="button" onclick="history.back()">戻る</button>
-			<% if (error_empty_question == null && error_length_question == null && error_length_answer == null) { %>
+			<% if (error_empty_question == null && error_empty_answer == null && error_length_question == null && error_length_answer == null) { %>
 				<input type="submit" value="登録">
 			<% } %>
 		</form>
