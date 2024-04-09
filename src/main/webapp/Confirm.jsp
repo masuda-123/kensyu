@@ -18,7 +18,7 @@
 <body>
 	<ul>
 		<li>
-			<button onclick="location.href='./Top'">top</button>
+			<button onclick="location.href='../Top'">top</button>
 			<button>logout</button>
 		</li>
 		<% if(error_empty_question != null) { %>
