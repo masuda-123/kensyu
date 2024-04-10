@@ -11,7 +11,6 @@
  <%
 	ArrayList<QuestionsBean> q_list = (ArrayList<QuestionsBean>)request.getAttribute("q_bean_list");
  	ArrayList<CorrectAnswersBean> a_list = (ArrayList<CorrectAnswersBean>)request.getAttribute("a_bean_list");
- 
 %>
 
 <!DOCTYPE html>
@@ -23,11 +22,11 @@
 	<body>
 		<ul>
 			<li>
-				<button  onclick="location.href='./Top'">top</button>
+				<button onclick="location.href='./Top'">top</button>
 				<button>logout</button>
 			</li>
 			<li>
-				<button>新規登録</button>
+				<button onclick="location.href='./Register'">新規登録</button>
 			</li>
 			<% for (int i = 0; i < q_list.size(); i++ ){ %>
 				<% QuestionsBean que = q_list.get(i); %>
@@ -39,9 +38,11 @@
 				<% for (int j = 0; j < a_list.size(); j++ ) { %>
 					<% CorrectAnswersBean ans = a_list.get(j); %>
 					<% if(ans.getQuestionsId() == que.getId()){ %>
-						<li>
-							答え:<%= ++cnt %> <%= ans.getAnswer() %>
-						</li>
+						<ul>
+							<li>
+								答え<%= ++cnt %>: <%= ans.getAnswer() %>
+							</li>
+						</ul>
 					<% } %>
 				<% } %>
 				<li>

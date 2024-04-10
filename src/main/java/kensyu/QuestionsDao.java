@@ -60,7 +60,11 @@ public class QuestionsDao extends ConnectionDao {
 			}
 		}
 	}
-	// QuestionsBean型　idを引数として受け取る
+	
+	/**
+	 * 指定IDのレコードを取得する
+	*/
+	// QuestionsBean型のidを引数として受け取る
 	public QuestionsBean search_question_id(int id) throws Exception {
 		if (con == null) {
 			setConnection();
@@ -70,11 +74,8 @@ public class QuestionsDao extends ConnectionDao {
 		try {
 			// Questions tableのidとquestionを取得
 			String sql = "SELECT id, question FROM users WHERE id = ? ";
-			
-			
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
-			
 			st.setInt(1, id);
 			/** SQL 実行 **/
 			rs = st.executeQuery();
@@ -86,7 +87,6 @@ public class QuestionsDao extends ConnectionDao {
 				String question = rs.getString("question");
 				// ListはQuestionsBean型
 				list = new QuestionsBean(questionid, question);
-			
 			}
 			return list;
 		} catch (Exception e) { 
@@ -109,8 +109,41 @@ public class QuestionsDao extends ConnectionDao {
 			}
 		}
 	}
-	/**
-	 * 指定IDのレコードを取得する
-	 */
 	
+	/**
+	 * 問題を登録する
+	*/
+	public int register_question(String question) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// Questions table にデータを追加
+		String insert_sql = "INSERT INTO questions (question, created_at) VALUES (?, CURRENT_TIMESTAMP());";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement insert_st = con.prepareStatement(insert_sql);) {
+			insert_st.setString(1, question);
+			/** SQL 実行 **/
+			insert_st.executeUpdate();
+			
+			// Questions table のidの最大値を取得
+			String select_sql = "SELECT MAX(id) from questions;";
+			/** PreparedStatement オブジェクトの取得とSQLの実行**/
+			try(PreparedStatement select_st = con.prepareStatement(select_sql);
+					ResultSet rs = select_st.executeQuery()) {
+				/** select文で取得したidを変数に格納 **/ 
+				int questions_id = 0;
+				while (rs.next()) {
+					questions_id = rs.getInt("MAX(id)");
+				}
+				return questions_id;
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new DAOException("レコードの取得に失敗しました");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの登録に失敗しました");
+		}
+		
+	}
 }

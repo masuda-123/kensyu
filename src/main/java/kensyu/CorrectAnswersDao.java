@@ -61,7 +61,11 @@ public class CorrectAnswersDao extends ConnectionDao {
 		}
 	}
 	
-	// CorrectAnswersBean型　idを引数として受け取る
+	/**
+	 * 指定IDのレコードを取得する
+	 */
+	
+	// CorrectAnswersBean型のidを引数として受け取る
 	public CorrectAnswersBean search_correct_answer_id(int id) throws Exception {
 		if (con == null) {
 			setConnection();
@@ -70,12 +74,9 @@ public class CorrectAnswersDao extends ConnectionDao {
 		ResultSet rs = null;
 		try {
 			// CorrectAnswers tableのidとquestions_id、answerを取得
-			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id = ? ";
-		
-			
+			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id = ? ";	
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
-			
 			st.setInt(1, id);
 			/** SQL 実行 **/
 			rs = st.executeQuery();
@@ -88,7 +89,6 @@ public class CorrectAnswersDao extends ConnectionDao {
 				String answer = rs.getString("answer");
 				// ListはCorrectAnswers型
 				list = new CorrectAnswersBean(correct_answer_id, questions_id, answer);
-			
 			}
 			return list;
 		} catch (Exception e) { 
@@ -111,7 +111,28 @@ public class CorrectAnswersDao extends ConnectionDao {
 			}
 		}
 	}
+	
 	/**
-	 * 指定IDのレコードを取得する
-	 */
+	 * 答えを登録する
+	*/
+	public void register_answers(int questions_id, String[] answers) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// Correct_answers table にデータを追加
+		String sql = "INSERT INTO correct_answers (questions_id, answer, created_at) VALUES (?, ?, CURRENT_TIMESTAMP());";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql);) {
+			// answersの要素数の分、SQLを実行
+			for(int i = 0; i < answers.length; i++) {
+				st.setInt(1, questions_id);
+				st.setString(2, answers[i]);
+				/** SQL 実行 **/
+				st.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの登録に失敗しました");
+		}	
+	}
 }

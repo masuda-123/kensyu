@@ -39,4 +39,34 @@
     <servlet-name>Top</servlet-name>
     <url-pattern>/Top</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Register</display-name>
+    <servlet-name>Register</servlet-name>
+    <servlet-class>Register</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Register</servlet-name>
+    <url-pattern>/Register</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Confirm</display-name>
+    <servlet-name>Confirm</servlet-name>
+    <servlet-class>Confirm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Confirm</servlet-name>
+    <url-pattern>/Register/Confirm</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterComplete</display-name>
+    <servlet-name>RegisterComplete</servlet-name>
+    <servlet-class>RegisterComplete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterComplete</servlet-name>
+    <url-pattern>/Register/RegisterComplete</url-pattern>
+  </servlet-mapping>
 </web-app>
