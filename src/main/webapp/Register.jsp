@@ -20,7 +20,7 @@
 		<div class="question_area">
 		    <label for="question">問題:</label>
 		    <div class="question_form">
-		    	<input type="text" id="question" name="question">
+		    	<textarea id="question" name="question"></textarea>
 		    </div>
 		</div>
 		    

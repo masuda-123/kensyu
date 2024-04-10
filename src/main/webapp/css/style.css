@@ -4,7 +4,7 @@ body {
 	width: 600px;
 }
 
-.question_area input {
+.question_area textarea {
 	 width: 500px;
 	 height: 100px;
 }
@@ -18,19 +18,29 @@ body {
 	display: flex;
 }
 
+.question_area p {
+	width: 90%;
+	overflow-wrap: break-word;
+}
+
 .answer_area {
 	margin-top: 20px;
 	display: flex;
 }
 
 .answer_form {
-	flex-direction: column;
+	width: 90%;
 }
 
 .answer_form input {
 	margin-bottom: 10px;
 	display: block;
 	width: 500px;
+}
+
+.answer_form p {
+	width: 100%;
+	overflow-wrap: break-word;
 }
 
 label {
@@ -80,3 +90,7 @@ p {
 	width: 84.5%;
 }
 
+.error {
+	padding-top:10px;
+	color: red;
+}
