@@ -26,16 +26,18 @@
 		    
 		<div class="answer_area">
 			<label for="answer">答え:</label>
-			<div class="answer_form">
-		    	<input type="text" id="answer" name="answer">
-		    	<input type="text" id="answer" name="answer">
+			<div class="answer_form_list">
+				<div class="answer_form">
+			    	<input type="text" id="answer" name="answer">
+			    	<button type="button" class="delete_btn">削除</button>
+			    </div>
 		    </div>
 		</div>
 		<div class="btn_area">
 			<button type="button" onclick="history.back()">戻る</button>
 		    	<input type="submit" value="確認">
-		    	<button type="button" class="btn">追加</button>
-		 </div>
+		    	<button type="button" class="add_btn">追加</button>
+		</div>
 	</form>
 </body>
 </html>

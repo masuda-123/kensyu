@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body {
-	width: 600px;
+	width: 650px;
 }
 
 .question_area textarea {
@@ -29,13 +29,19 @@ body {
 }
 
 .answer_form {
-	width: 90%;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
 }
 
 .answer_form input {
-	margin-bottom: 10px;
 	display: block;
 	width: 500px;
+}
+
+.answer_form button {
+	display: block;
 }
 
 .answer_form p {
