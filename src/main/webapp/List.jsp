@@ -26,22 +26,19 @@
 			<button>logout</button>
 		</div>
 		<button class="new_btn" onclick="location.href='./Register'" >新規登録</button>
-		<% for (int i = 0; i < q_list.size(); i++ ){ %>
+		<% for (QuestionsBean que : q_list) { %>
 			<div class="list_area">
 				<div class="list">
-					<% QuestionsBean que = q_list.get(i); %>
 					<div class="questions_list">
 						<label>問題:<%= que.getId() %></label>
 						<p><%= que.getQuestion() %></p>
 					</div>
 					<% int cnt = 0; %>
-					<% for (int j = 0; j < a_list.size(); j++ ) { %>
-						<% CorrectAnswersBean ans = a_list.get(j); %>
-						<% if(ans.getQuestionsId() == que.getId()){ %>
-							<div class="answers_list">
-								<p>答え<%= ++cnt %>: <%= ans.getAnswer() %></p>
-							</div>
-						<% } %>
+					<% for(CorrectAnswersBean ans : a_list) { %>
+						<% if(ans.getQuestionsId() != que.getId()) { continue; } %>
+						<div class="answers_list">
+							<p>答え<%= ++cnt %>: <%= ans.getAnswer() %></p>
+						</div>
 					<% } %>
 				</div>
 				<div class="edit_delete_btn_area">
