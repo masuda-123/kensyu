@@ -57,7 +57,7 @@ public class Confirm extends HttpServlet {
 		for(int i = 0; i < answers.length; i++) {
 			//answerが空だった場合
 			if(answers[i].isEmpty()) {
-				request.setAttribute("error_length_answer", "※答えを入力してください。");
+				request.setAttribute("error_length_answer", "※未入力の答えがを含まれています。");
 			//answerの文字数が200文字を超えていた場合
 			}else if(answers[i].length() > 200) {
 				request.setAttribute("error_length_answer", "※答えの文字数が制限（200文字）を超えています。");

@@ -41,7 +41,7 @@
 		<% } %>
 		<div class="answer_area">
 			<label>答え:</label>
-			<div class="answer_form">
+			<div class="answer_form_list">
 				<% for(int i = 0; i < answers.length; i++){  %>
 					<p><%= answers[i] %></p>
 					<input type="hidden" id="answer" name="answer" value="<%= answers[i] %>">

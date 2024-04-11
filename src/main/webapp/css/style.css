@@ -31,7 +31,6 @@ body {
 .answer_form {
 	width: 100%;
 	display: flex;
-	justify-content: space-between;
 	margin-bottom: 10px;
 	height: 26px;
 }
