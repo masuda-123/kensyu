@@ -1,4 +1,5 @@
-function deleteForm() {	
-		var answer_form = document.querySelector('.answer_form')
-		answer_form.remove();
+function deleteForm(e) {	
+	console.log(e);
+//		var answer_form = document.getElementById(e);
+//		e.remove();
 };

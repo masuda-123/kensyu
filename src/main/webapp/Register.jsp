@@ -30,7 +30,6 @@
 			<div class="answer_form_list">
 				<div class="answer_form">
 			    	<input type="text" id="answer" name="answer">
-			    	<button type="button" onclick="deleteForm()">削除</button>
 			    </div>
 		    </div>
 		</div>
