@@ -17,7 +17,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>問題一覧</title>
+		<title>List</title>
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 	</head>
 	<body>

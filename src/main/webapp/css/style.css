@@ -4,6 +4,18 @@ body {
 	width: 650px;
 }
 
+.form {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	margin-top: 15px;
+}
+
+.login_btn {
+	display: flex;
+	justify-content: center;
+}
+
 .question_area textarea {
 	 width: 500px;
 	 height: 100px;
