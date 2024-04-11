@@ -1,6 +1,6 @@
 var i = 0;
 
-function addForm() {	
+function addForm() {
 		var answer_form = document.createElement('div');
 		answer_form.className = "answer_form"
 		answer_form.id = "answer_form" + ++i;
@@ -14,7 +14,7 @@ function addForm() {
 		var text = document.createTextNode('削除');
 		
 		var parent = document.querySelector('.answer_form_list');
-		parent.appendChild(answer_form)
+		parent.appendChild(answer_form);
 		answer_form.appendChild(input);
 		answer_form.appendChild(delete_btn);
 		delete_btn.appendChild(text);

@@ -43,6 +43,7 @@ body {
 
 .answer_form button {
 	display: block;
+	margin-left: 10px;
 }
 
 .answer_form p {
