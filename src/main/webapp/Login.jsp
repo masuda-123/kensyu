@@ -5,20 +5,21 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Login</title>
+		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 	</head>
 	<body>
 		<form action="./Login" method="post">
-		  <ul>
-		    <li>
-		      <label for="user_id">ID:</label>
-		      <input type="number" id="user_id" name="user_id">
-		    </li>
-		    <li>
-		      <label for="password">パスワード:</label>
-		      <input type="password" id="password" name="password">
-		    </li>
-		    <input type="submit" value="ログイン">
-		  </ul>
+			<div class="form">
+				<label for="user_id">ID:</label>
+				<input type="number" id="user_id" name="user_id">
+			</div>
+			<div class="form">
+			    <label for="password">pw:</label>
+			    <input type="password" id="password" name="password">
+			</div>
+			<div class="form">
+		    	<input type="submit" value="ログイン" class="login_btn">
+		    </div>
 		</form>
 	</body>
 </html>

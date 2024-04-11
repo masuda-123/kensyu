@@ -1,0 +1,115 @@
+@charset "UTF-8";
+
+body {
+	width: 650px;
+}
+
+.form {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	margin-top: 15px;
+}
+
+.login_btn {
+	display: flex;
+	justify-content: center;
+}
+
+.question_area textarea {
+	 width: 500px;
+	 height: 100px;
+}
+
+.question_area label {
+	vertical-align:top
+}
+
+.question_area {
+	margin-top: 20px;
+	display: flex;
+}
+
+.question_area p {
+	width: 90%;
+	overflow-wrap: break-word;
+}
+
+.answer_area {
+	margin-top: 20px;
+	display: flex;
+}
+
+.answer_form {
+	width: 100%;
+	display: flex;
+	margin-bottom: 10px;
+	height: 26px;
+}
+
+.answer_form input {
+	display: block;
+	width: 500px;
+}
+
+.answer_form button {
+	display: block;
+	margin-left: 10px;
+}
+
+.answer_form p {
+	width: 100%;
+	overflow-wrap: break-word;
+}
+
+label {
+	margin-right: 10px;
+}
+
+.btn_area {
+	width: 100%;
+	text-align: right;
+}
+
+.menu_area {
+	width: 100%;
+}
+
+.menu_area button {
+	display: block;
+	width: 300px;
+	margin: 10px auto;
+}
+
+.new_btn {
+	display: flex;
+	margin: 0 auto;
+}
+
+.questions_list {
+	display: flex;
+	margin-bottom: 5px;
+}
+
+.answers_list {
+	margin-left: 20px;
+}
+
+p {
+	margin: 0;
+}
+
+.list_area {
+	width: 100%;
+	margin-bottom: 10px;
+	display: flex;
+}
+
+.list {
+	width: 84.5%;
+}
+
+.error {
+	padding-top:10px;
+	color: red;
+}

@@ -15,50 +15,45 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Confirm</title>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-	<ul>
-		<li>
-			<button onclick="location.href='../Top'">top</button>
-			<button>logout</button>
-		</li>
-		<form action="./RegisterComplete" method="post">
-			<% if(error_empty_question != null) { %>
-				<li>
-			    	<%= error_empty_question %>
-			    </li>
-			<% } else if(error_length_question != null) { %>
-			    <li>
-			    	<%= error_length_question %>
-			    </li>
-			<% } %>
-			<li>
-				<label>問題:</label>
-				<%= question %>
-			</li>
+	<div class="btn_area">
+		<button onclick="location.href='../Top'">top</button>
+		<button>logout</button>
+	</div>
+	<form action="./RegisterComplete" method="post">
+		<% if(error_empty_question != null) { %>
+			<p class="error"><%= error_empty_question %></p>
+		<% } else if(error_length_question != null) { %>
+			<p class="error"><%= error_length_question %></p>
+		<% } %>
+		<div class="question_area">
+			<label>問題:</label>
+			<p><%= question %></p>
 			<input type="hidden" id="question" name="question" value="<%= question %>">
-			
-			<% if(error_empty_answer != null) { %>
-				<li>
-				    <%= error_empty_answer %>
-				</li>
-			<% } else if(error_length_answer != null) { %>
-			    <li>
-			    	<%= error_length_answer %>
-			    </li>
-			<% } %>
-			<% for(int i = 0; i < answers.length; i++){  %>
-				<li>
-					<label>答え:</label>
-					<%= answers[i] %>
-				</li>
-				<input type="hidden" id="answer" name="answer" value="<%= answers[i] %>">
-			<% } %>
+		</div>
+		
+		<% if(error_empty_answer != null) { %>
+			<p class="error"><%= error_empty_answer %></p>
+		<% } else if(error_length_answer != null) { %>
+			<p class="error"><%= error_length_answer %></p>
+		<% } %>
+		<div class="answer_area">
+			<label>答え:</label>
+			<div class="answer_form_list">
+				<% for(String answer : answers){  %>
+					<p><%= answer %></p>
+					<input type="hidden" id="answer" name="answer" value="<%= answer %>">
+				<% } %>
+			</div>
+		</div>
+		<div class="btn_area">
 			<button type="button" onclick="history.back()">戻る</button>
 			<% if (error_empty_question == null && error_empty_answer == null && error_length_question == null && error_length_answer == null) { %>
 				<input type="submit" value="登録">
 			<% } %>
-		</form>
-	</ul> 
+		</div>
+	</form>
 </body>
 </html>

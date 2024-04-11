@@ -3,23 +3,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Top</title>
+	<meta charset="UTF-8">
+	<title>Top</title>
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-	<ul>
-		<li>
-			<button>logout</button>
-		</li>
-		<li>
-			<button onclick="location.href='./List'">問題と答えを確認・登録する ></button>
-		</li>
-		<li>
-			<button>テストをする ></button>
-		</li>
-		<li>
-			<button>過去の採点結果をみる ></button>
-		</li>
-	</ul>
+	<div class="btn_area">
+		<button>logout</button>
+	</div>
+	<div class="menu_area">
+		<button onclick="location.href='./List'">問題と答えを確認・登録する ></button>
+		<button>テストをする ></button>
+		<button>過去の採点結果をみる ></button>
+	</div>
 </body>
 </html>
