@@ -5,6 +5,7 @@
 	int correctQueCnt = (int)request.getAttribute("correctQueCnt");
 	int queCnt = (int)request.getAttribute("queCnt");
 	int score = (int)request.getAttribute("score");
+	String userName = (String)session.getAttribute("user_name");
 %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
 		<button>logout</button>
 	</div>
 	<h2>テスト結果</h2>
-	<p>さん</p>
+	<p><%= userName %>さん</p>
 	<p><%= queCnt %>問中<%= correctQueCnt %>問正解です。</p>
 	<p><%= score %>点でした。</p>
 </body>

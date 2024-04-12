@@ -62,8 +62,11 @@ public class UsersDao extends ConnectionDao {
 			}
 		}
 	}
-	// UserBean型　idを引数として受け取る
-	public UsersBean search_userid(int id) throws Exception {
+	/**
+	 * 指定IDのレコードを取得する
+	 */
+	// UserBean型 idを引数として受け取る
+	public UsersBean search_userId(int id) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -85,11 +88,11 @@ public class UsersDao extends ConnectionDao {
 			UsersBean list = new UsersBean();
 			while (rs.next()) {
 				// 一旦変数で受ける
-				int userid = rs.getInt("id");
+				int userId = rs.getInt("id");
 				String name = rs.getString("name");
 				String pass = rs.getString("password");
 				// ListはUserBean型
-				list = new UsersBean(userid, name, pass);
+				list = new UsersBean(userId, name, pass);
 			
 			}
 			return list;
@@ -113,8 +116,4 @@ public class UsersDao extends ConnectionDao {
 			}
 		}
 	}
-	/**
-	 * 指定IDのレコードを取得する
-	 */
-	
 }
