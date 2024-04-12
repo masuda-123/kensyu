@@ -62,6 +62,16 @@ body {
 	overflow-wrap: break-word;
 }
 
+.answer_form_list {
+	width: 90%;
+}
+
+.answer_form_list p {
+	width: 100%;
+	overflow-wrap: break-word;
+	margin-bottom: 10px;
+}
+
 label {
 	margin-right: 10px;
 }
