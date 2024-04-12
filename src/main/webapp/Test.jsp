@@ -23,7 +23,7 @@
 			<button onclick="location.href='./Top'">top</button>
 			<button>logout</button>
 		</div>
-		<form action ="./Result" method="post">
+		<form action ="./Test/Result" method="post">
 			<% int i = 0; %>
 			<% for (QuestionsBean que : q_list) { %>
 				<div class="question_area">

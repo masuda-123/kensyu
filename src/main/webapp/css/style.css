@@ -76,9 +76,14 @@ label {
 	margin-right: 10px;
 }
 
-.btn_area {
+.btn_area, .buttom_menu_area {
 	width: 100%;
 	text-align: right;
+}
+
+.buttom_menu_area a {
+	color: red;
+	text-decoration: none;
 }
 
 .menu_area {
