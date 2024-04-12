@@ -34,10 +34,10 @@ public class Test extends HttpServlet {
 		
 		try {
 			QuestionsDao q_dao = new QuestionsDao();
-			ArrayList<QuestionsBean> q_bean_list = q_dao.findAll();
-			request.setAttribute("q_bean_list", q_bean_list);
+			ArrayList<QuestionsBean> q_list = q_dao.findAll();
+			request.setAttribute("q_list", q_list);
 			
-			if(q_bean_list.isEmpty()) {
+			if(q_list.isEmpty()) {
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 				rd.forward(request, response);
 				return;

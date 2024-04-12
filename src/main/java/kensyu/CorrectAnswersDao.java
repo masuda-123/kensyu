@@ -14,7 +14,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 	}
 
 	/**
-	 * users テーブルを全件取得
+	 * correct_answers テーブルを全件取得
 	 */
 	public ArrayList<CorrectAnswersBean> findAll() throws Exception {
 		if (con == null) {
@@ -62,11 +62,9 @@ public class CorrectAnswersDao extends ConnectionDao {
 	}
 	
 	/**
-	 * 指定IDのレコードを取得する
+	 * 入力されたanswerに一致するレコードを取得する
 	 */
-	
-	// CorrectAnswersBean型のidを引数として受け取る
-	public CorrectAnswersBean search_correct_answer_id(int id) throws Exception {
+	public ArrayList<CorrectAnswersBean> search_answer(String input_answer) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -74,21 +72,22 @@ public class CorrectAnswersDao extends ConnectionDao {
 		ResultSet rs = null;
 		try {
 			// CorrectAnswers tableのidとquestions_id、answerを取得
-			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE id = ? ";	
+			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE answer = ? ";	
 			/** PreparedStatement オブジェクトの取得**/
 			st = con.prepareStatement(sql);
-			st.setInt(1, id);
+			st.setString(1, input_answer);
 			/** SQL 実行 **/
 			rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/ 
-			CorrectAnswersBean list = new CorrectAnswersBean();
+			ArrayList<CorrectAnswersBean> list = new ArrayList<CorrectAnswersBean>();
 			while (rs.next()) {
 				// 一旦変数で受ける
-				int correct_answer_id = rs.getInt("id");
+				int id = rs.getInt("id");
 				int questions_id = rs.getInt("questions_id");
 				String answer = rs.getString("answer");
 				// ListはCorrectAnswers型
-				list = new CorrectAnswersBean(correct_answer_id, questions_id, answer);
+				CorrectAnswersBean bean = new CorrectAnswersBean(id, questions_id, answer);
+				list.add(bean);
 			}
 			return list;
 		} catch (Exception e) { 
