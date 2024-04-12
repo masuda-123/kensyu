@@ -47,7 +47,7 @@ public class Result extends HttpServlet {
 		String[] answers = request.getParameterValues("answer");
 		
 		//正解の問題数をカウント
-		int correctAnswersCount = 0;
+		int correctQueCnt = 0;
 		
 		for(int i = 0; i < questions_id.length; i++) {
 			try {
@@ -57,7 +57,7 @@ public class Result extends HttpServlet {
 				for(CorrectAnswersBean ans : a_list ) {
 					//入力された答えと一致するレコードがなかった場合もしくは、入力された答えに紐づく問題が別の問題だった場合
 					if(ans.getId() != 0 && ans.getQuestionsId() == questions_id[i]) {
-						correctAnswersCount ++;
+						correctQueCnt ++;
 					}
 				}
 			} catch (Exception e) {
@@ -65,7 +65,12 @@ public class Result extends HttpServlet {
 			}
 		}
 		
-		request.setAttribute("correctAnswersCount", correctAnswersCount);
+		//点数を計算
+		int score = Math.round(100 * correctQueCnt / questions_id.length);
+		
+		request.setAttribute("correctQueCnt", correctQueCnt);
+		request.setAttribute("queCnt", questions_id.length);
+		request.setAttribute("score", score);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");
 		rd.forward(request, response);
