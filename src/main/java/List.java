@@ -35,14 +35,14 @@ public class List extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		try {
-			QuestionsDao q_dao = new QuestionsDao();
-			ArrayList<QuestionsBean> q_bean_list = q_dao.findAll();
-			request.setAttribute("q_bean_list", q_bean_list);
-			CorrectAnswersDao a_dao = new CorrectAnswersDao();
-			ArrayList<CorrectAnswersBean> a_bean_list = a_dao.findAll();
-			request.setAttribute("a_bean_list", a_bean_list);
+			QuestionsDao queDao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = queDao.findAll();
+			request.setAttribute("queList", queList);
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
+			request.setAttribute("ansList", ansList);
 			
-			if(q_bean_list.isEmpty()) {
+			if(queList.isEmpty()) {
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 				rd.forward(request, response);
 				return;

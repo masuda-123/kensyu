@@ -5,7 +5,7 @@
 	int correctQueCnt = (int)request.getAttribute("correctQueCnt");
 	int queCnt = (int)request.getAttribute("queCnt");
 	int score = (int)request.getAttribute("score");
-	String userName = (String)session.getAttribute("user_name");
+	String userName = (String)session.getAttribute("userName");
 %>
 <!DOCTYPE html>
 <html>

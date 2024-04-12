@@ -75,7 +75,6 @@ public class UsersDao extends ConnectionDao {
 		try {
 			// Users tableのidとpassword、nameを取得
 			String sql = "SELECT id, name, password FROM users WHERE deleted_at is null and id = ? ";
-			
 		
 			
 			/** PreparedStatement オブジェクトの取得**/
