@@ -9,8 +9,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import kensyu.CorrectAnswersBean;
 import kensyu.CorrectAnswersDao;
+import kensyu.HistoriesDao;
+import kensyu.UsersBean;
 
 /**
  * Servlet implementation class Result
@@ -67,14 +70,29 @@ public class Result extends HttpServlet {
 		}
 		
 		//点数を計算
-		int score = Math.round(100 * correctQueCnt / questions_id.length);
+		int point = Math.round(100 * correctQueCnt / questions_id.length);
+		
+		HttpSession session = request.getSession(false);
+		UsersBean user = (UsersBean)session.getAttribute("user");
 		
 		request.setAttribute("correctQueCnt", correctQueCnt);
 		request.setAttribute("queCnt", questions_id.length);
-		request.setAttribute("score", score);
+		request.setAttribute("point", point);
+		request.setAttribute("userName", user.getName());
+		
+		//履歴を登録
+		try {
+			HistoriesDao h_dao = new HistoriesDao();
+			h_dao.register_history(user.getId(), point);
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");
 		rd.forward(request, response);
+		
+		
 		
 	}
 

@@ -1,4 +1,5 @@
 package kensyu;
+
 import java.sql.Timestamp;
 
 public class HistoriesBean {
@@ -12,15 +13,15 @@ public class HistoriesBean {
 	/**
 	 * コンストラクタ
 	 */
-	public HistoriesBean (int id, int user_id, int point){
+	public HistoriesBean (int id, int user_id, int point, Timestamp created_at){
 		this.id = id;
 		this.user_id = user_id;
 		this.point = point;
+		this.created_at = created_at;
 	}
 	
 	/** 引数無しのコンストラクタ **/
 	public HistoriesBean() {
-
 	}
 
 	public int getId() {

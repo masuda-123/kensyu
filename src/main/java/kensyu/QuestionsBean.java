@@ -1,4 +1,5 @@
 package kensyu;
+
 import java.sql.Timestamp;
 
 public class QuestionsBean {

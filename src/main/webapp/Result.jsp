@@ -7,8 +7,8 @@
 <%
 	int correctQueCnt = (int)request.getAttribute("correctQueCnt");
 	int queCnt = (int)request.getAttribute("queCnt");
-	int score = (int)request.getAttribute("score");
-	String userName = (String)session.getAttribute("userName");
+	int point = (int)request.getAttribute("point");
+	String userName = (String)request.getAttribute("userName");
 	LocalDateTime dateTime = LocalDateTime.now();
 %>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
 	<h2>テスト結果</h2>
 	<p><%= userName %>さん</p>
 	<p><%= queCnt %>問中<%= correctQueCnt %>問正解です。</p>
-	<p><%= score %>点でした。</p>
+	<p><%= point %>点でした。</p>
 	
 	<div class="buttom_menu_area">
 		<p><%= dateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")) %></p>
