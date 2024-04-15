@@ -20,15 +20,11 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		try {
-			// correct_answersからidとquestions_id、answerを取得
-			String sql = "SELECT id, questions_id, answer FROM correct_answers";
-			/** PreparedStatement オブジェクトの取得**/
-			st = con.prepareStatement(sql);
-			/** SQL 実行 **/
-			rs = st.executeQuery();
+		// correct_answersからidとquestions_id、answerを取得
+		String sql = "SELECT id, questions_id, answer FROM correct_answers";
+		/** PreparedStatement オブジェクトの取得とsqlの実行**/
+		try(PreparedStatement st = con.prepareStatement(sql);
+				ResultSet rs = st.executeQuery()) {
 			/** select文の結果をArrayListに格納 **/
 			ArrayList<CorrectAnswersBean> list = new ArrayList<CorrectAnswersBean>();
 			while (rs.next()) {
@@ -42,25 +38,8 @@ public class CorrectAnswersDao extends ConnectionDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました");
-		} finally {
-			// リソースの開放
-			try {
-				if (rs != null) {
-						rs.close();
-				}
-
-				if (st != null) {
-						st.close();
-				}
-				close();
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new DAOException("リソースの開放に失敗しました");
-
-			}
 		}
 	}
-	
 	/**
 	 * 入力されたanswerに一致するレコードを取得する
 	 */
@@ -68,16 +47,13 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		try {
-			// CorrectAnswers tableのidとquestions_id、answerを取得
-			String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE answer = ? ";	
-			/** PreparedStatement オブジェクトの取得**/
-			st = con.prepareStatement(sql);
+		// CorrectAnswers tableのidとquestions_id、answerを取得
+		String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE answer = ? ";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql)) {
 			st.setString(1, input_answer);
 			/** SQL 実行 **/
-			rs = st.executeQuery();
+			ResultSet rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/ 
 			ArrayList<CorrectAnswersBean> list = new ArrayList<CorrectAnswersBean>();
 			while (rs.next()) {
@@ -93,21 +69,6 @@ public class CorrectAnswersDao extends ConnectionDao {
 		} catch (Exception e) { 
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました");
-		} finally {
-			try {
-				if (rs != null) {
-						rs.close();
-				}
-
-				if (st != null) {
-						st.close();
-				}
-				close();
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new DAOException("リソースの開放に失敗しました");
-
-			}
 		}
 	}
 	

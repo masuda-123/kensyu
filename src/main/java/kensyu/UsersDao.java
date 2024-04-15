@@ -22,15 +22,11 @@ public class UsersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		try {
-			// userwsからidとnameとpasswordを取得（条件：deleted_atが空であること）
-			String sql = "SELECT id, name, password FROM users WHERE deleted_at is null";
-			/** PreparedStatement オブジェクトの取得**/
-			st = con.prepareStatement(sql);
-			/** SQL 実行 **/
-			rs = st.executeQuery();
+		// userwsからidとnameとpasswordを取得（条件：deleted_atが空であること）
+		String sql = "SELECT id, name, password FROM users WHERE deleted_at is null";
+		/** PreparedStatement オブジェクトの取得とsqlの実行**/
+		try(PreparedStatement st = con.prepareStatement(sql);
+				ResultSet rs = st.executeQuery()){
 			/** select文の結果をArrayListに格納 **/
 			List<UsersBean> list = new ArrayList<UsersBean>();
 			while (rs.next()) {
@@ -44,22 +40,6 @@ public class UsersDao extends ConnectionDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました");
-		} finally {
-			// リソースの開放
-			try {
-				if (rs != null) {
-						rs.close();
-				}
-
-				if (st != null) {
-						st.close();
-				}
-				close();
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new DAOException("リソースの開放に失敗しました");
-
-			}
 		}
 	}
 	/**
@@ -70,19 +50,13 @@ public class UsersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		try {
-			// Users tableのidとpassword、nameを取得
-			String sql = "SELECT id, name, password FROM users WHERE deleted_at is null and id = ? ";
-		
-			
-			/** PreparedStatement オブジェクトの取得**/
-			st = con.prepareStatement(sql);
-			
+		// Users tableのidとpassword、nameを取得
+		String sql = "SELECT id, name, password FROM users WHERE deleted_at is null and id = ? ";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql)) {	
 			st.setInt(1, id);
 			/** SQL 実行 **/
-			rs = st.executeQuery();
+			ResultSet rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/ 
 			UsersBean list = new UsersBean();
 			while (rs.next()) {
@@ -98,21 +72,6 @@ public class UsersDao extends ConnectionDao {
 		} catch (Exception e) { 
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました");
-		} finally {
-			try {
-				if (rs != null) {
-						rs.close();
-				}
-
-				if (st != null) {
-						st.close();
-				}
-				close();
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new DAOException("リソースの開放に失敗しました");
-
-			}
 		}
 	}
 }
