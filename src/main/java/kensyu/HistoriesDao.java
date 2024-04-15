@@ -17,7 +17,6 @@ public class HistoriesDao extends ConnectionDao {
 	/**
 	 * 指定IDのレコードを取得する
 	 */
-	// HistoriesBean型 currentUserIdを引数として受け取る
 	public ArrayList<HistoriesBean> search_userId(int currentUserId) throws Exception {
 		if (con == null) {
 			setConnection();

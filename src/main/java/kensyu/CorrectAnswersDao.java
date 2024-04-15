@@ -61,7 +61,6 @@ public class CorrectAnswersDao extends ConnectionDao {
 				int id = rs.getInt("id");
 				int questions_id = rs.getInt("questions_id");
 				String answer = rs.getString("answer");
-				// ListはCorrectAnswers型
 				CorrectAnswersBean bean = new CorrectAnswersBean(id, questions_id, answer);
 				list.add(bean);
 			}
@@ -79,14 +78,14 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		// Correct_answers table にデータを追加
+		// correct_answers table にデータを追加
 		String sql = "INSERT INTO correct_answers (questions_id, answer, created_at) VALUES (?, ?, CURRENT_TIMESTAMP());";
 		/** PreparedStatement オブジェクトの取得**/
 		try(PreparedStatement st = con.prepareStatement(sql);) {
 			// answersの要素数の分、SQLを実行
-			for(int i = 0; i < answers.length; i++) {
+			for(String answer : answers) {
 				st.setInt(1, questions_id);
-				st.setString(2, answers[i]);
+				st.setString(2, answer);
 				/** SQL 実行 **/
 				st.executeUpdate();
 			}
