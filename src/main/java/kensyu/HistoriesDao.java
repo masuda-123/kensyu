@@ -13,35 +13,41 @@ public class HistoriesDao extends ConnectionDao {
 	public HistoriesDao() throws Exception {
 		setConnection();
 	}
-
+	
 	/**
-	 * histories テーブルを全件取得
+	 * 指定IDのレコードを取得する
 	 */
-	public ArrayList<HistoriesBean> findAll() throws Exception {
+	// HistoriesBean型 currentUserIdを引数として受け取る
+	public ArrayList<HistoriesBean> search_userId(int currentUserId) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
-		// historiesからidとuser_idとpointを取得（条件：deleted_atが空であること）
-		String sql = "SELECT id, user_id, point, created_at FROM histories WHERE deleted_at is null";
-		/** PreparedStatement オブジェクトの取得とsqlの実行**/
-		try(PreparedStatement st = con.prepareStatement(sql);
-				ResultSet rs = st.executeQuery()){
-			/** select文の結果をArrayListに格納 **/
+		// Histories tableのidとuser_id,point,created_atを取得
+		String sql = "SELECT id, user_id, point, created_at FROM histories WHERE deleted_at is null and user_id = ? ";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql)) {	
+			st.setInt(1, currentUserId);
+			/** SQL 実行 **/
+			ResultSet rs = st.executeQuery();
+			/** select文の結果をArrayListに格納 **/ 
 			ArrayList<HistoriesBean> list = new ArrayList<HistoriesBean>();
 			while (rs.next()) {
+				// 一旦変数で受ける
 				int id = rs.getInt("id");
-				int user_id = rs.getInt("user_id");
+				int userId = rs.getInt("user_id");
 				int point = rs.getInt("point");
-				Timestamp created_at = rs.getTimestamp("created_at");
-				HistoriesBean bean = new HistoriesBean(id, user_id, point, created_at);
+				Timestamp createdAt = rs.getTimestamp("created_at");
+				// ListはUserBean型
+				HistoriesBean bean = new HistoriesBean(id, userId, point, createdAt);
 				list.add(bean);
 			}
 			return list;
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました");
 		}
 	}
+	
 	/**
 	 * 履歴を登録する
 	 */

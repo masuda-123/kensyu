@@ -8,8 +8,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import kensyu.HistoriesBean;
 import kensyu.HistoriesDao;
+import kensyu.UsersBean;
 
 /**
  * Servlet implementation class History
@@ -33,8 +35,11 @@ public class History extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	
 		try {
+			HttpSession session = request.getSession(false);
+			UsersBean user = (UsersBean)session.getAttribute("user");
+			
 			HistoriesDao hisDao = new HistoriesDao();
-			ArrayList<HistoriesBean> hisList = hisDao.findAll();
+			ArrayList<HistoriesBean> hisList = hisDao.search_userId(user.getId());
 			request.setAttribute("hisList", hisList);
 			RequestDispatcher rd = request.getRequestDispatcher("/History.jsp");
 			rd.forward(request, response);
