@@ -49,11 +49,10 @@ public class Result extends HttpServlet {
 		int[] questions_id = Stream.of(request.getParameterValues("questions_id")).mapToInt(Integer::parseInt).toArray();
 		String[] answers = request.getParameterValues("answer");
 		
-		//正解の問題数をカウント
-		int correctQueCnt = 0;
-		
-		for(int i = 0; i < questions_id.length; i++) {
-			try {
+		try {
+			//正解の問題数を格納する変数
+			int correctQueCnt = 0;
+			for(int i = 0; i < questions_id.length; i++) {
 				CorrectAnswersDao a_dao = new CorrectAnswersDao();
 				//入力された答えと一致するレコードを全て取得
 				ArrayList<CorrectAnswersBean> a_list = a_dao.search_answer(answers[i]);
@@ -64,36 +63,28 @@ public class Result extends HttpServlet {
 						break;
 					}
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
-		}
+			//点数を計算
+			int point = Math.round(100 * correctQueCnt / questions_id.length);
+			
+			HttpSession session = request.getSession(false);
+			UsersBean user = (UsersBean)session.getAttribute("user");
+			
+			request.setAttribute("correctQueCnt", correctQueCnt);
+			request.setAttribute("queCnt", questions_id.length);
+			request.setAttribute("point", point);
+			request.setAttribute("userName", user.getName());
 		
-		//点数を計算
-		int point = Math.round(100 * correctQueCnt / questions_id.length);
-		
-		HttpSession session = request.getSession(false);
-		UsersBean user = (UsersBean)session.getAttribute("user");
-		
-		request.setAttribute("correctQueCnt", correctQueCnt);
-		request.setAttribute("queCnt", questions_id.length);
-		request.setAttribute("point", point);
-		request.setAttribute("userName", user.getName());
-		
-		//履歴を登録
-		try {
+			//履歴を登録
 			HistoriesDao h_dao = new HistoriesDao();
 			h_dao.register_history(user.getId(), point);
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");
+			rd.forward(request, response);
+			return;
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");
-		rd.forward(request, response);
-		
-		
-		
 	}
-
 }
