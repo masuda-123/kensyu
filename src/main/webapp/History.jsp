@@ -33,7 +33,7 @@
 		 <% for(HistoriesBean his : hisList) { %>
 			 <tr>
 			 	<td><%= user.getName() %></td>
-			 	<td><%= his.getPoint() %></td>
+			 	<td><%= his.getPoint() %>点</td>
 			 	<td><%= sdf.format(his.getCreatedAt()) %></td>
 			 </tr>
 		<% } %>
