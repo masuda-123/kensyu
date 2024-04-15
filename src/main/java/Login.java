@@ -42,14 +42,14 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//		doGet(request, response);
-	    
 		int userId = Integer.parseInt(request.getParameter("userId"));
 		String password = request.getParameter("password");
 		
 		try {
 			UsersDao dao = new UsersDao();
-			UsersBean user = dao.search_userId(userId);
+			UsersBean user = dao.search_id(userId);
 			
+			//IDとパスワードが一致した場合
 			if(user.getId() != 0 && user.getPassword().equals(password)) {
 			    HttpSession session = request.getSession(false);
 			    // 既にセッションが存在する場合は一度破棄する
@@ -62,6 +62,8 @@ public class Login extends HttpServlet {
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 				rd.forward(request, response);
+				
+			//IDとパスワードが一致しなかった場合
 			} else {
 				RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
 				rd.forward(request, response);

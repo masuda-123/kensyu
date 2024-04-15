@@ -3,7 +3,6 @@ package kensyu;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 public class UsersDao extends ConnectionDao {
 
@@ -18,7 +17,7 @@ public class UsersDao extends ConnectionDao {
 	/**
 	 * users テーブルを全件取得
 	 */
-	public List<UsersBean> findAll() throws Exception {
+	public ArrayList<UsersBean> findAll() throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -28,7 +27,7 @@ public class UsersDao extends ConnectionDao {
 		try(PreparedStatement st = con.prepareStatement(sql);
 				ResultSet rs = st.executeQuery()){
 			/** select文の結果をArrayListに格納 **/
-			List<UsersBean> list = new ArrayList<UsersBean>();
+			ArrayList<UsersBean> list = new ArrayList<UsersBean>();
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String name = rs.getString("name");
@@ -42,11 +41,11 @@ public class UsersDao extends ConnectionDao {
 			throw new DAOException("レコードの取得に失敗しました");
 		}
 	}
+	
 	/**
 	 * 指定IDのレコードを取得する
 	 */
-	// UserBean型 idを引数として受け取る
-	public UsersBean search_userId(int id) throws Exception {
+	public UsersBean search_id(int userId) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -54,21 +53,21 @@ public class UsersDao extends ConnectionDao {
 		String sql = "SELECT id, name, password FROM users WHERE deleted_at is null and id = ? ";
 		/** PreparedStatement オブジェクトの取得**/
 		try(PreparedStatement st = con.prepareStatement(sql)) {	
-			st.setInt(1, id);
+			st.setInt(1, userId);
 			/** SQL 実行 **/
 			ResultSet rs = st.executeQuery();
-			/** select文の結果をArrayListに格納 **/ 
-			UsersBean list = new UsersBean();
+			UsersBean bean = new UsersBean();
 			while (rs.next()) {
 				// 一旦変数で受ける
-				int userId = rs.getInt("id");
+				int id = rs.getInt("id");
 				String name = rs.getString("name");
 				String pass = rs.getString("password");
-				// ListはUserBean型
-				list = new UsersBean(userId, name, pass);
-			
+				// UsersBean型のbeanにselect文の結果を格納
+				bean.setId(id);
+				bean.setName(name);
+				bean.setPassword(pass);
 			}
-			return list;
+			return bean;
 		} catch (Exception e) { 
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました");
