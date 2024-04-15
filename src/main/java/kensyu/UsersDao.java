@@ -22,7 +22,7 @@ public class UsersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		// userwsからidとnameとpasswordを取得（条件：deleted_atが空であること）
+		// usersからidとnameとpasswordを取得（条件：deleted_atが空であること）
 		String sql = "SELECT id, name, password FROM users WHERE deleted_at is null";
 		/** PreparedStatement オブジェクトの取得とsqlの実行**/
 		try(PreparedStatement st = con.prepareStatement(sql);
