@@ -89,4 +89,14 @@
     <servlet-name>Result</servlet-name>
     <url-pattern>/Test/Result</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>History</display-name>
+    <servlet-name>History</servlet-name>
+    <servlet-class>History</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>History</servlet-name>
+    <url-pattern>/History</url-pattern>
+  </servlet-mapping>
 </web-app>

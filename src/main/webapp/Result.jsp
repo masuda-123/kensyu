@@ -30,7 +30,7 @@
 	
 	<div class="buttom_menu_area">
 		<p><%= dateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")) %></p>
-		<a href="location.href='../history'">採点結果履歴へ</a>
+		<a href='../History'">採点結果履歴へ</a>
 	</div>
 </body>
 </html>
