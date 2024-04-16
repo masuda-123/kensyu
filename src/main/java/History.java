@@ -46,10 +46,10 @@ public class History extends HttpServlet {
 			ArrayList<HistoriesBean> hisList = hisDao.search_userId(userId);
 			
 			//採点時間の昇順に並び替える
-	        Comparator<HistoriesBean> compare = Comparator.comparing(HistoriesBean::getCreatedAt);
-	        hisList.sort(compare);
-	        
-	        //user_idからuser情報を取得
+			Comparator<HistoriesBean> compare = Comparator.comparing(HistoriesBean::getCreatedAt);
+			hisList.sort(compare);
+			
+			//user_idからuser情報を取得
 			UsersDao dao = new UsersDao();
 			UsersBean user = dao.search_id(userId);
 			
