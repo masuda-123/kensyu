@@ -56,9 +56,9 @@ public class Login extends HttpServlet {
 			    if (session != null) {
 			      session.invalidate();
 			    }
-			    // セッションを新規で作成する
+			    // セッションを新規で作成して、user_idを格納
 			    session = request.getSession(true);
-				session.setAttribute("user", user);
+				session.setAttribute("userId", user.getId());
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 				rd.forward(request, response);

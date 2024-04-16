@@ -8,7 +8,7 @@
 
 <%
 	ArrayList<HistoriesBean> hisList = (ArrayList<HistoriesBean>)request.getAttribute("hisList");
-	UsersBean user = (UsersBean)session.getAttribute("user");
+	String userName = (String)request.getAttribute("userName");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 %>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@
 		 </tr>
 		 <% for(HistoriesBean his : hisList) { %>
 			 <tr>
-			 	<td><%= user.getName() %></td>
+			 	<td><%= userName %></td>
 			 	<td><%= his.getPoint() %>点</td>
 			 	<td><%= sdf.format(his.getCreatedAt()) %></td>
 			 </tr>

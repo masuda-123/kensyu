@@ -14,6 +14,7 @@ import kensyu.CorrectAnswersBean;
 import kensyu.CorrectAnswersDao;
 import kensyu.HistoriesDao;
 import kensyu.UsersBean;
+import kensyu.UsersDao;
 
 /**
  * Servlet implementation class Result
@@ -67,17 +68,22 @@ public class Result extends HttpServlet {
 			//点数を計算
 			int point = Math.round(100 * correctQueCnt / questions_id.length);
 			
-			//sessionからユーザー情報を取得
+			//sessionからuser_idを取得
 			HttpSession session = request.getSession(false);
-			UsersBean user = (UsersBean)session.getAttribute("user");
+			int userId = (int)session.getAttribute("userId");
+			
+			//履歴を登録
+			HistoriesDao h_dao = new HistoriesDao();
+			h_dao.register_history(userId, point);
+			
+			//user_idからuser情報を取得
+			UsersDao dao = new UsersDao();
+			UsersBean user = dao.search_id(userId);
 			
 			request.setAttribute("correctQueCnt", correctQueCnt);
 			request.setAttribute("queCnt", questions_id.length);
 			request.setAttribute("point", point);
-		
-			//履歴を登録
-			HistoriesDao h_dao = new HistoriesDao();
-			h_dao.register_history(user.getId(), point);
+			request.setAttribute("userName", user.getName());
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");
 			rd.forward(request, response);

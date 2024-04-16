@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import kensyu.HistoriesBean;
 import kensyu.HistoriesDao;
 import kensyu.UsersBean;
+import kensyu.UsersDao;
 
 /**
  * Servlet implementation class History
@@ -36,19 +37,24 @@ public class History extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	
 		try {
-			//sessionからユーザー情報を取得
+			//sessionからuser_idを取得
 			HttpSession session = request.getSession(false);
-			UsersBean user = (UsersBean)session.getAttribute("user");
+			int userId = (int)session.getAttribute("userId");
 			
-			//ユーザー情報に一致する履歴を取得
+			//取得したuser_idに一致する履歴を取得
 			HistoriesDao hisDao = new HistoriesDao();
-			ArrayList<HistoriesBean> hisList = hisDao.search_userId(user.getId());
+			ArrayList<HistoriesBean> hisList = hisDao.search_userId(userId);
 			
 			//採点時間の昇順に並び替える
 	        Comparator<HistoriesBean> compare = Comparator.comparing(HistoriesBean::getCreatedAt);
 	        hisList.sort(compare);
+	        
+	        //user_idからuser情報を取得
+			UsersDao dao = new UsersDao();
+			UsersBean user = dao.search_id(userId);
 			
 			request.setAttribute("hisList", hisList);
+			request.setAttribute("userName", user.getName());
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/History.jsp");
 			rd.forward(request, response);

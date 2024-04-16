@@ -9,7 +9,7 @@
 	int correctQueCnt = (int)request.getAttribute("correctQueCnt");
 	int queCnt = (int)request.getAttribute("queCnt");
 	int point = (int)request.getAttribute("point");
-	UsersBean user = (UsersBean)session.getAttribute("user");
+	String userName = (String)request.getAttribute("userName");
 	Date dateTime = new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 %>
@@ -26,7 +26,7 @@
 		<button>logout</button>
 	</div>
 	<h2>テスト結果</h2>
-	<p><%= user.getName() %>さん</p>
+	<p><%= userName %>さん</p>
 	<p><%= queCnt %>問中<%= correctQueCnt %>問正解です。</p>
 	<p><%= point %>点でした。</p>
 	
