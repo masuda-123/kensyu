@@ -55,9 +55,10 @@ public class Result extends HttpServlet {
 				//入力された答えと一致するレコードを全て取得
 				ArrayList<CorrectAnswersBean> a_list = a_dao.search_answer(answers[i]);
 				for(CorrectAnswersBean ans : a_list ) {
-					//入力された答えと一致するレコードがあった場合、答えに紐づく問題が一致する場合
+					//入力された答えと一致するレコードがあり、答えに紐づく問題が一致する場合
 					if(ans.getId() != 0 && ans.getQuestionsId() == questions_id[i]) {
 						correctQueCnt ++;
+						break;
 					}
 				}
 			} catch (Exception e) {
