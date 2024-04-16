@@ -53,7 +53,6 @@ public class RegisterComplete extends HttpServlet {
 			response.sendRedirect("../List");
 			return;
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}

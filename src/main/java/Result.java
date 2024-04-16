@@ -67,13 +67,13 @@ public class Result extends HttpServlet {
 			//点数を計算
 			int point = Math.round(100 * correctQueCnt / questions_id.length);
 			
+			//sessionからユーザー情報を取得
 			HttpSession session = request.getSession(false);
 			UsersBean user = (UsersBean)session.getAttribute("user");
 			
 			request.setAttribute("correctQueCnt", correctQueCnt);
 			request.setAttribute("queCnt", questions_id.length);
 			request.setAttribute("point", point);
-			request.setAttribute("userName", user.getName());
 		
 			//履歴を登録
 			HistoriesDao h_dao = new HistoriesDao();
@@ -83,7 +83,6 @@ public class Result extends HttpServlet {
 			rd.forward(request, response);
 			return;
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}

@@ -33,11 +33,11 @@ public class Test extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		try {
-			QuestionsDao q_dao = new QuestionsDao();
-			ArrayList<QuestionsBean> q_list = q_dao.findAll();
-			request.setAttribute("q_list", q_list);
+			QuestionsDao queDao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = queDao.findAll();
+			request.setAttribute("queList", queList);
 			
-			if(q_list.isEmpty()) {
+			if(queList.isEmpty()) {
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 				rd.forward(request, response);
 				return;
@@ -48,7 +48,6 @@ public class Test extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}

@@ -62,14 +62,15 @@ public class Login extends HttpServlet {
 				
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 				rd.forward(request, response);
+				return;
 				
 			//IDとパスワードが一致しなかった場合
 			} else {
 				RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
 				rd.forward(request, response);
+				return;
 			}
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}

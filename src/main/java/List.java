@@ -53,7 +53,6 @@ public class List extends HttpServlet {
 			}
 			
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}

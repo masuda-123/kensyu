@@ -30,7 +30,6 @@ public class Top extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
-		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);
 	}
 

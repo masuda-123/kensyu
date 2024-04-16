@@ -35,17 +35,19 @@ public class History extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	
 		try {
+			//sessionからユーザー情報を取得
 			HttpSession session = request.getSession(false);
 			UsersBean user = (UsersBean)session.getAttribute("user");
 			
+			//ユーザー情報に一致する履歴を取得
 			HistoriesDao hisDao = new HistoriesDao();
 			ArrayList<HistoriesBean> hisList = hisDao.search_userId(user.getId());
 			request.setAttribute("hisList", hisList);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/History.jsp");
 			rd.forward(request, response);
 			return;
 		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 	}
