@@ -2,6 +2,7 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -42,6 +43,11 @@ public class History extends HttpServlet {
 			//ユーザー情報に一致する履歴を取得
 			HistoriesDao hisDao = new HistoriesDao();
 			ArrayList<HistoriesBean> hisList = hisDao.search_userId(user.getId());
+			
+			//採点時間の昇順に並び替える
+	        Comparator<HistoriesBean> compare = Comparator.comparing(HistoriesBean::getCreatedAt);
+	        hisList.sort(compare);
+			
 			request.setAttribute("hisList", hisList);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/History.jsp");
