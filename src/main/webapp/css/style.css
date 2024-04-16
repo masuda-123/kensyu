@@ -62,13 +62,28 @@ body {
 	overflow-wrap: break-word;
 }
 
+.answer_form_list {
+	width: 90%;
+}
+
+.answer_form_list p {
+	width: 100%;
+	overflow-wrap: break-word;
+	margin-bottom: 10px;
+}
+
 label {
 	margin-right: 10px;
 }
 
-.btn_area {
+.btn_area, .buttom_menu_area {
 	width: 100%;
 	text-align: right;
+}
+
+.buttom_menu_area a {
+	color: red;
+	text-decoration: none;
 }
 
 .menu_area {
@@ -112,4 +127,8 @@ p {
 .error {
 	padding-top:10px;
 	color: red;
+}
+
+h2 {
+	text-align: center;
 }

@@ -10,8 +10,8 @@
 	<body>
 		<form action="./Login" method="post">
 			<div class="form">
-				<label for="user_id">ID:</label>
-				<input type="number" id="user_id" name="user_id">
+				<label for="userId">ID:</label>
+				<input type="number" id="userId" name="userId">
 			</div>
 			<div class="form">
 			    <label for="password">pw:</label>

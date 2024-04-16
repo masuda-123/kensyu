@@ -46,23 +46,36 @@ public class Confirm extends HttpServlet {
 		request.setAttribute("reg_question", question);
 		request.setAttribute("reg_answers", answers);
 		
-		//questionが空だった場合
-		if(question.isEmpty()) {
-			request.setAttribute("error_empty_question", "※問題文を入力してください。");
-		//questionの文字数が500文字を超えていた場合
-		} else if(question.length() > 500) {
-			request.setAttribute("error_length_question", "※問題の文字数が制限（500文字）を超えています。");
+        String errorMessage = "";
+        boolean isNewLine = false;
+		
+		if(question.isEmpty()) { //questionが空だった場合
+			errorMessage += "※問題を入力してください。";
+			isNewLine = true;
+		} else if(question.length() > 500) { //questionの文字数が500文字を超えていた場合
+			errorMessage += "※問題の文字数が制限（500文字）を超えています。";
+			isNewLine = true;
 		}
 		
+        if (isNewLine) { // エラーメッセージが存在したら改行タグを追加
+            errorMessage += "<br>";
+         }
+		
 		for(int i = 0; i < answers.length; i++) {
-			//answerが空だった場合
-			if(answers[i].isEmpty()) {
-				request.setAttribute("error_length_answer", "※未入力の答えがを含まれています。");
-			//answerの文字数が200文字を超えていた場合
-			}else if(answers[i].length() > 200) {
-				request.setAttribute("error_length_answer", "※答えの文字数が制限（200文字）を超えています。");
+			isNewLine = false;
+			if(answers[i].isEmpty()) { 	//answerが空だった場合
+                errorMessage += "※答え" + (i+1) + "が未入力です。";
+                isNewLine = true;
+			}else if(answers[i].length() > 200) { //answerの文字数が200文字を超えていた場合
+                errorMessage += "※答え" + (i+1) + "の文字数が制限（200文字）を超えています。";
+                isNewLine = true;
 			}
+            if (isNewLine) { // エラーメッセージが存在したら改行を追加
+                errorMessage += "<br>";
+            }
 		}
+		
+		request.setAttribute("errorMessage", errorMessage);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Confirm.jsp");
 		rd.forward(request, response);

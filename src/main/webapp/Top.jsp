@@ -13,7 +13,7 @@
 	</div>
 	<div class="menu_area">
 		<button onclick="location.href='./List'">問題と答えを確認・登録する ></button>
-		<button>テストをする ></button>
+		<button onclick="location.href='./Test'">テストをする ></button>
 		<button>過去の採点結果をみる ></button>
 	</div>
 </body>

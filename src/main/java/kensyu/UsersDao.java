@@ -22,15 +22,11 @@ public class UsersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		try {
-			// userwsからidとnameとpasswordを取得（条件：deleted_atが空であること）
-			String sql = "SELECT id, name, password FROM users WHERE deleted_at is null";
-			/** PreparedStatement オブジェクトの取得**/
-			st = con.prepareStatement(sql);
-			/** SQL 実行 **/
-			rs = st.executeQuery();
+		// userwsからidとnameとpasswordを取得（条件：deleted_atが空であること）
+		String sql = "SELECT id, name, password FROM users WHERE deleted_at is null";
+		/** PreparedStatement オブジェクトの取得とsqlの実行**/
+		try(PreparedStatement st = con.prepareStatement(sql);
+				ResultSet rs = st.executeQuery()){
 			/** select文の結果をArrayListに格納 **/
 			List<UsersBean> list = new ArrayList<UsersBean>();
 			while (rs.next()) {
@@ -44,77 +40,38 @@ public class UsersDao extends ConnectionDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました");
-		} finally {
-			// リソースの開放
-			try {
-				if (rs != null) {
-						rs.close();
-				}
-
-				if (st != null) {
-						st.close();
-				}
-				close();
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new DAOException("リソースの開放に失敗しました");
-
-			}
 		}
 	}
-	// UserBean型　idを引数として受け取る
-	public UsersBean search_userid(int id) throws Exception {
+	/**
+	 * 指定IDのレコードを取得する
+	 */
+	// UserBean型 idを引数として受け取る
+	public UsersBean search_userId(int id) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
-		PreparedStatement st = null;
-		ResultSet rs = null;
-		try {
-			// Users tableのidとpassword、nameを取得
-			String sql = "SELECT id, name, password FROM users WHERE deleted_at is null and id = ? ";
-			
-		
-			
-			/** PreparedStatement オブジェクトの取得**/
-			st = con.prepareStatement(sql);
-			
+		// Users tableのidとpassword、nameを取得
+		String sql = "SELECT id, name, password FROM users WHERE deleted_at is null and id = ? ";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql)) {	
 			st.setInt(1, id);
 			/** SQL 実行 **/
-			rs = st.executeQuery();
+			ResultSet rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/ 
 			UsersBean list = new UsersBean();
 			while (rs.next()) {
 				// 一旦変数で受ける
-				int userid = rs.getInt("id");
+				int userId = rs.getInt("id");
 				String name = rs.getString("name");
 				String pass = rs.getString("password");
 				// ListはUserBean型
-				list = new UsersBean(userid, name, pass);
+				list = new UsersBean(userId, name, pass);
 			
 			}
 			return list;
 		} catch (Exception e) { 
 			e.printStackTrace();
 			throw new DAOException("レコードの取得に失敗しました");
-		} finally {
-			try {
-				if (rs != null) {
-						rs.close();
-				}
-
-				if (st != null) {
-						st.close();
-				}
-				close();
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new DAOException("リソースの開放に失敗しました");
-
-			}
 		}
 	}
-	/**
-	 * 指定IDのレコードを取得する
-	 */
-	
 }

@@ -8,21 +8,19 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kensyu.CorrectAnswersBean;
-import kensyu.CorrectAnswersDao;
 import kensyu.QuestionsBean;
 import kensyu.QuestionsDao;
 
 /**
- * Servlet implementation class List
+ * Servlet implementation class Test
  */
-public class List extends HttpServlet {
+public class Test extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public List() {
+    public Test() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,19 +33,16 @@ public class List extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		try {
-			QuestionsDao queDao = new QuestionsDao();
-			ArrayList<QuestionsBean> queList = queDao.findAll();
-			request.setAttribute("queList", queList);
-			CorrectAnswersDao ansDao = new CorrectAnswersDao();
-			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
-			request.setAttribute("ansList", ansList);
+			QuestionsDao q_dao = new QuestionsDao();
+			ArrayList<QuestionsBean> q_list = q_dao.findAll();
+			request.setAttribute("q_list", q_list);
 			
-			if(queList.isEmpty()) {
+			if(q_list.isEmpty()) {
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 				rd.forward(request, response);
 				return;
 			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/List.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("/Test.jsp");
 				rd.forward(request, response);
 				return;
 			}
@@ -63,9 +58,7 @@ public class List extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		
-
+		doGet(request, response);
 	}
 
 }

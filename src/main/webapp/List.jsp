@@ -9,8 +9,8 @@
     
     
  <%
-	ArrayList<QuestionsBean> q_list = (ArrayList<QuestionsBean>)request.getAttribute("q_bean_list");
- 	ArrayList<CorrectAnswersBean> a_list = (ArrayList<CorrectAnswersBean>)request.getAttribute("a_bean_list");
+	ArrayList<QuestionsBean> queList = (ArrayList<QuestionsBean>)request.getAttribute("queList");
+ 	ArrayList<CorrectAnswersBean> ansList = (ArrayList<CorrectAnswersBean>)request.getAttribute("ansList");
 %>
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
 			<button>logout</button>
 		</div>
 		<button class="new_btn" onclick="location.href='./Register'" >新規登録</button>
-		<% for (QuestionsBean que : q_list) { %>
+		<% for (QuestionsBean que : queList) { %>
 			<div class="list_area">
 				<div class="list">
 					<div class="questions_list">
@@ -34,7 +34,7 @@
 						<p><%= que.getQuestion() %></p>
 					</div>
 					<% int cnt = 0; %>
-					<% for(CorrectAnswersBean ans : a_list) { %>
+					<% for(CorrectAnswersBean ans : ansList) { %>
 						<% if(ans.getQuestionsId() != que.getId()) { continue; } %>
 						<div class="answers_list">
 							<p>答え<%= ++cnt %>: <%= ans.getAnswer() %></p>
