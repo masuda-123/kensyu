@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"
     import="java.util.ArrayList"
 	import="kensyu.QuestionsBean"
-	import="kensyu.QuestionsDao"
 	import="kensyu.CorrectAnswersBean"
-	import="kensyu.CorrectAnswersDao"
 %>
     
     

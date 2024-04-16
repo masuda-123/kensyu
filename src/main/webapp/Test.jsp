@@ -7,8 +7,8 @@
 %>
     
 <%
-	ArrayList<QuestionsBean> q_list = (ArrayList<QuestionsBean>)request.getAttribute("q_list");
-	Collections.shuffle(q_list);
+	ArrayList<QuestionsBean> queList = (ArrayList<QuestionsBean>)request.getAttribute("queList");
+	Collections.shuffle(queList);
 %>
 
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
 		</div>
 		<form action ="./Test/Result" method="post">
 			<% int i = 0; %>
-			<% for (QuestionsBean que : q_list) { %>
+			<% for (QuestionsBean que : queList) { %>
 				<div class="question_area">
 			    	<label for="question"><%= ++i %></label>
 			    	<div class="question_form">

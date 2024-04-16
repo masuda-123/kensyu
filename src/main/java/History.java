@@ -2,25 +2,29 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kensyu.QuestionsBean;
-import kensyu.QuestionsDao;
+import jakarta.servlet.http.HttpSession;
+import kensyu.HistoriesBean;
+import kensyu.HistoriesDao;
+import kensyu.UsersBean;
+import kensyu.UsersDao;
 
 /**
- * Servlet implementation class Test
+ * Servlet implementation class History
  */
-public class Test extends HttpServlet {
+public class History extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Test() {
+    public History() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,22 +35,30 @@ public class Test extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+	
 		try {
-			QuestionsDao queDao = new QuestionsDao();
-			ArrayList<QuestionsBean> queList = queDao.findAll();
-			request.setAttribute("queList", queList);
+			//sessionからuser_idを取得
+			HttpSession session = request.getSession(false);
+			int userId = (int)session.getAttribute("userId");
 			
-			if(queList.isEmpty()) {
-				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
-				rd.forward(request, response);
-				return;
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/Test.jsp");
-				rd.forward(request, response);
-				return;
-			}
+			//取得したuser_idに一致する履歴を取得
+			HistoriesDao hisDao = new HistoriesDao();
+			ArrayList<HistoriesBean> hisList = hisDao.search_userId(userId);
 			
+			//採点時間の昇順に並び替える
+			Comparator<HistoriesBean> compare = Comparator.comparing(HistoriesBean::getCreatedAt);
+			hisList.sort(compare);
+			
+			//user_idからuser情報を取得
+			UsersDao dao = new UsersDao();
+			UsersBean user = dao.search_id(userId);
+			
+			request.setAttribute("hisList", hisList);
+			request.setAttribute("userName", user.getName());
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/History.jsp");
+			rd.forward(request, response);
+			return;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

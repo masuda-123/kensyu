@@ -72,6 +72,5 @@ public class QuestionsDao extends ConnectionDao {
 			e.printStackTrace();
 			throw new DAOException("レコードの登録に失敗しました");
 		}
-		
 	}
 }

@@ -9,8 +9,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import kensyu.CorrectAnswersBean;
 import kensyu.CorrectAnswersDao;
+import kensyu.HistoriesDao;
+import kensyu.UsersBean;
+import kensyu.UsersDao;
 
 /**
  * Servlet implementation class Result
@@ -46,11 +50,10 @@ public class Result extends HttpServlet {
 		int[] questions_id = Stream.of(request.getParameterValues("questions_id")).mapToInt(Integer::parseInt).toArray();
 		String[] answers = request.getParameterValues("answer");
 		
-		//正解の問題数をカウント
-		int correctQueCnt = 0;
-		
-		for(int i = 0; i < questions_id.length; i++) {
-			try {
+		try {
+			//正解の問題数を格納する変数
+			int correctQueCnt = 0;
+			for(int i = 0; i < questions_id.length; i++) {
 				CorrectAnswersDao a_dao = new CorrectAnswersDao();
 				//入力された答えと一致するレコードを全て取得
 				ArrayList<CorrectAnswersBean> a_list = a_dao.search_answer(answers[i]);
@@ -61,21 +64,32 @@ public class Result extends HttpServlet {
 						break;
 					}
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
 			}
+			//点数を計算
+			int point = Math.round(100 * correctQueCnt / questions_id.length);
+			
+			//sessionからuser_idを取得
+			HttpSession session = request.getSession(false);
+			int userId = (int)session.getAttribute("userId");
+			
+			//履歴を登録
+			HistoriesDao h_dao = new HistoriesDao();
+			h_dao.register_history(userId, point);
+			
+			//user_idからuser情報を取得
+			UsersDao dao = new UsersDao();
+			UsersBean user = dao.search_id(userId);
+			
+			request.setAttribute("correctQueCnt", correctQueCnt);
+			request.setAttribute("queCnt", questions_id.length);
+			request.setAttribute("point", point);
+			request.setAttribute("userName", user.getName());
+			
+			RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");
+			rd.forward(request, response);
+			return;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		//点数を計算
-		int score = Math.round(100 * correctQueCnt / questions_id.length);
-		
-		request.setAttribute("correctQueCnt", correctQueCnt);
-		request.setAttribute("queCnt", questions_id.length);
-		request.setAttribute("score", score);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");
-		rd.forward(request, response);
-		
 	}
-
 }
