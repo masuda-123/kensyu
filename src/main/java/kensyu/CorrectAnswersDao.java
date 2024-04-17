@@ -40,8 +40,40 @@ public class CorrectAnswersDao extends ConnectionDao {
 			throw new DAOException("レコードの取得に失敗しました");
 		}
 	}
+	
 	/**
-	 * 入力されたanswerに一致するレコードを取得する
+	 * questions_idに一致するレコードを取得する
+	 */
+	public ArrayList<CorrectAnswersBean> search_questions_id(int questionId) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// CorrectAnswers tableのidとquestions_id、answerを取得
+		String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE questions_id = ? ";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql)) {	
+			st.setInt(1, questionId);
+			/** SQL 実行 **/
+			ResultSet rs = st.executeQuery();
+			/** select文の結果をArrayListに格納 **/ 
+			ArrayList<CorrectAnswersBean> list = new ArrayList<CorrectAnswersBean>();
+			while (rs.next()) {
+				// 一旦変数で受ける
+				int id = rs.getInt("id");
+				int questions_id = rs.getInt("questions_id");
+				String answer = rs.getString("answer");
+				CorrectAnswersBean bean = new CorrectAnswersBean(id, questions_id, answer);
+				list.add(bean);
+			}
+			return list;
+		} catch (Exception e) { 
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました");
+		}
+	}
+	
+	/**
+	 * answerに一致するレコードを取得する
 	 */
 	public ArrayList<CorrectAnswersBean> search_answer(String input_answer) throws Exception {
 		if (con == null) {

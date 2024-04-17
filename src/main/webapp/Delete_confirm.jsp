@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="java.util.ArrayList"
+%>
 
 <%
 	String question = (String)request.getAttribute("question");
-/* 	String[] answers = (String[])request.getAttribute("answers"); */
+	ArrayList<String> answers = (ArrayList<String>)request.getAttribute("answers");
 %>
 
 <!DOCTYPE html>
@@ -24,11 +26,11 @@
 		</div>
 		<div class="answer_area">
 			<label>答え:</label>
-<%-- 			<div class="answer_form_list">
+			<div class="answer_form_list">
 				<% for(String answer : answers){  %>
 					<p><%= answer %></p>
 				<% } %>
-			</div> --%>
+			</div>
 		</div>
 		<div class="btn_area">
 			<button type="button" onclick="history.back()">戻る</button>

@@ -1,12 +1,15 @@
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kensyu.CorrectAnswersBean;
+import kensyu.CorrectAnswersDao;
 import kensyu.QuestionsBean;
 import kensyu.QuestionsDao;
 
@@ -35,9 +38,18 @@ public class Delete_confirm extends HttpServlet {
 		int questionId = Integer.parseInt(request.getParameter("id"));
 		try {
 			QuestionsDao queDao = new QuestionsDao();
-			//questionIdをもとに、questionsテーブルから一致するレコードを取得
-			QuestionsBean que = queDao.search_id(questionId);
-			request.setAttribute("question", que.getQuestion());
+			//questionsテーブルからquestionIdが一致するレコードを取得
+			QuestionsBean question = queDao.search_id(questionId);
+			request.setAttribute("question", question.getQuestion());
+			
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			//correct_answersテーブルからquestionIdが一致するレコードを取得
+			ArrayList<CorrectAnswersBean> ansList = ansDao.search_questions_id(questionId);
+			ArrayList<String> answers = new ArrayList<String>();
+			for(CorrectAnswersBean ans : ansList) {
+				 answers.add(ans.getAnswer());
+			}
+			request.setAttribute("answers", answers);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Delete_confirm.jsp");
 			rd.forward(request, response);
