@@ -41,12 +41,11 @@ public class DeleteComplete extends HttpServlet {
 		try {
 			QuestionsDao queDao = new QuestionsDao();
 			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
-			
+			//パラメータからquestionIdを取得
 			int questionId = Integer.parseInt(request.getParameter("questionId"));
 			
 			//questionの削除
 			queDao.delete_question(questionId);
-			
 			//answersの削除
 			ansDao.delete_answers(questionId);
 			
