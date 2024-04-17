@@ -40,8 +40,36 @@ public class CorrectAnswersDao extends ConnectionDao {
 			throw new DAOException("レコードの取得に失敗しました");
 		}
 	}
+	
 	/**
-	 * 入力されたanswerに一致するレコードを取得する
+	 * questions_idに一致するレコードを取得する
+	 */
+	public ArrayList<String> search_questions_id(int questionId) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// CorrectAnswers tableのanswerを取得
+		String sql = "SELECT answer FROM correct_answers WHERE questions_id = ? ";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql)) {	
+			st.setInt(1, questionId);
+			/** SQL 実行 **/
+			ResultSet rs = st.executeQuery();
+			/** select文の結果をArrayListに格納 **/ 
+			ArrayList<String> list = new ArrayList<String>();
+			while (rs.next()) {
+				String answer = rs.getString("answer");
+				list.add(answer);
+			}
+			return list;
+		} catch (Exception e) { 
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました");
+		}
+	}
+	
+	/**
+	 * answerに一致するレコードを取得する
 	 */
 	public ArrayList<CorrectAnswersBean> search_answer(String input_answer) throws Exception {
 		if (con == null) {
@@ -93,5 +121,25 @@ public class CorrectAnswersDao extends ConnectionDao {
 			e.printStackTrace();
 			throw new DAOException("レコードの登録に失敗しました");
 		}	
+	}
+	
+	/**
+	 * 答えの削除
+	*/
+	public void delete_answers(int questionId) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// Questions table のデータを削除
+		String sql = "DELETE FROM correct_answers WHERE questions_id = ?";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement insert_st = con.prepareStatement(sql);) {
+			insert_st.setInt(1, questionId);
+			/** SQL 実行 **/
+			insert_st.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの削除に失敗しました");
+		}
 	}
 }
