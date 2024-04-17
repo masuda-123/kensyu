@@ -41,6 +41,7 @@ public class Delete_confirm extends HttpServlet {
 			//questionsテーブルからquestionIdが一致するレコードを取得
 			QuestionsBean question = queDao.search_id(questionId);
 			request.setAttribute("question", question.getQuestion());
+			request.setAttribute("questionId", questionId);
 			
 			CorrectAnswersDao ansDao = new CorrectAnswersDao();
 			//correct_answersテーブルからquestionIdが一致するレコードを取得

@@ -114,7 +114,7 @@ public class QuestionsDao extends ConnectionDao {
 			setConnection();
 		}
 		// Questions table のデータを削除
-		String sql = "DELETE FROM posts WHERE id = ?";
+		String sql = "DELETE FROM questions WHERE id = ?";
 		/** PreparedStatement オブジェクトの取得**/
 		try(PreparedStatement insert_st = con.prepareStatement(sql);) {
 			insert_st.setInt(1, id);

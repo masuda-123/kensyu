@@ -5,6 +5,7 @@
 
 <%
 	String question = (String)request.getAttribute("question");
+	int questionId = (int)request.getAttribute("questionId");
 	ArrayList<String> answers = (ArrayList<String>)request.getAttribute("answers");
 %>
 
@@ -24,14 +25,13 @@
 		<div class="question_area">
 			<label>問題:</label>
 			<p><%= question %></p>
-			<input type="hidden" id="question" name="question" value="<%= question %>">
+			<input type="hidden" id="questionId" name="questionId" value=<%= questionId %>>
 		</div>
 		<div class="answer_area">
 			<label>答え:</label>
 			<div class="answer_form_list">
 				<% for(String answer : answers){  %>
 					<p><%= answer %></p>
-					<input type="hidden" id="answer" name="answer" value="<%= answer %>">
 				<% } %>
 			</div>
 		</div>

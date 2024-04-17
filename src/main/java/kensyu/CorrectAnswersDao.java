@@ -126,4 +126,24 @@ public class CorrectAnswersDao extends ConnectionDao {
 			throw new DAOException("レコードの登録に失敗しました");
 		}	
 	}
+	
+	/**
+	 * 答えの削除
+	*/
+	public void delete_answers(int questionId) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// Questions table のデータを削除
+		String sql = "DELETE FROM correct_answers WHERE questions_id = ?";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement insert_st = con.prepareStatement(sql);) {
+			insert_st.setInt(1, questionId);
+			/** SQL 実行 **/
+			insert_st.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの削除に失敗しました");
+		}
+	}
 }

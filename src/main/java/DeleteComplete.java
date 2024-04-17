@@ -39,17 +39,18 @@ public class DeleteComplete extends HttpServlet {
 		//doGet(request, response);
 		
 		try {
-			QuestionsDao q_dao = new QuestionsDao();
-			CorrectAnswersDao a_dao = new CorrectAnswersDao(); 
+			QuestionsDao queDao = new QuestionsDao();
+			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
 			
-			String question = request.getParameter("question");
-			String[] answers = request.getParameterValues("answer");
+			int questionId = Integer.parseInt(request.getParameter("questionId"));
 			
 			//questionの削除
+			queDao.delete_question(questionId);
 			
 			//answersの削除
+			ansDao.delete_answers(questionId);
 			
-			response.sendRedirect("../List");
+			response.sendRedirect("./List");
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();
