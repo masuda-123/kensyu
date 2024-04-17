@@ -20,15 +20,18 @@
 		<button onclick="location.href='./Top'">top</button>
 		<button>logout</button>
 	</div>
+	<form action="./DeleteComplete" method="post">
 		<div class="question_area">
 			<label>問題:</label>
 			<p><%= question %></p>
+			<input type="hidden" id="question" name="question" value="<%= question %>">
 		</div>
 		<div class="answer_area">
 			<label>答え:</label>
 			<div class="answer_form_list">
 				<% for(String answer : answers){  %>
 					<p><%= answer %></p>
+					<input type="hidden" id="answer" name="answer" value="<%= answer %>">
 				<% } %>
 			</div>
 		</div>
@@ -37,6 +40,5 @@
 			<input type="submit" value="削除">
 		</div>
 	</form>
-
 </body>
 </html>

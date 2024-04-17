@@ -109,4 +109,14 @@
     <servlet-name>Delete_confirm</servlet-name>
     <url-pattern>/Delete_confirm</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteComplete</display-name>
+    <servlet-name>DeleteComplete</servlet-name>
+    <servlet-class>DeleteComplete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteComplete</servlet-name>
+    <url-pattern>/DeleteComplete</url-pattern>
+  </servlet-mapping>
 </web-app>
