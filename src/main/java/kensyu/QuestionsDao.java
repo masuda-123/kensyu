@@ -13,6 +13,7 @@ public class QuestionsDao extends ConnectionDao {
 	public QuestionsDao() throws Exception {
 		setConnection();
 	}
+	
 	/**
 	 * questions テーブルを全件取得
 	 */
@@ -39,6 +40,37 @@ public class QuestionsDao extends ConnectionDao {
 			throw new DAOException("レコードの取得に失敗しました");
 		}
 	}
+	
+	/**
+	 * 指定IDのレコードを取得する
+	 */
+	public QuestionsBean search_id(int questionId) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// questions tableのidとquestionを取得
+		String sql = "SELECT id, question FROM questions WHERE id = ? ";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql)) {	
+			st.setInt(1, questionId);
+			/** SQL 実行 **/
+			ResultSet rs = st.executeQuery();
+			QuestionsBean bean = new QuestionsBean();
+			while (rs.next()) {
+				// 一旦変数で受ける
+				int id = rs.getInt("id");
+				String question = rs.getString("question");
+				// QuestionsBean型のbeanにselect文の結果を格納
+				bean.setId(id);
+				bean.setQuestion(question);
+			}
+			return bean;
+		} catch (Exception e) { 
+			e.printStackTrace();
+			throw new DAOException("レコードの取得に失敗しました");
+		}
+	}
+	
 	/**
 	 * 問題を登録する
 	*/
@@ -71,6 +103,26 @@ public class QuestionsDao extends ConnectionDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの登録に失敗しました");
+		}
+	}
+	
+	/**
+	 * 問題の削除
+	*/
+	public void delete_question(int id) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// Questions table のデータを削除
+		String sql = "DELETE FROM posts WHERE id = ?";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement insert_st = con.prepareStatement(sql);) {
+			insert_st.setInt(1, id);
+			/** SQL 実行 **/
+			insert_st.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの削除に失敗しました");
 		}
 	}
 }

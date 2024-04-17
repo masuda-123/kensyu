@@ -41,7 +41,7 @@
 				</div>
 				<div class="edit_delete_btn_area">
 					<button>編集</button>
-					<button>削除</button>
+					<a href="./Delete_confirm?id=<%= que.getId() %>"><button>削除</button></a>
 				</div>
 			</div>
 		<% } %>
