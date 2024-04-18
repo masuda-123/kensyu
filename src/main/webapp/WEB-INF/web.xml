@@ -129,4 +129,14 @@
     <servlet-name>Edit</servlet-name>
     <url-pattern>/Edit</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Edit_confirm</display-name>
+    <servlet-name>Edit_confirm</servlet-name>
+    <servlet-class>Edit_confirm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Edit_confirm</servlet-name>
+    <url-pattern>/Edit_confirm</url-pattern>
+  </servlet-mapping>
 </web-app>

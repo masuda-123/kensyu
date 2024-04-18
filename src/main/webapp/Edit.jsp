@@ -23,8 +23,9 @@
 			<button onclick="location.href='./Top'">top</button>
 			<button>logout</button>
 		</div>
-		<form action="./Register/Confirm" method="post">
+		<form action="./Edit_confirm" method="post">
 			<p>問題番号:<%= questionId %></p>
+			<input type="hidden" id="questionId" name="questionId" value="<%= questionId %>">
 			<div class="question_area">
 				<label for="question">問題:</label>
 				<div class="question_form">

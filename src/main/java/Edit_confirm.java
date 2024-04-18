@@ -9,15 +9,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Confirm
+ * Servlet implementation class Edit_confirm
  */
-public class Confirm extends HttpServlet {
+public class Edit_confirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Confirm() {
+    public Edit_confirm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,12 +27,9 @@ public class Confirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		RequestDispatcher rd = request.getRequestDispatcher("/Confirm.jsp");
-		//foward(...)で定義された転送先に処理が移る
-		rd.forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -40,11 +37,14 @@ public class Confirm extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
+		
 		String question = request.getParameter("question");
+		int questionId = Integer.parseInt(request.getParameter("questionId"));
 		String[] answers = request.getParameterValues("answer");
 		
-		request.setAttribute("reg_question", question);
-		request.setAttribute("reg_answers", answers);
+		request.setAttribute("question", question);
+		request.setAttribute("answers", answers);
+		request.setAttribute("questionId", questionId);
 		
 		String errorMessage = "";
 		boolean isNewLine = false;
@@ -77,8 +77,9 @@ public class Confirm extends HttpServlet {
 		
 		request.setAttribute("errorMessage", errorMessage);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/Confirm.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/Edit_confirm.jsp");
 		rd.forward(request, response);
 		return;
 	}
+
 }
