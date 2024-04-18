@@ -39,18 +39,21 @@ public class EditComplete extends HttpServlet {
 		//doGet(request, response);
 		
 		try {
-			QuestionsDao q_dao = new QuestionsDao();
-			CorrectAnswersDao a_dao = new CorrectAnswersDao(); 
+			QuestionsDao queDao = new QuestionsDao();
+			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
 			
 			String question = request.getParameter("question");
 			String[] answers = request.getParameterValues("answer");
+			int questionId = Integer.parseInt(request.getParameter("questionId"));
 			
-			//questionとanswersの更新
-			int questions_id = q_dao.register_question(question);
-			//answersの登録
-			a_dao.register_answers(questions_id, answers);
+			//questionの更新
+			queDao.update_question(question, questionId);
+			//既存のanswersを削除
+			ansDao.delete_answers(questionId);
+			//answersを登録
+			ansDao.register_answers(questionId, answers);
 			
-			response.sendRedirect("../List");
+			response.sendRedirect("./List");
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();

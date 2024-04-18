@@ -7,6 +7,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Register</title>
+		<script type="text/javascript">
+			 var i = 1;
+		</script>
 		<script src="<%= request.getContextPath() %>/js/add_answer_form.js"></script>
 		<script src="<%= request.getContextPath() %>/js/delete_answer_form.js"></script>
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">

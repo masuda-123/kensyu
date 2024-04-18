@@ -14,6 +14,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Edit</title>
+		<script type="text/javascript">
+			 var i = <%= answers.size() %>;
+		</script>
 		<script src="<%= request.getContextPath() %>/js/add_answer_form.js"></script>
 		<script src="<%= request.getContextPath() %>/js/delete_answer_form.js"></script>
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">

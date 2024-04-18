@@ -42,7 +42,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 	}
 	
 	/**
-	 * questions_idに一致するレコードを取得する
+	 *  指定questions_idのレコードの答えを取得する
 	 */
 	public ArrayList<String> search_questions_id(int questionId) throws Exception {
 		if (con == null) {
@@ -69,7 +69,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 	}
 	
 	/**
-	 * answerに一致するレコードを取得する
+	 *  指定answerのレコードを取得する
 	 */
 	public ArrayList<CorrectAnswersBean> search_answer(String input_answer) throws Exception {
 		if (con == null) {
@@ -102,7 +102,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 	/**
 	 * 答えを登録する
 	*/
-	public void register_answers(int questions_id, String[] answers) throws Exception {
+	public void register_answers(int questionId, String[] answers) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -112,7 +112,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		try(PreparedStatement st = con.prepareStatement(sql);) {
 			// answersの要素数の分、SQLを実行
 			for(String answer : answers) {
-				st.setInt(1, questions_id);
+				st.setInt(1, questionId);
 				st.setString(2, answer);
 				/** SQL 実行 **/
 				st.executeUpdate();
@@ -124,7 +124,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 	}
 	
 	/**
-	 * 答えの削除
+	 * 答えを削除する
 	*/
 	public void delete_answers(int questionId) throws Exception {
 		if (con == null) {
@@ -141,5 +141,29 @@ public class CorrectAnswersDao extends ConnectionDao {
 			e.printStackTrace();
 			throw new DAOException("レコードの削除に失敗しました");
 		}
+	}
+	
+	/**
+	 * 答えを更新する
+	*/
+	public void update_answers(int[] answersId, String[] answers) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// correct_answers table のデータを更新
+		String sql = "UPDATE correct_answers SET answer = ? WHERE id = ?;";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql);) {
+			// answersの要素数の分、SQLを実行
+			for(int i = 0; i < answers.length ; i++) {
+				st.setString(1, answers[i]);
+				st.setInt(2, answersId[i]);
+				/** SQL 実行 **/
+				st.executeUpdate();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの更新に失敗しました");
+		}	
 	}
 }

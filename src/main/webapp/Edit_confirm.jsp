@@ -23,6 +23,7 @@
 				<p class="error"><%= errorMessage %></p>
 			<% } %>
 			<p>問題番号:<%= questionId %></p>
+			<input type="hidden" id="questionId" name="questionId" value="<%= questionId %>">
 			<div class="question_area">
 				<label>問題:</label>
 				<p><%= question %></p>

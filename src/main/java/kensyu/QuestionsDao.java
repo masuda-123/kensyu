@@ -125,4 +125,25 @@ public class QuestionsDao extends ConnectionDao {
 			throw new DAOException("レコードの削除に失敗しました");
 		}
 	}
+	
+	/**
+	 * 問題を更新する
+	*/
+	public void update_question(String question, int questionId) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// Questions table のデータを更新
+		String sql = "UPDATE questions SET question=? WHERE id = ?;";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql);) {
+			st.setString(1, question);
+			st.setInt(2, questionId);
+			/** SQL 実行 **/
+			st.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの更新に失敗しました");
+		}
+	}
 }
