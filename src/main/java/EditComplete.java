@@ -10,15 +10,15 @@ import kensyu.CorrectAnswersDao;
 import kensyu.QuestionsDao;
 
 /**
- * Servlet implementation class RegisterComplete
+ * Servlet implementation class EditComplete
  */
-public class RegisterComplete extends HttpServlet {
+public class EditComplete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterComplete() {
+    public EditComplete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class RegisterComplete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -39,16 +39,16 @@ public class RegisterComplete extends HttpServlet {
 		//doGet(request, response);
 		
 		try {
-			QuestionsDao queDao = new QuestionsDao();
-			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
+			QuestionsDao q_dao = new QuestionsDao();
+			CorrectAnswersDao a_dao = new CorrectAnswersDao(); 
 			
 			String question = request.getParameter("question");
 			String[] answers = request.getParameterValues("answer");
 			
-			//questionの登録とquestions_idを取得
-			int questionId = queDao.register_question(question);
+			//questionとanswersの更新
+			int questions_id = q_dao.register_question(question);
 			//answersの登録
-			ansDao.register_answers(questionId, answers);
+			a_dao.register_answers(questions_id, answers);
 			
 			response.sendRedirect("../List");
 			return;
