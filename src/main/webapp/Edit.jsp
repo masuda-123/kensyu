@@ -24,6 +24,7 @@
 			<button>logout</button>
 		</div>
 		<form action="./Register/Confirm" method="post">
+			<p>問題番号:<%= questionId %></p>
 			<div class="question_area">
 				<label for="question">問題:</label>
 				<div class="question_form">
