@@ -40,7 +40,7 @@
 					<% } %>
 				</div>
 				<div class="edit_delete_btn_area">
-					<button>編集</button>
+					<a href="./Edit?id=<%= que.getId() %>"><button>編集</button></a>
 					<a href="./Delete_confirm?id=<%= que.getId() %>"><button>削除</button></a>
 				</div>
 			</div>
