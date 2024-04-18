@@ -1,4 +1,4 @@
-var i = 0;
+var i = 1;
 
 function addForm() {
 		//答えのフォームとボタンを含むdivタグを作成
