@@ -8,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kensyu.CorrectAnswersBean;
 import kensyu.CorrectAnswersDao;
 import kensyu.QuestionsBean;
 import kensyu.QuestionsDao;
@@ -43,8 +44,8 @@ public class Edit extends HttpServlet {
 			request.setAttribute("questionId", questionId);
 			
 			CorrectAnswersDao ansDao = new CorrectAnswersDao();
-			//correct_answersテーブルからquestionIdが一致するレコードのanswerを取得
-			ArrayList<String> answers = ansDao.search_questions_id(questionId);
+			//correct_answersテーブルからquestionIdが一致するレコードを取得
+			ArrayList<CorrectAnswersBean> answers = ansDao.search_questions_id(questionId);
 			request.setAttribute("answers", answers);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Edit.jsp");

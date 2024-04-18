@@ -39,12 +39,14 @@ public class Edit_confirm extends HttpServlet {
 		
 		
 		String question = request.getParameter("question");
-		int questionId = Integer.parseInt(request.getParameter("questionId"));
+		String questionId = request.getParameter("questionId");
 		String[] answers = request.getParameterValues("answer");
+		String[] answersId = request.getParameterValues("answerId");
 		
 		request.setAttribute("question", question);
 		request.setAttribute("answers", answers);
 		request.setAttribute("questionId", questionId);
+		request.setAttribute("answersId", answersId);
 		
 		String errorMessage = "";
 		boolean isNewLine = false;

@@ -42,24 +42,28 @@ public class CorrectAnswersDao extends ConnectionDao {
 	}
 	
 	/**
-	 *  指定questions_idのレコードの答えを取得する
+	 *  指定questions_idのレコードを取得する
 	 */
-	public ArrayList<String> search_questions_id(int questionId) throws Exception {
+	public ArrayList<CorrectAnswersBean> search_questions_id(int questionId) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
-		// CorrectAnswers tableのanswerを取得
-		String sql = "SELECT answer FROM correct_answers WHERE questions_id = ? ";
+		// CorrectAnswers tableのidとquestions_id、answerを取得
+		String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE questions_id = ? ";
 		/** PreparedStatement オブジェクトの取得**/
-		try(PreparedStatement st = con.prepareStatement(sql)) {	
+		try(PreparedStatement st = con.prepareStatement(sql)) {
 			st.setInt(1, questionId);
 			/** SQL 実行 **/
 			ResultSet rs = st.executeQuery();
 			/** select文の結果をArrayListに格納 **/ 
-			ArrayList<String> list = new ArrayList<String>();
+			ArrayList<CorrectAnswersBean> list = new ArrayList<CorrectAnswersBean>();
 			while (rs.next()) {
+				// 一旦変数で受ける
+				int id = rs.getInt("id");
+				int questions_id = rs.getInt("questions_id");
 				String answer = rs.getString("answer");
-				list.add(answer);
+				CorrectAnswersBean bean = new CorrectAnswersBean(id, questions_id, answer);
+				list.add(bean);
 			}
 			return list;
 		} catch (Exception e) { 
@@ -144,9 +148,9 @@ public class CorrectAnswersDao extends ConnectionDao {
 	}
 	
 	/**
-	 * 答えを更新する
+	 * 答えを１件更新する
 	*/
-	public void update_answers(int[] answersId, String[] answers) throws Exception {
+	public void update_answer(int answerId, String answer) throws Exception {
 		if (con == null) {
 			setConnection();
 		}
@@ -154,16 +158,55 @@ public class CorrectAnswersDao extends ConnectionDao {
 		String sql = "UPDATE correct_answers SET answer = ? WHERE id = ?;";
 		/** PreparedStatement オブジェクトの取得**/
 		try(PreparedStatement st = con.prepareStatement(sql);) {
-			// answersの要素数の分、SQLを実行
-			for(int i = 0; i < answers.length ; i++) {
-				st.setString(1, answers[i]);
-				st.setInt(2, answersId[i]);
-				/** SQL 実行 **/
-				st.executeUpdate();
-			}
+			st.setString(1, answer);
+			st.setInt(2, answerId);
+			/** SQL 実行 **/
+			st.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new DAOException("レコードの更新に失敗しました");
 		}	
+	}
+	
+	/**
+	 * 答えを１件登録する
+	*/
+	public void register_answer(int questionId, String answer) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// correct_answers table にデータを追加
+		String sql = "INSERT INTO correct_answers (questions_id, answer, created_at) VALUES (?, ?, CURRENT_TIMESTAMP());";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement st = con.prepareStatement(sql);) {
+			// answersの要素数の分、SQLを実行
+			st.setInt(1, questionId);
+			st.setString(2, answer);
+			/** SQL 実行 **/
+			st.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの登録に失敗しました");
+		}	
+	}
+	
+	/**
+	 * 答えを１件削除する
+	*/
+	public void delete_answer(int answerId) throws Exception {
+		if (con == null) {
+			setConnection();
+		}
+		// Questions table のデータを削除
+		String sql = "DELETE FROM correct_answers WHERE id = ?";
+		/** PreparedStatement オブジェクトの取得**/
+		try(PreparedStatement insert_st = con.prepareStatement(sql);) {
+			insert_st.setInt(1, answerId);
+			/** SQL 実行 **/
+			insert_st.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DAOException("レコードの削除に失敗しました");
+		}
 	}
 }

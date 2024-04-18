@@ -8,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kensyu.CorrectAnswersBean;
 import kensyu.CorrectAnswersDao;
 import kensyu.QuestionsBean;
 import kensyu.QuestionsDao;
@@ -43,8 +44,13 @@ public class Delete_confirm extends HttpServlet {
 			request.setAttribute("questionId", questionId);
 			
 			CorrectAnswersDao ansDao = new CorrectAnswersDao();
-			//correct_answersテーブルからquestionIdが一致するレコードのanswerを取得
-			ArrayList<String> answers = ansDao.search_questions_id(questionId);
+			//correct_answersテーブルからquestionIdが一致するレコードを取得
+			ArrayList<CorrectAnswersBean> ansList = ansDao.search_questions_id(questionId);
+			//レコードからanswerを取得し、配列に格納
+			String[] answers = new String[ansList.size()];
+			for(int i = 0; i < ansList.size(); i++) {
+				answers[i] = ansList.get(i).getAnswer();
+			}
 			request.setAttribute("answers", answers);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Delete_confirm.jsp");

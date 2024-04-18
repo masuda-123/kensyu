@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="java.util.ArrayList"
+    import="kensyu.CorrectAnswersBean"
 %>
 
 <%
 	String question = (String)request.getAttribute("question");
 	int questionId = (int)request.getAttribute("questionId");
-	ArrayList<String> answers = (ArrayList<String>)request.getAttribute("answers");
+	ArrayList<CorrectAnswersBean> answers = (ArrayList<CorrectAnswersBean>)request.getAttribute("answers");
 %>
 
 <!DOCTYPE html>
@@ -41,7 +42,8 @@
 				<div class="answer_form_list">
 					<% for(int i = 0; i < answers.size(); i++){  %>
 						<div class="answer_form" id="answer_form<%= i + 1 %>">
-							<input type="text" id="answer" name="answer" value="<%= answers.get(i) %>">
+							<input type="text" id="answer" name="answer" value="<%= answers.get(i).getAnswer() %>">
+							<input type="hidden" id="answerId" name="answerId" value="<%= answers.get(i).getId() %>">
 							<% if(i != 0) { %>
 								<button type="button" onclick="deleteForm(answer_form<%= i + 1 %>)">削除</button>
 							<% } %>

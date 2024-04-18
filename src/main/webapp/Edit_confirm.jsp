@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+%>
 <%
 	String question = (String)request.getAttribute("question");
 	String[] answers = (String[])request.getAttribute("answers");
-	int questionId = (int)request.getAttribute("questionId");
+	String questionId = (String)request.getAttribute("questionId");
+	String[] answersId = (String[])request.getAttribute("answersId");
 	String errorMessage = (String)request.getAttribute("errorMessage");
 %>
 <!DOCTYPE html>
@@ -32,9 +34,12 @@
 			<div class="answer_area">
 				<label>答え:</label>
 				<div class="answer_form_list">
-					<% for(String answer : answers){  %>
+					<% for(String answer : answers){ %>
 						<p><%= answer %></p>
 						<input type="hidden" id="answer" name="answer" value="<%= answer %>">
+					<% } %>
+					<% for(String answerId : answersId){ %>
+						<input type="hidden" id="answerId" name="answerId" value="<%= answerId %>">
 					<% } %>
 				</div>
 			</div>
