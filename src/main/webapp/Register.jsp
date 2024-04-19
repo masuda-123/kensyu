@@ -27,7 +27,7 @@
 			<div class="answer_area">
 				<label for="answer">答え:</label>
 				<div class="answer_form_list">
-					<div class="answer_form" id="answerform1">
+					<div class="answer_form_area" id="answerform1">
 						<input type="text" id="answer" name="answer">
 					</div>
 				</div>

@@ -38,11 +38,11 @@
 				<label for="answer">答え:</label>
 				<div class="answer_form_list">
 					<% for(int i = 0; i < answers.size(); i++){  %>
-						<div class="answer_form" id="answer_form<%= i + 1 %>">
+						<div class="answer_form_area" id="answer_form_area<%= i + 1 %>">
 							<input type="text" id="answer" name="answer" value="<%= answers.get(i).getAnswer() %>">
 							<input type="hidden" id="answerId" name="answerId" value="<%= answers.get(i).getId() %>">
 							<% if(i != 0) { %>
-								<button type="button" onclick="deleteForm(answer_form<%= i + 1 %>)">削除</button>
+								<button type="button" onclick="deleteForm(answer_form_area<%= i + 1 %>)">削除</button>
 							<% } %>
 						</div>
 					<% } %>

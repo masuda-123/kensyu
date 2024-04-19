@@ -26,7 +26,7 @@
 				<div class="question_area">
 			    	<label for="question"><%= ++i %></label>
 			    	<div class="question_form">
-			    		<%= que.getQuestion() %>
+			    		<p><%= que.getQuestion() %></p>
 			    	</div>
 			    	<input type="hidden" id="questions_id" name="questions_id" value="<%= que.getId() %>">
 				</div>

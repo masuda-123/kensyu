@@ -16,46 +16,66 @@ body {
 	justify-content: center;
 }
 
+.question_area {
+	width: 100%;
+	margin-top: 20px;
+	display: flex;
+}
+
 .question_area textarea {
 	 width: 500px;
 	 height: 100px;
 }
 
 .question_area label {
+	width: 7%;
 	vertical-align:top
 }
 
-.question_area {
-	margin-top: 20px;
-	display: flex;
+.question_form {
+	width: 90%;
 }
 
-.question_area p {
-	width: 90%;
-	overflow-wrap: break-word;
+.question_form p {
+	width: 95%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .answer_area {
+	width: 100%;
 	margin-top: 20px;
 	display: flex;
 }
 
-.answer_form {
+.answer_area label {
+	width: 7%;;
+}
+
+.answer_form, .answer_form_area {
 	width: 100%;
 	display: flex;
 	margin-bottom: 10px;
 	height: 26px;
 }
 
-.answer_form input {
+.answer_form_area input {
 	display: block;
-	width: 500px;
+	width: 85%;
 }
 
-.answer_form button {
+
+.answer_form input {
+	display: block;
+	width: 100%;
+}
+
+.answer_form_area button {
 	display: block;
 	margin-left: 10px;
 }
+
 
 .answer_form p {
 	width: 100%;
@@ -106,8 +126,22 @@ label {
 	margin-bottom: 5px;
 }
 
+.questions_list p {
+	width: 85%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .answers_list {
 	margin-left: 20px;
+}
+
+.answers_list p {
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 p {
