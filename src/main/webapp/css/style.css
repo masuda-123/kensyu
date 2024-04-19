@@ -11,6 +11,10 @@ body {
 	margin-top: 15px;
 }
 
+.form label {
+	width: 6%;
+}
+
 .login_btn {
 	display: flex;
 	justify-content: center;
