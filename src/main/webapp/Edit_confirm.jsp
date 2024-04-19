@@ -20,7 +20,7 @@
 			<button onclick="location.href='../Top'">top</button>
 			<button>logout</button>
 		</div>
-		<form action="./EditComplete" method="post">
+		<form action="../EditComplete" method="post">
 			<% if (!errorMessage.isEmpty()) { %>
 				<p class="error"><%= errorMessage %></p>
 			<% } %>

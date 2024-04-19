@@ -137,7 +137,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Edit_confirm</servlet-name>
-    <url-pattern>/Edit_confirm</url-pattern>
+    <url-pattern>/Edit/Confirm</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

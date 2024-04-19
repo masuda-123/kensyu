@@ -81,7 +81,6 @@ public class Edit_confirm extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Edit_confirm.jsp");
 		rd.forward(request, response);
-		return;
 	}
 
 }

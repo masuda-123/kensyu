@@ -59,15 +59,15 @@ public class EditComplete extends HttpServlet {
 			
 			for(int i = 0; i < answers.length; i++) {
 				if( i < answersId.length) { //更新された答えがあった場合
-					ansDao.update_answer(answersId[i], answers[i]);
+					ansDao.update_answer(answersId[i], answers[i]); //answerの更新
 				} else { //新たに追加された答えがあった場合
-					ansDao.register_answer(questionId, answers[i]);
+					ansDao.register_answer(questionId, answers[i]); //answerの登録
 				}
 			}
 			if(ansList.size() > answersId.length) { //削除された答えがあった場合
 				for(CorrectAnswersBean ans : ansList) {
 					if(!(Arrays.stream(answersId).anyMatch(x -> x == ans.getId()))){
-						ansDao.delete_answer(ans.getId());
+						ansDao.delete_answer(ans.getId()); //answerの削除
 					}
 				}
 			}
