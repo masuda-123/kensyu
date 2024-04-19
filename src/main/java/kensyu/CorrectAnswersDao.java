@@ -155,7 +155,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 			setConnection();
 		}
 		// correct_answers table のデータを更新
-		String sql = "UPDATE correct_answers SET answer = ? WHERE id = ?;";
+		String sql = "UPDATE correct_answers SET answer = ?, updated_at = CURRENT_TIMESTAMP() WHERE id = ?;";
 		/** PreparedStatement オブジェクトの取得**/
 		try(PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, answer);

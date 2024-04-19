@@ -134,7 +134,7 @@ public class QuestionsDao extends ConnectionDao {
 			setConnection();
 		}
 		// Questions table のデータを更新
-		String sql = "UPDATE questions SET question=? WHERE id = ?;";
+		String sql = "UPDATE questions SET question=?, updated_at = CURRENT_TIMESTAMP() WHERE id = ?;";
 		/** PreparedStatement オブジェクトの取得**/
 		try(PreparedStatement st = con.prepareStatement(sql);) {
 			st.setString(1, question);

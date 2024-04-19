@@ -55,27 +55,20 @@ public class EditComplete extends HttpServlet {
 			queDao.update_question(question, questionId);
 			
 			//既存の答えのデータを取得
-			ArrayList<CorrectAnswersBean> ansRecord = ansDao.search_questions_id(questionId);
+			ArrayList<CorrectAnswersBean> ansList = ansDao.search_questions_id(questionId);
 			
-			int i = 0;
-			for(; i < answersId.length; i++) {
-				System.out.println("いまここ");
-				ansDao.update_answer(answersId[i], answers[i]);
-			}
-			for(; i < answers.length; i++) {
-				System.out.println("次ここ");
-				ansDao.register_answer(questionId, answers[i]);
-			}
-			if(ansRecord.size() > answersId.length) {
-				int[] regAnswersId = new int[ansRecord.size()];
-				for(int j = 0; j < ansRecord.size(); j++) {
-					regAnswersId[j] = ansRecord.get(j).getId();
+			for(int i = 0; i < answers.length; i++) {
+				if( i < answersId.length) { //更新された答えがあった場合
+					ansDao.update_answer(answersId[i], answers[i]);
+				} else { //新たに追加された答えがあった場合
+					ansDao.register_answer(questionId, answers[i]);
 				}
-				int deleteId = Arrays.mismatch(answersId, regAnswersId);
-				if( deleteId != -1) {
-					System.out.println("最後ここ");
-					System.out.println(deleteId);
-					ansDao.delete_answer(regAnswersId[deleteId]);
+			}
+			if(ansList.size() > answersId.length) { //削除された答えがあった場合
+				for(CorrectAnswersBean ans : ansList) {
+					if(!(Arrays.stream(answersId).anyMatch(x -> x == ans.getId()))){
+						ansDao.delete_answer(ans.getId());
+					}
 				}
 			}
 			
