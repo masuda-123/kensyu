@@ -19,10 +19,7 @@
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 	</head>
 	<body>
-		<div class="btn_area">
-			<button onclick="location.href='./Top'">top</button>
-			<button onclick="location.href='./Logout'">logout</button>
-		</div>
+		<%@ include file="Header.jsp"%>
 		<form action ="./Test/Result" method="post">
 			<% int i = 0; %>
 			<% for (QuestionsBean que : queList) { %>

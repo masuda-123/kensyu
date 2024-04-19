@@ -16,10 +16,7 @@
 	</head>
 	
 	<body>
-		 <div class="btn_area">
-			<button onclick="location.href='./Top'">top</button>
-			<button onclick="location.href='./Logout'">logout</button>
-		</div>
+		<%@ include file="Header.jsp"%>
 		<form action="./Register/Confirm" method="post">
 			<div class="question_area">
 				<label for="question">問題:</label>

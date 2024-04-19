@@ -19,10 +19,7 @@
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 	</head>
 	<body>
-		<div class="btn_area">
-			<button onclick="location.href='./Top'">top</button>
-			<button onclick="location.href='./Logout'">logout</button>
-		</div>
+		<%@ include file="Header.jsp"%>
 		<button class="new_btn" onclick="location.href='./Register'" >新規登録</button>
 		<% for (QuestionsBean que : queList) { %>
 			<div class="list_area">

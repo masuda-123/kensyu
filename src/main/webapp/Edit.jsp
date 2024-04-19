@@ -23,10 +23,7 @@
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 	</head>
 	<body>
-		 <div class="btn_area">
-			<button onclick="location.href='./Top'">top</button>
-			<button onclick="location.href='./Logout'">logout</button>
-		</div>
+		<%@ include file="Header.jsp"%>
 		<form action="./Edit/Confirm" method="post">
 			<p>問題番号:<%= questionId %></p>
 			<input type="hidden" id="questionId" name="questionId" value="<%= questionId %>">
