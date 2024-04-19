@@ -25,7 +25,7 @@
 	<body>
 		 <div class="btn_area">
 			<button onclick="location.href='./Top'">top</button>
-			<button>logout</button>
+			<button onclick="location.href='./Logout'">logout</button>
 		</div>
 		<form action="./Edit/Confirm" method="post">
 			<p>問題番号:<%= questionId %></p>

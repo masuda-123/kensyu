@@ -21,7 +21,7 @@
 <body>
 	<div class="btn_area">
 		<button onclick="location.href='./Top'">top</button>
-		<button>logout</button>
+		<button onclick="location.href='./Logout'">logout</button>
 	</div>
 	<h2>履歴</h2>
 	<table>

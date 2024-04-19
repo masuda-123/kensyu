@@ -21,7 +21,7 @@
 	<body>
 		<div class="btn_area">
 			<button onclick="location.href='./Top'">top</button>
-			<button>logout</button>
+			<button onclick="location.href='./Logout'">logout</button>
 		</div>
 		<form action ="./Test/Result" method="post">
 			<% int i = 0; %>
