@@ -25,9 +25,7 @@
 			<% for (QuestionsBean que : queList) { %>
 				<div class="question_area">
 			    	<label for="question"><%= ++i %></label>
-			    	<div class="question_form">
-			    		<p><%= que.getQuestion() %></p>
-			    	</div>
+			    	<p><%= que.getQuestion() %></p>
 			    	<input type="hidden" id="questions_id" name="questions_id" value="<%= que.getId() %>">
 				</div>
 				<div class="answer_area">
