@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Top
@@ -29,8 +30,16 @@ public class Top extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
-		rd.forward(request, response);
+		HttpSession session = request.getSession(false);
+		//セッションが存在しない場合
+		if (session == null || (session.getAttribute("userId")) == null){
+			RequestDispatcher dispatch = request.getRequestDispatcher("/Login.jsp");
+			dispatch.forward(request, response);
+			return;
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	/**
