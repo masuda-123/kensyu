@@ -29,15 +29,14 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	    HttpSession session = request.getSession(false);
-	    // セッションが存在する場合は一度破棄する
-	    if (session != null) {
-	      session.invalidate();
-	    }
-	    //ログイン画面に遷移させる
+		HttpSession session = request.getSession(false);
+		// セッションが存在する場合は破棄する
+		if (session != null) {
+			session.invalidate();
+		}
+		//ログイン画面に遷移させる
 		RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
 		rd.forward(request, response);
-		
 	}
 
 	/**
