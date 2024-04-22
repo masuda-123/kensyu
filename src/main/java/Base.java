@@ -1,26 +1,24 @@
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kensyu.QuestionsBean;
-import kensyu.QuestionsDao;
+import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Test
+ * Servlet implementation class Base
  */
-public class Test extends Base {
+public class Base extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Test() {
+    public Base() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,23 +29,12 @@ public class Test extends Base {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		super.doGet(request, response);
-		try {
-			QuestionsDao queDao = new QuestionsDao();
-			ArrayList<QuestionsBean> queList = queDao.findAll();
-			request.setAttribute("queList", queList);
-			if(queList.isEmpty()) {
-				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
-				rd.forward(request, response);
-				return;
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/Test.jsp");
-				rd.forward(request, response);
-				return;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		// ログインチェック
+		HttpSession session = request.getSession(false);
+		if (session == null || (session.getAttribute("userId")) == null){
+			RequestDispatcher dispatch = request.getRequestDispatcher("/Login.jsp");
+			dispatch.forward(request, response);
+			return;
 		}
 	}
 
@@ -56,7 +43,14 @@ public class Test extends Base {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
+	    // ログインチェック
+		HttpSession session = request.getSession(false);
+		if (session == null || (session.getAttribute("userId")) == null){
+			RequestDispatcher dispatch = request.getRequestDispatcher("/Login.jsp");
+			dispatch.forward(request, response);
+			return;
+		}
 	}
 
 }

@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Register
  */
-public class Register extends HttpServlet {
+public class Register extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -28,8 +28,12 @@ public class Register extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//	response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		super.doGet(request, response);
+		//登録画面に遷移
 		RequestDispatcher rd = request.getRequestDispatcher("/Register.jsp");
 		rd.forward(request, response);
+		return;
 	}
 
 	/**
@@ -37,7 +41,7 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		doGet(request, response);
 	}
 
 }

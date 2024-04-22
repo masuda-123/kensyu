@@ -19,7 +19,7 @@ import kensyu.UsersDao;
 /**
  * Servlet implementation class Result
  */
-public class Result extends HttpServlet {
+public class Result extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -36,8 +36,6 @@ public class Result extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");
-		rd.forward(request, response);
 	}
 
 	/**
@@ -46,6 +44,8 @@ public class Result extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		
+		super.doPost(request, response);
 		
 		int[] questions_id = Stream.of(request.getParameterValues("questions_id")).mapToInt(Integer::parseInt).toArray();
 		String[] answers = request.getParameterValues("answer");

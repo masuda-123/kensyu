@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Top
  */
-public class Top extends HttpServlet {
+public class Top extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -28,7 +28,7 @@ public class Top extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		super.doGet(request, response);
 		RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 		rd.forward(request, response);
 	}
@@ -38,7 +38,7 @@ public class Top extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		doGet(request, response);
 	}
 
 }

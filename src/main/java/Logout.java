@@ -1,26 +1,24 @@
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kensyu.QuestionsBean;
-import kensyu.QuestionsDao;
+import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Test
+ * Servlet implementation class Logout
  */
-public class Test extends Base {
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Test() {
+    public Logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +29,14 @@ public class Test extends Base {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		super.doGet(request, response);
-		try {
-			QuestionsDao queDao = new QuestionsDao();
-			ArrayList<QuestionsBean> queList = queDao.findAll();
-			request.setAttribute("queList", queList);
-			if(queList.isEmpty()) {
-				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
-				rd.forward(request, response);
-				return;
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("/Test.jsp");
-				rd.forward(request, response);
-				return;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		HttpSession session = request.getSession(false);
+		// セッションが存在する場合は破棄する
+		if (session != null) {
+			session.invalidate();
 		}
+		//ログイン画面に遷移させる
+		RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

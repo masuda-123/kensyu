@@ -16,7 +16,7 @@ import kensyu.QuestionsDao;
 /**
  * Servlet implementation class List
  */
-public class List extends HttpServlet {
+public class List extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -33,7 +33,7 @@ public class List extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		super.doGet(request, response);
 		try {
 			QuestionsDao queDao = new QuestionsDao();
 			ArrayList<QuestionsBean> queList = queDao.findAll();
@@ -51,7 +51,6 @@ public class List extends HttpServlet {
 				rd.forward(request, response);
 				return;
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,9 +61,7 @@ public class List extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		
-
+		doGet(request, response);
 	}
 
 }

@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Edit_confirm
  */
-public class Edit_confirm extends HttpServlet {
+public class Edit_confirm extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -27,7 +27,7 @@ public class Edit_confirm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -37,6 +37,7 @@ public class Edit_confirm extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
+		super.doPost(request, response);
 		
 		String question = request.getParameter("question");
 		String questionId = request.getParameter("questionId");

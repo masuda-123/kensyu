@@ -16,7 +16,7 @@ import kensyu.QuestionsDao;
 /**
  * Servlet implementation class Delete_confirm
  */
-public class Delete_confirm extends HttpServlet {
+public class Delete_confirm extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -33,17 +33,17 @@ public class Delete_confirm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		super.doGet(request, response);
 		try {
 			//URLパラメータからquestionIdを取得
 			int questionId = Integer.parseInt(request.getParameter("id"));
-			
+				
 			QuestionsDao queDao = new QuestionsDao();
 			//questionsテーブルからquestionIdが一致するレコードを取得
 			QuestionsBean question = queDao.search_id(questionId);
 			request.setAttribute("question", question.getQuestion());
 			request.setAttribute("questionId", questionId);
-			
+				
 			CorrectAnswersDao ansDao = new CorrectAnswersDao();
 			//correct_answersテーブルからquestionIdが一致するレコードを取得
 			ArrayList<CorrectAnswersBean> ansList = ansDao.search_questions_id(questionId);
@@ -53,9 +53,10 @@ public class Delete_confirm extends HttpServlet {
 				answers[i] = ansList.get(i).getAnswer();
 			}
 			request.setAttribute("answers", answers);
-			
+				
 			RequestDispatcher rd = request.getRequestDispatcher("/Delete_confirm.jsp");
 			rd.forward(request, response);
+			return;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,6 +67,6 @@ public class Delete_confirm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		doGet(request, response);
 	}
 }

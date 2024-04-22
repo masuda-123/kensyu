@@ -16,10 +16,7 @@
 	</head>
 	
 	<body>
-		 <div class="btn_area">
-			<button onclick="location.href='./Top'">top</button>
-			<button>logout</button>
-		</div>
+		<%@ include file="Header.jsp"%>
 		<form action="./Register/Confirm" method="post">
 			<div class="question_area">
 				<label for="question">問題:</label>
@@ -30,7 +27,7 @@
 			<div class="answer_area">
 				<label for="answer">答え:</label>
 				<div class="answer_form_list">
-					<div class="answer_form" id="answerform1">
+					<div class="answer_form_area" id="answerform1">
 						<input type="text" id="answer" name="answer">
 					</div>
 				</div>

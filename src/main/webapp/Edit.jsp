@@ -23,10 +23,7 @@
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 	</head>
 	<body>
-		 <div class="btn_area">
-			<button onclick="location.href='./Top'">top</button>
-			<button>logout</button>
-		</div>
+		<%@ include file="Header.jsp"%>
 		<form action="./Edit/Confirm" method="post">
 			<p>問題番号:<%= questionId %></p>
 			<input type="hidden" id="questionId" name="questionId" value="<%= questionId %>">
@@ -41,11 +38,11 @@
 				<label for="answer">答え:</label>
 				<div class="answer_form_list">
 					<% for(int i = 0; i < answers.size(); i++){  %>
-						<div class="answer_form" id="answer_form<%= i + 1 %>">
+						<div class="answer_form_area" id="answer_form_area<%= i + 1 %>">
 							<input type="text" id="answer" name="answer" value="<%= answers.get(i).getAnswer() %>">
 							<input type="hidden" id="answerId" name="answerId" value="<%= answers.get(i).getId() %>">
 							<% if(i != 0) { %>
-								<button type="button" onclick="deleteForm(answer_form<%= i + 1 %>)">削除</button>
+								<button type="button" onclick="deleteForm(answer_form_area<%= i + 1 %>)">削除</button>
 							<% } %>
 						</div>
 					<% } %>

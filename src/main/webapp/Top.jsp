@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="btn_area">
-		<button>logout</button>
+		<button onclick="location.href='./Logout'">logout</button>
 	</div>
 	<div class="menu_area">
 		<button onclick="location.href='./List'">問題と答えを確認・登録する ></button>

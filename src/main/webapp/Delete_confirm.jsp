@@ -17,10 +17,7 @@
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 </head>
 <body>
-	<div class="btn_area">
-		<button onclick="location.href='./Top'">top</button>
-		<button>logout</button>
-	</div>
+	<%@ include file="Header.jsp"%>
 	<form action="./DeleteComplete" method="post">
 		<div class="question_area">
 			<label>問題:</label>

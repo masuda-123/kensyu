@@ -18,7 +18,7 @@ import kensyu.UsersDao;
 /**
  * Servlet implementation class History
  */
-public class History extends HttpServlet {
+public class History extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -35,32 +35,33 @@ public class History extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-	
+		
+		super.doGet(request, response);
 		try {
-			//sessionからuser_idを取得
 			HttpSession session = request.getSession(false);
+			//sessionからuser_idを取得
 			int userId = (int)session.getAttribute("userId");
 			
 			//取得したuser_idに一致する履歴を取得
 			HistoriesDao hisDao = new HistoriesDao();
 			ArrayList<HistoriesBean> hisList = hisDao.search_userId(userId);
-			
+				
 			//採点時間の昇順に並び替える
 			Comparator<HistoriesBean> compare = Comparator.comparing(HistoriesBean::getCreatedAt);
 			hisList.sort(compare);
-			
+				
 			//user_idからuser情報を取得
 			UsersDao dao = new UsersDao();
 			UsersBean user = dao.search_id(userId);
-			
+				
 			request.setAttribute("hisList", hisList);
 			request.setAttribute("userName", user.getName());
-			
+				
 			RequestDispatcher rd = request.getRequestDispatcher("/History.jsp");
 			rd.forward(request, response);
 			return;
 		} catch (Exception e) {
-			e.printStackTrace();
+				e.printStackTrace();
 		}
 	}
 
