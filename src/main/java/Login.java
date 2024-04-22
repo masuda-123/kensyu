@@ -31,6 +31,8 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		//画面の遷移先としてLogin画面を定義
 		RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
 		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);
@@ -42,35 +44,49 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//		doGet(request, response);
+		
+		//フォームから渡された値をint型に変換して、変数userIdに格納
 		int userId = Integer.parseInt(request.getParameter("userId"));
+		//フォームから渡された値を、変数passwordに格納
 		String password = request.getParameter("password");
 		
 		try {
+			//UsersDaoオブジェクトを作成し、変数daoに格納
 			UsersDao dao = new UsersDao();
+			//search_idメソッドを呼び出して、userIdと一致するレコードを取得する。
 			UsersBean user = dao.search_id(userId);
 			
-			//IDとパスワードが一致した場合
+			//フォームから渡されたIDとパスワードの値が、取得したレコードと一致した場合
 			if(user.getId() != 0 && user.getPassword().equals(password)) {
-			    HttpSession session = request.getSession(false);
-			    // 既にセッションが存在する場合は一度破棄する
-			    if (session != null) {
-			      session.invalidate();
-			    }
-			    // セッションを新規で作成して、user_idを格納
-			    session = request.getSession(true);
-				session.setAttribute("userId", user.getId());
+				//セッションの取得
+				HttpSession session = request.getSession(false);
+				//既にセッションが存在する場合
+				if (session != null) {
+					//セッションを破棄する
+					session.invalidate();
+				}
+				//セッションを新規で作成
+				session = request.getSession(true);
+				//セッションに、userIdを格納
+				session.setAttribute("userId", userId);
 				
+				//画面の遷移先としてTop画面を定義
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
+				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
 				return;
 				
 			//IDとパスワードが一致しなかった場合
 			} else {
+				//画面の遷移先としてLogin画面を定義
 				RequestDispatcher rd = request.getRequestDispatcher("/Login.jsp");
+				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
 				return;
 			}
+		//try文野中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
+			//スタックトレースを出力する
 			e.printStackTrace();
 		}
 	}
