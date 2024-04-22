@@ -1,23 +1,27 @@
 @charset "UTF-8";
 
+/*bodyタグ*/
 body {
+	/*幅を650pxにする*/
 	width: 650px;
+	/*真ん中に寄せる*/
+	margin: 0 auto;
 }
 
+/*Login画面のformクラス*/
 .form {
-	margin: 0 auto;
+	/*ラベルと入力欄を横並びにする*/
 	display: flex;
+	/*真ん中に寄せる*/
 	justify-content: center;
+	/*上に余白を作る*/
 	margin-top: 15px;
 }
 
+/*Login画面のformクラスのlabelタグ*/
 .form label {
+	/*幅を全体の6%にする*/
 	width: 6%;
-}
-
-.login_btn {
-	display: flex;
-	justify-content: center;
 }
 
 .question_area {
