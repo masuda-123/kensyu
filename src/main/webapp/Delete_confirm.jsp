@@ -6,7 +6,7 @@
 <%
 	String question = (String)request.getAttribute("question");
 	int questionId = (int)request.getAttribute("questionId");
-	ArrayList<String> answers = (ArrayList<String>)request.getAttribute("answers");
+	String[] answers = (String[])request.getAttribute("answers");
 %>
 
 <!DOCTYPE html>

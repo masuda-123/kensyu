@@ -39,16 +39,16 @@ public class RegisterComplete extends HttpServlet {
 		//doGet(request, response);
 		
 		try {
-			QuestionsDao q_dao = new QuestionsDao();
-			CorrectAnswersDao a_dao = new CorrectAnswersDao(); 
+			QuestionsDao queDao = new QuestionsDao();
+			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
 			
 			String question = request.getParameter("question");
 			String[] answers = request.getParameterValues("answer");
 			
 			//questionの登録とquestions_idを取得
-			int questions_id = q_dao.register_question(question);
+			int questionId = queDao.register_question(question);
 			//answersの登録
-			a_dao.register_answers(questions_id, answers);
+			ansDao.register_answers(questionId, answers);
 			
 			response.sendRedirect("../List");
 			return;

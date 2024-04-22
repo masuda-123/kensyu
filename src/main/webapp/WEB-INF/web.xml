@@ -119,4 +119,34 @@
     <servlet-name>DeleteComplete</servlet-name>
     <url-pattern>/DeleteComplete</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Edit</display-name>
+    <servlet-name>Edit</servlet-name>
+    <servlet-class>Edit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Edit</servlet-name>
+    <url-pattern>/Edit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Edit_confirm</display-name>
+    <servlet-name>Edit_confirm</servlet-name>
+    <servlet-class>Edit_confirm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Edit_confirm</servlet-name>
+    <url-pattern>/Edit/Confirm</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditComplete</display-name>
+    <servlet-name>EditComplete</servlet-name>
+    <servlet-class>EditComplete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditComplete</servlet-name>
+    <url-pattern>/EditComplete</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,5 +1,3 @@
-var i = 0;
-
 function addForm() {
 		//答えのフォームとボタンを含むdivタグを作成
 		var answer_form = document.createElement('div');

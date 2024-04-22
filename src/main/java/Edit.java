@@ -14,15 +14,15 @@ import kensyu.QuestionsBean;
 import kensyu.QuestionsDao;
 
 /**
- * Servlet implementation class Delete_confirm
+ * Servlet implementation class Edit
  */
-public class Delete_confirm extends HttpServlet {
+public class Edit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Delete_confirm() {
+    public Edit() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,15 +46,10 @@ public class Delete_confirm extends HttpServlet {
 			
 			CorrectAnswersDao ansDao = new CorrectAnswersDao();
 			//correct_answersテーブルからquestionIdが一致するレコードを取得
-			ArrayList<CorrectAnswersBean> ansList = ansDao.search_questions_id(questionId);
-			//レコードからanswerを取得し、配列に格納
-			String[] answers = new String[ansList.size()];
-			for(int i = 0; i < ansList.size(); i++) {
-				answers[i] = ansList.get(i).getAnswer();
-			}
+			ArrayList<CorrectAnswersBean> answers = ansDao.search_questions_id(questionId);
 			request.setAttribute("answers", answers);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/Delete_confirm.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/Edit.jsp");
 			rd.forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,6 +61,7 @@ public class Delete_confirm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
+		doGet(request, response);
 	}
+
 }
