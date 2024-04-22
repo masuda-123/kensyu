@@ -16,7 +16,7 @@ import kensyu.QuestionsDao;
 /**
  * Servlet implementation class EditComplete
  */
-public class EditComplete extends HttpServlet {
+public class EditComplete extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -41,6 +41,8 @@ public class EditComplete extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		
+		super.doPost(request, response);
 		
 		try {
 			QuestionsDao queDao = new QuestionsDao();

@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Confirm
  */
-public class Confirm extends HttpServlet {
+public class Confirm extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -36,6 +36,8 @@ public class Confirm extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		
+		super.doPost(request, response);
 		
 		String question = request.getParameter("question");
 		String[] answers = request.getParameterValues("answer");

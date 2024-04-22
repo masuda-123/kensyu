@@ -12,7 +12,7 @@ import kensyu.QuestionsDao;
 /**
  * Servlet implementation class RegisterComplete
  */
-public class RegisterComplete extends HttpServlet {
+public class RegisterComplete extends Base {
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -38,6 +38,7 @@ public class RegisterComplete extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
+		super.doPost(request, response);
 		try {
 			QuestionsDao queDao = new QuestionsDao();
 			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
