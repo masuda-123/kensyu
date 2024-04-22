@@ -24,6 +24,7 @@ body {
 	width: 6%;
 }
 
+
 .question_area {
 	width: 100%;
 	margin-top: 20px;
@@ -118,14 +119,16 @@ label {
 	text-decoration: none;
 }
 
-.menu_area {
-	width: 100%;
-}
-
+/* Top画面のmenu_areaクラスのbuttonタグ*/
 .menu_area button {
+	/*要素をブロック化*/
 	display: block;
-	width: 300px;
+	/*横幅を全体の40%にする*/
+	width: 40%;
+	/*要素を真ん中に寄せて、上に10pxの余白をつくる*/
 	margin: 10px auto;
+	/*ボタン内の文字を左に寄せる*/
+	text-align: left;
 }
 
 .new_btn {
