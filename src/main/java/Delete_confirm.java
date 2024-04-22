@@ -34,9 +34,10 @@ public class Delete_confirm extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		//URLパラメータからquestionIdを取得
-		int questionId = Integer.parseInt(request.getParameter("id"));
 		try {
+			//URLパラメータからquestionIdを取得
+			int questionId = Integer.parseInt(request.getParameter("id"));
+			
 			QuestionsDao queDao = new QuestionsDao();
 			//questionsテーブルからquestionIdが一致するレコードを取得
 			QuestionsBean question = queDao.search_id(questionId);
