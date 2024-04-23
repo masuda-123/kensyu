@@ -29,13 +29,14 @@ public class Register extends Base {
 		// TODO Auto-generated method stub
 		//	response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ;
+			return ; //trueだった場合returnさせる
 		}
-		//登録画面に遷移
+		//画面の遷移先としてRegister画面を定義
 		RequestDispatcher rd = request.getRequestDispatcher("/Register.jsp");
+		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);
-		return;
 	}
 
 	/**
