@@ -42,7 +42,9 @@ public class EditComplete extends Base {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		super.doPost(request, response);
+		if (super.isCheckLogin(request, response)) {
+			return ;
+		}
 		
 		try {
 			QuestionsDao queDao = new QuestionsDao();

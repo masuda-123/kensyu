@@ -37,7 +37,9 @@ public class Confirm extends Base {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		super.doPost(request, response);
+		if (super.isCheckLogin(request, response)) {
+			return ;
+		}
 		
 		String question = request.getParameter("question");
 		String[] answers = request.getParameterValues("answer");

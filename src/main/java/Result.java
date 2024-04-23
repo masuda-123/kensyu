@@ -45,7 +45,9 @@ public class Result extends Base {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		super.doPost(request, response);
+		if (super.isCheckLogin(request, response)) {
+			return ;
+		}
 		
 		int[] questions_id = Stream.of(request.getParameterValues("questions_id")).mapToInt(Integer::parseInt).toArray();
 		String[] answers = request.getParameterValues("answer");

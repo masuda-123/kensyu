@@ -36,7 +36,10 @@ public class History extends Base {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		super.doGet(request, response);
+		if (super.isCheckLogin(request, response)) {
+			return ;
+		}
+		
 		try {
 			HttpSession session = request.getSession(false);
 			//sessionからuser_idを取得
