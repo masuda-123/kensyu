@@ -31,7 +31,7 @@ public class Register extends Base {
 		
 		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ; //trueだった場合returnさせる
+			return ; //trueだった場合return
 		}
 		//画面の遷移先としてRegister画面を定義
 		RequestDispatcher rd = request.getRequestDispatcher("/Register.jsp");
