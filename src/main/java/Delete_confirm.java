@@ -33,7 +33,10 @@ public class Delete_confirm extends Base {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		super.doGet(request, response);
+		if (super.isCheckLogin(request, response)) {
+			return ;
+		}
+		
 		try {
 			//URLパラメータからquestionIdを取得
 			int questionId = Integer.parseInt(request.getParameter("id"));

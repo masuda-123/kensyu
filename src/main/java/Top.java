@@ -28,7 +28,9 @@ public class Top extends Base {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		super.doGet(request, response);
+		if (super.isCheckLogin(request, response)) {
+			return ;
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
 		rd.forward(request, response);
 	}

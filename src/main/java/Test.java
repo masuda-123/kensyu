@@ -32,7 +32,9 @@ public class Test extends Base {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-		super.doGet(request, response);
+		if (super.isCheckLogin(request, response)) {
+			return ;
+		}
 		try {
 			QuestionsDao queDao = new QuestionsDao();
 			ArrayList<QuestionsBean> queList = queDao.findAll();

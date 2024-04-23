@@ -29,13 +29,6 @@ public class Base extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		// ログインチェック
-		HttpSession session = request.getSession(false);
-		if (session == null || (session.getAttribute("userId")) == null){
-			RequestDispatcher dispatch = request.getRequestDispatcher("/Login.jsp");
-			dispatch.forward(request, response);
-			return;
-		}
 	}
 
 	/**
@@ -44,13 +37,20 @@ public class Base extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-	    // ログインチェック
-		HttpSession session = request.getSession(false);
-		if (session == null || (session.getAttribute("userId")) == null){
+	}
+	
+	/**
+	 * ログインチェック判定
+	 * @return ログイン用セッションの値がない場合はtrue、
+	 */
+	protected boolean isCheckLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  HttpSession session = request.getSession(false);
+	  if (session == null || (session.getAttribute("userId")) == null){
 			RequestDispatcher dispatch = request.getRequestDispatcher("/Login.jsp");
 			dispatch.forward(request, response);
-			return;
+			return true;
 		}
+		return false;
 	}
 
 }
