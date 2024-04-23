@@ -94,24 +94,79 @@ body {
 	white-space: nowrap;
 }
 
-.question_area {
-	width: 100%;
+/* Register画面のquestion__form_areaクラス*/
+.question_form_area {
+	/*上に余白を20pxつくる*/
 	margin-top: 20px;
+	/*要素を横並びにする*/
 	display: flex;
 }
 
-.question_area textarea {
-	 width: 500px;
-	 height: 100px;
+/* Register画面のquestion_form_areaクラスのtextareaタグ*/
+.question_form_area textarea {
+	/*幅を全体の76.7%にする*/
+	width: 76.7%;
+	/*高さを100pxにする*/
+	height: 100px;
 }
 
-.question_area label {
+/* Register画面のquestion_form_areaクラスのlabelタグ*/
+.question_form_area label {
+	/*幅を全体の7%にする*/
 	width: 7%;
-	vertical-align:top;
-	text-align: center;
 }
 
-.question_area p {
+/* Register画面のanswer_forms_areaクラス*/
+.answer_forms_area {
+	/*上に余白を20pxつくる*/
+	margin-top: 20px;
+	/*要素を横並びにする*/
+	display: flex;
+}
+
+/* Register画面のanswer_forms_areaクラスのlabelタグ*/
+.answer_forms_area label {
+	/*幅を全体の7%にする*/
+	width: 7%;;
+}
+
+/* Register画面のanswer_formsクラス*/
+.answer_forms {
+	width: 90%;
+}
+
+/* Register画面のansewer_formクラス*/
+.answer_form {
+	/* 要素を横並びに*/
+	display: flex;
+	/* 上に10pxの余白をつくる*/
+	margin-bottom: 10px;
+	/* 高さを26pxにする*/
+	height: 26px;
+}
+
+/* Register画面のanswer_formクラスのinputタグ*/
+.answer_form input {
+	/*要素をブロック化*/
+	display: block;
+	/*幅を85%にする*/
+	width: 85%;
+}
+
+/* Register画面のanswer_formクラスのbuttonタグ*/
+.answer_form button {
+	/*要素をブロック化*/
+	display: block;
+	/*左に余白を10px*/
+	margin-left: 10px;
+}
+
+/* Register画面のbottom_btn_areaクラス*/
+.bottom_btn_area {
+	text-align: right;
+}
+
+.question_form_area p {
 	width: 90%;
 	overflow-wrap: break-word;
 }
@@ -123,39 +178,6 @@ body {
 .question_form p {
 	width: 95%;
 	overflow-wrap: break-word;
-}
-
-.answer_area {
-	width: 100%;
-	margin-top: 20px;
-	display: flex;
-}
-
-.answer_area label {
-	width: 7%;;
-}
-
-.answer_form, .answer_form_area {
-	width: 100%;
-	display: flex;
-	margin-bottom: 10px;
-	height: 26px;
-}
-
-.answer_form_area input {
-	display: block;
-	width: 85%;
-}
-
-
-.answer_form input {
-	display: block;
-	width: 100%;
-}
-
-.answer_form_area button {
-	display: block;
-	margin-left: 10px;
 }
 
 

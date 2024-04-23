@@ -24,19 +24,17 @@
 		<%@ include file="Header.jsp"%>
 		<!-- formタグで入力されたデータを./Register/Confirmにpostで送信する  -->
 		<form action="./Register/Confirm" method="post">
-			<div class="question_area">
+			<div class="question_form_area">
 				<!-- 入力欄に対して"問題:"を表示  -->
 				<label for="question">問題:</label>
-				<div class="question_form">
-					<!-- 問題文を入力する欄  -->
-					<textarea id="question" name="question"></textarea>
-				</div>
+				<!-- 問題文を入力する欄  -->
+				<textarea id="question" name="question"></textarea>
 			</div>
-			<div class="answer_area">
+			<div class="answer_forms_area">
 				<!-- 入力欄に対して"答え:"を表示  -->
 				<label for="answer">答え:</label>
-				<div class="answer_form_list">
-					<div class="answer_form_area" id="answerform1">
+				<div class="answer_forms">
+					<div class="answer_form" id="answerform1">
 						<!-- 答えを入力する欄  -->
 						<input type="text" id="answer" name="answer">
 					</div>
