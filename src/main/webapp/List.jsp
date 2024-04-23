@@ -48,7 +48,7 @@
 						</div>
 					<% } %>
 				</div>
-				<div class="edit_delete_btn_area">
+				<div>
 					<!-- ボタンを押下後、Edit画面に遷移させる（パラメータに問題のidを設定）  -->
 					<a href="./Edit?id=<%= que.getId() %>"><button>編集</button></a>
 					<!-- ボタンを押下後、Delete_confirm画面に遷移させる（パラメータに問題のidを設定  -->

@@ -24,6 +24,75 @@ body {
 	width: 6%;
 }
 
+/* Top画面のmenu_areaクラスのbuttonタグ*/
+.menu_area button {
+	/*要素をブロック化*/
+	display: block;
+	/*横幅を全体の40%にする*/
+	width: 40%;
+	/*要素を真ん中に寄せて、上に10pxの余白をつくる*/
+	margin: 10px auto;
+	/*ボタン内の文字を左に寄せる*/
+	text-align: left;
+}
+
+/* List画面の新規作成ボタンのnew_btnクラス*/
+.new_btn {
+	/*要素をブロック化*/
+	display: block;
+	/*要素を真ん中に寄せる*/
+	margin: 0 auto;
+}
+
+/* List画面のlist_areaクラス*/
+.list_area {
+	/*下に余白を10pxつくる*/
+	margin-bottom: 10px;
+	/*要素を横並びに*/
+	display: flex;
+}
+
+/* List画面のlistクラス*/
+.list {
+	/*幅を84.5%にする*/
+	width: 84.5%;
+}
+
+/* List画面のquestion_listクラス*/
+.questions_list {
+	/*要素を横並びにする*/
+	display: flex;
+	/*下に余白を5pxつくる*/
+	margin-bottom: 5px;
+}
+
+/* List画面のquestion_listクラスのpタグ*/
+.questions_list p {
+	/*幅を全体の87%にする*/
+	width: 87%;
+	/*はみ出た部分を非表示に*/
+	overflow: hidden;
+	/*はみ出た部分を...で省略*/
+	text-overflow: ellipsis;
+	/*テキストを改行しないようにする*/
+	white-space: nowrap;
+}
+
+/* List画面のanswers_listクラス*/
+.answers_list {
+	/*左に余白を20pxつくる*/
+	margin-left: 20px;
+}
+
+/* List画面のanswers_listクラスのpタグ*/
+.answers_list p {
+	/*はみ出た部分を非表示に*/
+	overflow: hidden;
+	/*はみ出た部分を...で省略*/
+	text-overflow: ellipsis;
+	/*テキストを改行しないようにする*/
+	white-space: nowrap;
+}
 
 .question_area {
 	width: 100%;
@@ -119,58 +188,8 @@ label {
 	text-decoration: none;
 }
 
-/* Top画面のmenu_areaクラスのbuttonタグ*/
-.menu_area button {
-	/*要素をブロック化*/
-	display: block;
-	/*横幅を全体の40%にする*/
-	width: 40%;
-	/*要素を真ん中に寄せて、上に10pxの余白をつくる*/
-	margin: 10px auto;
-	/*ボタン内の文字を左に寄せる*/
-	text-align: left;
-}
-
-.new_btn {
-	display: flex;
-	margin: 0 auto;
-}
-
-.questions_list {
-	display: flex;
-	margin-bottom: 5px;
-}
-
-.questions_list p {
-	width: 85%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.answers_list {
-	margin-left: 20px;
-}
-
-.answers_list p {
-	width: 100%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
 p {
 	margin: 0;
-}
-
-.list_area {
-	width: 100%;
-	margin-bottom: 10px;
-	display: flex;
-}
-
-.list {
-	width: 84.5%;
 }
 
 .error {
