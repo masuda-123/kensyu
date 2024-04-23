@@ -36,7 +36,7 @@ public class List extends Base {
 		
 		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ; //trueだった場合returnさせる
+			return ; //trueだった場合return
 		}
 		try {
 			//QuestionsDaoオブジェクトを作成
@@ -65,8 +65,10 @@ public class List extends Base {
 				rd.forward(request, response);
 				return;
 			}
+		//try文の中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
-				e.printStackTrace();
+			//スタックトレースを出力する
+			e.printStackTrace();
 		}
 	}
 

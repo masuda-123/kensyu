@@ -84,7 +84,7 @@ public class Login extends HttpServlet {
 				rd.forward(request, response);
 				return;
 			}
-		//try文野中で例外が発生した場合、catch句に処理が移る
+		//try文の中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
 			//スタックトレースを出力する
 			e.printStackTrace();
