@@ -94,7 +94,7 @@ body {
 	white-space: nowrap;
 }
 
-/* Register画面のquestion__form_areaクラス*/
+/* Edit、Register画面のquestion__form_areaクラス*/
 .question_form_area {
 	/*上に余白を20pxつくる*/
 	margin-top: 20px;
@@ -102,7 +102,7 @@ body {
 	display: flex;
 }
 
-/* Register画面のquestion_form_areaクラスのtextareaタグ*/
+/* Edit、Register画面のquestion_form_areaクラスのtextareaタグ*/
 .question_form_area textarea {
 	/*幅を全体の76.7%にする*/
 	width: 76.7%;
@@ -110,13 +110,13 @@ body {
 	height: 100px;
 }
 
-/* Register画面のquestion_form_areaクラスのlabelタグ*/
+/* Edit、Register画面のquestion_form_areaクラスのlabelタグ*/
 .question_form_area label {
 	/*幅を全体の7%にする*/
 	width: 7%;
 }
 
-/* Register画面のanswer_forms_areaクラス*/
+/* Edit、Register画面のanswer_forms_areaクラス*/
 .answer_forms_area {
 	/*上に余白を20pxつくる*/
 	margin-top: 20px;
@@ -124,18 +124,18 @@ body {
 	display: flex;
 }
 
-/* Register画面のanswer_forms_areaクラスのlabelタグ*/
+/* Edit、Register画面のanswer_forms_areaクラスのlabelタグ*/
 .answer_forms_area label {
 	/*幅を全体の7%にする*/
 	width: 7%;;
 }
 
-/* Register画面のanswer_formsクラス*/
+/* Edit、Register画面のanswer_formsクラス*/
 .answer_forms {
 	width: 90%;
 }
 
-/* Register画面のansewer_formクラス*/
+/* Edit、Register画面のansewer_formクラス*/
 .answer_form {
 	/* 要素を横並びに*/
 	display: flex;
@@ -145,7 +145,7 @@ body {
 	height: 26px;
 }
 
-/* Register画面のanswer_formクラスのinputタグ*/
+/* Edit、Register画面のanswer_formクラスのinputタグ*/
 .answer_form input {
 	/*要素をブロック化*/
 	display: block;
@@ -153,7 +153,7 @@ body {
 	width: 85%;
 }
 
-/* Register画面のanswer_formクラスのbuttonタグ*/
+/* Edit、Register画面のanswer_formクラスのbuttonタグ*/
 .answer_form button {
 	/*要素をブロック化*/
 	display: block;
@@ -161,7 +161,7 @@ body {
 	margin-left: 10px;
 }
 
-/* Register画面のbottom_btn_areaクラス*/
+/* Edit、Register画面のbottom_btn_areaクラス*/
 .bottom_btn_area {
 	text-align: right;
 }
