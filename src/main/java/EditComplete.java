@@ -57,7 +57,7 @@ public class EditComplete extends Base {
 			String[] answers = request.getParameterValues("answer");
 			//フォームから渡された値を、int型に変換して変数questionIdに格納
 			int questionId = Integer.parseInt(request.getParameter("questionId"));
-			//フォームから割らされた値を、int型に変換して、配列answersIdに格納
+			//フォームから渡された値を、int型に変換して、配列answersIdに格納
 			int[] answersId =  Stream.of(request.getParameterValues("answerId")).mapToInt(Integer::parseInt).toArray();
 			
 			///update_questionメソッドを呼び出して、問題を更新
