@@ -45,8 +45,13 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		//		doGet(request, response);
 		
-		//フォームから渡された値をint型に変換して、変数userIdに格納
-		int userId = Integer.parseInt(request.getParameter("userId"));
+		//変数userIdを宣言し、初期値として0を格納
+		int userId = 0;
+		
+		//フォームから渡された値があった場合は、intがたに変換し、変数userIdに格納
+		if(request.getParameter("userId") == null) {
+			userId = Integer.parseInt(request.getParameter("userId"));
+		}
 		//フォームから渡された値を、変数passwordに格納
 		String password = request.getParameter("password");
 		
@@ -56,7 +61,7 @@ public class Login extends HttpServlet {
 			//search_idメソッドを呼び出して、userIdと一致するレコードを取得する。
 			UsersBean user = dao.search_id(userId);
 			
-			//フォームから渡されたIDとパスワードの値が、取得したレコードと一致した場合
+			//フォームから渡されたIDと一致するレコードがあり、そのレコードのパスワードの値が、入力されたパスワードの値と一致する場合
 			if(user.getId() != 0 && user.getPassword().equals(password)) {
 				//セッションの取得
 				HttpSession session = request.getSession(false);
