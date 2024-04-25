@@ -43,7 +43,7 @@
 		<!-- 点数を表示  -->
 		<p><%= point %>点でした。</p>
 		
-		<div class="buttom_menu_area">
+		<div class="bottom_menu_area">
 			<!-- 現在日時を yyyy/MM/dd HH:mm:ss の形式で表示  -->
 			<p><%= sdf.format(dateTime) %></p>
 			<!-- History画面に遷移するボタン  -->

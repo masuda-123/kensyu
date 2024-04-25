@@ -257,16 +257,22 @@ body {
 	height: 20px;
 }
 
+/* labelタグ*/
 label {
+	/*右に10pxの余白をつくる*/
 	margin-right: 10px;
 }
 
-.btn_area, .buttom_menu_area {
+/* btn_areaとbottom_menu_areaクラス */
+.btn_area, .bottom_menu_area {
+	/*幅は全体の100%*/
 	width: 100%;
+	/*右に寄せる*/
 	text-align: right;
 }
 
-.buttom_menu_area a {
+/* Result画面のbottom_menu_areaクラスのaタグ*/
+.bottom_menu_area a {
 	color: red;
 	text-decoration: none;
 }
