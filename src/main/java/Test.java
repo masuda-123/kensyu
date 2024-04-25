@@ -32,23 +32,34 @@ public class Test extends Base {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ;
+			return ; //trueだった場合return
 		}
 		try {
+			//QuestionsDaoオブジェクトを作成
 			QuestionsDao queDao = new QuestionsDao();
+			//findAllメソッドを呼び出し、登録されている問題を取得
 			ArrayList<QuestionsBean> queList = queDao.findAll();
+			//リクエストスコープへqueListを格納
 			request.setAttribute("queList", queList);
-			if(queList.isEmpty()) {
+			
+			if(queList.isEmpty()) { //登録されている問題がなかった場合
+				//画面の遷移先として、Top画面を定義
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
+				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
 				return;
-			} else {
+			} else { //登録されている問題があった場合
+				//画面の遷移先として、Test画面を定義
 				RequestDispatcher rd = request.getRequestDispatcher("/Test.jsp");
+				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
 				return;
 			}
+		//try文の中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
+			//スタックトレースを出力する
 			e.printStackTrace();
 		}
 	}
