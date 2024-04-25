@@ -8,6 +8,34 @@ body {
 	margin: 0 auto;
 }
 
+/* labelタグ*/
+label {
+	/*右に10pxの余白をつくる*/
+	margin-right: 10px;
+}
+
+/* pタグ */
+p {
+	/* 余白を作らない */
+	margin: 0;
+}
+
+/* btn_areaとResult画面のbottom_menu_areaクラス */
+.btn_area, .bottom_menu_area {
+	/*幅は全体の100%*/
+	width: 100%;
+	/*右に寄せる*/
+	text-align: right;
+}
+
+/* bottom_btn_areaクラス*/
+.bottom_btn_area {
+	/*右寄せする*/
+	text-align: right;
+	/*上に余白を10pxつくる*/
+	margin-top: 10px;
+}
+
 /*Login画面のformクラス*/
 .form {
 	/*ラベルと入力欄を横並びにする*/
@@ -162,14 +190,7 @@ body {
 	margin-left: 10px;
 }
 
-/* Edit、Edit_confirm、Register、Confirm画面のbottom_btn_areaクラス*/
-.bottom_btn_area {
-	/*右寄せする*/
-	text-align: right;
-	margin-top: 10px;
-}
-
-/* Edi、Edit_confirm画面のquestion_id_areaクラス*/
+/* Edit、Edit_confirm画面のquestion_id_areaクラス*/
 .question_id_area {
 	/*要素を横並びに*/
 	display: flex;
@@ -235,6 +256,12 @@ body {
 	overflow-wrap: break-word;
 }
 
+/* Confirm画面、Edit_confirm画面のerrorクラス*/
+.error {
+	padding-top:10px;
+	color: red;
+}
+
 /* Test画面のtest_question_areaクラスのpタグ*/
 .test_question_area p {
 	/*幅を全体の91%にする*/
@@ -257,12 +284,6 @@ body {
 	height: 20px;
 }
 
-/* labelタグ*/
-label {
-	/*右に10pxの余白をつくる*/
-	margin-right: 10px;
-}
-
 /* btn_areaとbottom_menu_areaクラス */
 .btn_area, .bottom_menu_area {
 	/*幅は全体の100%*/
@@ -273,30 +294,30 @@ label {
 
 /* Result画面のbottom_menu_areaクラスのaタグ*/
 .bottom_menu_area a {
+	/*文字色を赤にする*/
 	color: red;
+	/*下線をなくす*/
 	text-decoration: none;
 }
 
-/* Result画面のh2タグ*/
+/* Result画面、History画面のh2タグ*/
 h2 {
+	/*文字を真ん中に寄せる*/
 	text-align: center;
 }
 
-p {
-	margin: 0;
-}
-
-.error {
-	padding-top:10px;
-	color: red;
-}
-
+/* History画面のtableタグ*/
 table {
-  border-collapse: collapse;
+	/* 票の枠線を重ねる*/
+	border-collapse: collapse;
 }
 
+/* History画面のtd, thタグ*/
 td, th {
+	/*余白を7px作る*/
 	padding: 7px;
+	/*幅を210pxにする*/
 	width: 210px;
-	 border: solid 1px black;
+	/*枠線の太さを1pxにして、1本線にする*/
+	border: solid 1px;
 }
