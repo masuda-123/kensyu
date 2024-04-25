@@ -59,7 +59,7 @@ body {
 }
 
 /* List画面のquestion_listクラス*/
-.questions_list {
+.question_area {
 	/*要素を横並びにする*/
 	display: flex;
 	/*下に余白を5pxつくる*/
@@ -67,7 +67,7 @@ body {
 }
 
 /* List画面のquestion_listクラスのpタグ*/
-.questions_list p {
+.question_area p {
 	/*幅を全体の87%にする*/
 	width: 87%;
 	/*はみ出た部分を非表示に*/
@@ -79,13 +79,13 @@ body {
 }
 
 /* List画面のanswers_listクラス*/
-.answers_list {
+.answers_area {
 	/*左に余白を20pxつくる*/
 	margin-left: 20px;
 }
 
 /* List画面のanswers_listクラスのpタグ*/
-.answers_list p {
+.answers_area p {
 	/*はみ出た部分を非表示に*/
 	overflow: hidden;
 	/*はみ出た部分を...で省略*/
@@ -164,6 +164,36 @@ body {
 /* Edit、Register画面のbottom_btn_areaクラス*/
 .bottom_btn_area {
 	text-align: right;
+}
+
+/* Edit,Edit_confirm画面のquestion_id_areaクラス*/
+.question_id_area {
+	display: flex;
+}
+
+/* Edit、Edit_confirm画面のquestion_areaクラスとconf_answrs_areaクラスとquestion_id_areaクラスのlabelタグ*/
+.question_area label, .conf_answers_area label, .question_id_area label {
+	width: 11%;
+	text-align: right;
+}
+
+/* Edit_confirm画面のquestion_areaクラス*/
+.question_area {
+	/*上に余白を10pxつくる*/
+	margin-top: 10px;
+	/*要素を横並びにする*/
+	display: flex;
+}
+
+/* Edit_confirm画面のanswers_areaクラス*/
+.answers_area {
+	/*上に余白を10pxつくる*/
+	margin-top: 10px;
+}
+
+/* Edit_confirm画面のconf_answers_areaクラス*/
+.conf_answers_area {
+	display: flex;;
 }
 
 .question_form_area p {

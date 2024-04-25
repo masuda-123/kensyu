@@ -35,7 +35,10 @@
 		<!-- formタグで入力されたデータを./Edit/Confirmにpostで送信する  -->
 		<form action="./Edit/Confirm" method="post">
 			<!-- 問題のidを表示  -->
-			<p>問題番号:<%= questionId %></p>
+			<div class="question_id_area">
+				<label>問題番号:</label>
+				<p><%= questionId %></p>
+			</div>
 			<!-- 隠し入力欄に、問題idを設定  -->
 			<input type="hidden" id="questionId" name="questionId" value="<%= questionId %>">
 			<div class="question_form_area">

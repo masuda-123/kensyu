@@ -30,7 +30,7 @@
 		<% for (QuestionsBean que : queList) { %>
 			<div class="list_area">
 				<div class="list">
-					<div class="questions_list">
+					<div class="question_area">
 						<!-- 問題のidを表示  -->
 						<label>問題:<%= que.getId() %></label>
 						<!-- 問題文を表示  -->
@@ -39,14 +39,14 @@
 					<!-- 答えの番号を格納する変数を宣言  -->
 					<% int cnt = 0; %>
 					<!-- 答えの数だけ処理を繰り返す  -->
-					<% for(CorrectAnswersBean ans : ansList) { %>
-						<!-- 答えのquestions_idと問題のidが一致しない場合は、繰り返しの先頭に戻る  -->
-						<% if(ans.getQuestionsId() != que.getId()) { continue; } %>
-						<div class="answers_list">
-							<!-- 答えの番号をカウントアップし、答えの文を表示  -->
-							<p>答え<%= ++cnt %>: <%= ans.getAnswer() %></p>
-						</div>
-					<% } %>
+					<div class="answers_area">
+						<% for(CorrectAnswersBean ans : ansList) { %>
+							<!-- 答えのquestions_idと問題のidが一致しない場合は、繰り返しの先頭に戻る  -->
+							<% if(ans.getQuestionsId() != que.getId()) { continue; } %>
+								<!-- 答えの番号をカウントアップし、答えの文を表示  -->
+								<p>答え<%= ++cnt %>: <%= ans.getAnswer() %></p>
+						<% } %>
+					</div>
 				</div>
 				<div>
 					<!-- ボタンを押下後、Edit画面に遷移させる（パラメータに問題のidを設定）  -->
