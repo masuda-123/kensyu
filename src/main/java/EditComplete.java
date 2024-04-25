@@ -60,10 +60,10 @@ public class EditComplete extends Base {
 			//フォームから渡された値を、int型に変換して、配列answersIdに格納
 			int[] answersId =  Stream.of(request.getParameterValues("answerId")).mapToInt(Integer::parseInt).toArray();
 			
-			///update_questionメソッドを呼び出して、問題を更新
+			//update_questionメソッドを呼び出して、問題を更新
 			queDao.update_question(question, questionId);
 			
-			///search_questions_idメソッドを呼び出して、questionIdと一致するレコードを取得し、既存の答えのデータを取得
+			//search_questions_idメソッドを呼び出して、questionIdと一致するレコードを取得し、既存の答えのデータを取得
 			ArrayList<CorrectAnswersBean> ansList = ansDao.search_questions_id(questionId);
 			
 			//フォームから渡された答えの数だけ処理を繰り返す

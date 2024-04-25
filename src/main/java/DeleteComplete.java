@@ -38,23 +38,29 @@ public class DeleteComplete extends Base {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
+		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ;
+			return ; //trueだった場合return
 		}
 		try {
+			//QuestionsDaoオブジェクトを作成
 			QuestionsDao queDao = new QuestionsDao();
+			//CorrectAnswersDaoオブジェクトを作成
 			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
-			//パラメータからquestionIdを取得
+			//フォームから渡された値を、intがたに変換し、変数questionIdに格納
 			int questionId = Integer.parseInt(request.getParameter("questionId"));
 			
-			//questionの削除
+			//delete_questionメソッドを呼び出して、問題を削除
 			queDao.delete_question(questionId);
-			//answersの削除
+			//delete_answersメソッドを呼び出して、答えを削除
 			ansDao.delete_answers(questionId);
 			
+			//./ListのURLにリダイレクトする
 			response.sendRedirect("./List");
 			return;
+		//try文の中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
+			//スタックトレースを出力する
 			e.printStackTrace();
 		}
 	}
