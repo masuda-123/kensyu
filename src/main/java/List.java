@@ -33,28 +33,41 @@ public class List extends Base {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		if (super.isCheckLogin(request, response)) {
-			return ;
-		}
 		
+		//Baseクラスでログインしているかどうかを確認
+		if (super.isCheckLogin(request, response)) {
+			return ; //trueだった場合return
+		}
 		try {
+			//QuestionsDaoオブジェクトを作成
 			QuestionsDao queDao = new QuestionsDao();
+			//findAllメソッドを呼び出し、登録されている問題を取得
 			ArrayList<QuestionsBean> queList = queDao.findAll();
+			//リクエストスコープへqueListを格納
 			request.setAttribute("queList", queList);
+			//CorrectAnswersDaoオブジェクトを作成
 			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			//findAllメソッドを呼び出し、登録されている答えを取得
 			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
+			//リクエストスコープへansListを格納
 			request.setAttribute("ansList", ansList);
-			
-			if(queList.isEmpty()) {
+				
+			if(queList.isEmpty()) { //登録されている問題がなかった場合
+				//画面の遷移先として、Top画面を定義
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
+				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
 				return;
-			} else {
+			} else { //登録されている問題があった場合
+				//画面の遷移先として、List画面を定義
 				RequestDispatcher rd = request.getRequestDispatcher("/List.jsp");
+				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
 				return;
 			}
+		//try文の中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
+			//スタックトレースを出力する
 			e.printStackTrace();
 		}
 	}

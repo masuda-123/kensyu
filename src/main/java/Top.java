@@ -28,10 +28,14 @@ public class Top extends Base {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ;
+			return ; //trueだった場合return
 		}
+		//画面の遷移先としてTop画面を定義
 		RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
+		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);
 	}
 

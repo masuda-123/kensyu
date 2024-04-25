@@ -34,28 +34,35 @@ public class Edit extends Base {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
+		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ;
+			return ; //trueだった場合return
 		}
 		try {
 			//URLパラメータからquestionIdを取得
 			int questionId = Integer.parseInt(request.getParameter("id"));
-				
+			//QuestionsDaoオブジェクトを作成
 			QuestionsDao queDao = new QuestionsDao();
-			//questionsテーブルからquestionIdが一致するレコードを取得
+			//search_idメソッドを呼び出して、questionIdと一致するレコードを取得
 			QuestionsBean question = queDao.search_id(questionId);
+			//リクエストスコープへquestionを格納
 			request.setAttribute("question", question.getQuestion());
+			//リクエストスコープへquestionIdを格納
 			request.setAttribute("questionId", questionId);
-				
+			//CorrectAnswersDaoオブジェクトを作成
 			CorrectAnswersDao ansDao = new CorrectAnswersDao();
-			//correct_answersテーブルからquestionIdが一致するレコードを取得
+			//search_question_idメソッドを呼び出して、questionIdと一致するレコードを取得
 			ArrayList<CorrectAnswersBean> answers = ansDao.search_questions_id(questionId);
+			//リクエストスコープへanswersを格納
 			request.setAttribute("answers", answers);
-				
+			//画面の遷移先としてEdit画面を定義
 			RequestDispatcher rd = request.getRequestDispatcher("/Edit.jsp");
+			//foward(...)で定義された転送先に処理が移る
 			rd.forward(request, response);
 			return;
+		//try文の中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
+			//スタックトレースを出力する
 			e.printStackTrace();
 		}
 	}
