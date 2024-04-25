@@ -58,16 +58,16 @@ body {
 	width: 84.5%;
 }
 
-/* List画面のquestion_listクラス*/
-.question_area {
+/* List画面のlist_questionクラス*/
+.list_question_area {
 	/*要素を横並びにする*/
 	display: flex;
 	/*下に余白を5pxつくる*/
 	margin-bottom: 5px;
 }
 
-/* List画面のquestion_listクラスのpタグ*/
-.question_area p {
+/* List画面のlist_question_areaクラスのpタグ*/
+.list_question_area p {
 	/*幅を全体の87%にする*/
 	width: 87%;
 	/*はみ出た部分を非表示に*/
@@ -78,14 +78,14 @@ body {
 	white-space: nowrap;
 }
 
-/* List画面のanswers_listクラス*/
-.answers_area {
+/* List画面のlist_answers_areaクラス*/
+.list_answers_area {
 	/*左に余白を20pxつくる*/
 	margin-left: 20px;
 }
 
-/* List画面のanswers_listクラスのpタグ*/
-.answers_area p {
+/* List画面のlist_answers_areaクラスのpタグ*/
+.list_answers_area p {
 	/*はみ出た部分を非表示に*/
 	overflow: hidden;
 	/*はみ出た部分を...で省略*/
@@ -132,6 +132,7 @@ body {
 
 /* Edit、Register画面のanswer_formsクラス*/
 .answer_forms {
+	/*幅を全体の90%にする*/
 	width: 90%;
 }
 
@@ -149,7 +150,7 @@ body {
 .answer_form input {
 	/*要素をブロック化*/
 	display: block;
-	/*幅を85%にする*/
+	/*幅を全体の85%にする*/
 	width: 85%;
 }
 
@@ -161,40 +162,70 @@ body {
 	margin-left: 10px;
 }
 
-/* Edit、Register画面のbottom_btn_areaクラス*/
+/* Edit、Edit_confirm、Register、Confirm画面のbottom_btn_areaクラス*/
 .bottom_btn_area {
+	/*右寄せする*/
 	text-align: right;
 }
 
-/* Edit,Edit_confirm画面のquestion_id_areaクラス*/
+/* Edi、Edit_confirm画面のquestion_id_areaクラス*/
 .question_id_area {
+	/*要素を横並びに*/
 	display: flex;
 }
 
-/* Edit、Edit_confirm画面のquestion_areaクラスとconf_answrs_areaクラスとquestion_id_areaクラスのlabelタグ*/
-.question_area label, .conf_answers_area label, .question_id_area label {
+/* Edit、Edit_confirm画面のedit_question_areaクラスとedit_answrs_areaクラスとquestion_id_areaクラスのlabelタグ*/
+.edit_question_area label, .edit_answers_area label, .question_id_area label {
+	/*幅を全体の11%にする*/
 	width: 11%;
+	/*右寄せする*/
 	text-align: right;
 }
 
-/* Edit_confirm画面のquestion_areaクラス*/
-.question_area {
+/* Register、Confirm画面のreg_question_areaクラスとreg_answrs_areaクラスのlabelタグ*/
+.reg_question_area label, .reg_answers_area label {
+	/*幅を全体の11%にする*/
+	width: 7%;
+	/*右寄せする*/
+	text-align: right;
+}
+
+/* Edit_confirm画面のedit_question_areaクラスとConfirm画面のreg_question_areaクラス*/
+.edit_question_area, .reg_question_area {
 	/*上に余白を10pxつくる*/
 	margin-top: 10px;
 	/*要素を横並びにする*/
 	display: flex;
 }
 
-/* Edit_confirm画面のanswers_areaクラス*/
-.answers_area {
+/* Edit_confirm画面のedit_answers_areaクラスとConfirm画面のreg_answers_areaクラス*/
+.edit_answers_area, .reg_answers_area {
 	/*上に余白を10pxつくる*/
 	margin-top: 10px;
+	/*要素を横並びに*/
+	display: flex;
 }
 
-/* Edit_confirm画面のconf_answers_areaクラス*/
-.conf_answers_area {
-	display: flex;;
+/*  Edit_confirm画面のedit_question_areaクラスとConfirm画面のreg_question_areaクラスのpタグ*/
+.edit_question_area p, .reg_question_area p {
+	/*幅を全体の87%にする*/
+	width: 87%;
+	overflow-wrap: break-word;
 }
+
+/* Edit_confirm、Confirm画面のanswersクラス*/
+.answers {
+	/*幅を全体の87%にする*/
+	width: 87%;
+}
+
+/* Edit_confirm、Confirm画面のanswersクラスのpタグ*/
+.answers p {
+	/*要素に収まるように改行*/
+	overflow-wrap: break-word;
+}
+
+
 
 .question_form_area p {
 	width: 90%;

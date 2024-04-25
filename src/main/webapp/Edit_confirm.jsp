@@ -42,18 +42,18 @@
 			</div>
 			<!-- 隠し入力欄に、問題idを設定  -->
 			<input type="hidden" id="questionId" name="questionId" value="<%= questionId %>">
-			<div class="question_area">
-				<!-- て"問題:"を表示  -->
+			<div class="edit_question_area">
+				<!-- "問題:"を表示  -->
 				<label>問題:</label>
 				<!-- 問題文を表示  -->
 				<p><%= question %></p>
 				<!-- 隠し入力欄に、問題文を設定  -->
 				<input type="hidden" id="question" name="question" value="<%= question %>">
 			</div>
-			<div class="conf_answers_area">
+			<div class="edit_answers_area">
 				<!-- "答え:"を表示  -->
 				<label>答え:</label>
-				<div class="answerst">
+				<div class="answers">
 					<!-- 答えの数だけ繰り返す  -->
 					<% for(String answer : answers){ %>
 						<!-- 答えを表示  -->
@@ -71,7 +71,7 @@
 			<div class="bottom_btn_area">
 				<!-- 1つ前のページに戻るボタン  -->
 				<button type="button" onclick="history.back()">戻る</button>
-				<!-- エラーメッセージがある場合  -->
+				<!-- エラーメッセージがない場合  -->
 				<% if (errorMessage.isEmpty()) { %>
 					<!-- フォームデータを送信するボタン  -->
 					<input type="submit" value="更新">

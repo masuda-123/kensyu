@@ -30,7 +30,7 @@
 		<% for (QuestionsBean que : queList) { %>
 			<div class="list_area">
 				<div class="list">
-					<div class="question_area">
+					<div class="list_question_area">
 						<!-- 問題のidを表示  -->
 						<label>問題:<%= que.getId() %></label>
 						<!-- 問題文を表示  -->
@@ -39,7 +39,7 @@
 					<!-- 答えの番号を格納する変数を宣言  -->
 					<% int cnt = 0; %>
 					<!-- 答えの数だけ処理を繰り返す  -->
-					<div class="answers_area">
+					<div class="list_answers_area">
 						<% for(CorrectAnswersBean ans : ansList) { %>
 							<!-- 答えのquestions_idと問題のidが一致しない場合は、繰り返しの先頭に戻る  -->
 							<% if(ans.getQuestionsId() != que.getId()) { continue; } %>
