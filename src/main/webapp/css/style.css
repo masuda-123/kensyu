@@ -182,44 +182,45 @@ body {
 	text-align: right;
 }
 
-/* Register、Confirm画面のreg_question_areaクラスとreg_answrs_areaクラスのlabelタグ*/
-.reg_question_area label, .reg_answers_area label {
+/* Confirm、Delete_confirm画面のquestion_areaクラスとanswrs_areaクラスのlabelタグ*/
+.question_area label, .answers_area label {
 	/*幅を全体の11%にする*/
 	width: 7%;
 	/*右寄せする*/
 	text-align: right;
 }
 
-/* Edit_confirm画面のedit_question_areaクラスとConfirm画面のreg_question_areaクラス*/
-.edit_question_area, .reg_question_area {
+/* Edit_confirm画面のedit_question_areaクラスとConfirm、Delete_confirm画面のreg_question_areaクラス*/
+.edit_question_area, .question_area {
 	/*上に余白を10pxつくる*/
 	margin-top: 10px;
 	/*要素を横並びにする*/
 	display: flex;
 }
 
-/* Edit_confirm画面のedit_answers_areaクラスとConfirm画面のreg_answers_areaクラス*/
-.edit_answers_area, .reg_answers_area {
+/* Edit_confirm画面のedit_answers_areaクラスとConfirm、Delete_confirm画面のreg_answers_areaクラス*/
+.edit_answers_area, .answers_area {
 	/*上に余白を10pxつくる*/
 	margin-top: 10px;
 	/*要素を横並びに*/
 	display: flex;
 }
 
-/*  Edit_confirm画面のedit_question_areaクラスとConfirm画面のreg_question_areaクラスのpタグ*/
-.edit_question_area p, .reg_question_area p {
+/*  Edit_confirm画面のedit_question_areaクラスとConfirm、Delete_confirm画面のreg_question_areaクラスのpタグ*/
+.edit_question_area p, .question_area p {
 	/*幅を全体の87%にする*/
 	width: 87%;
+	/*要素に収まるように改行*/
 	overflow-wrap: break-word;
 }
 
-/* Edit_confirm、Confirm画面のanswersクラス*/
+/* Edit_confirm、Confirm、Delete_confirm画面のanswersクラス*/
 .answers {
 	/*幅を全体の87%にする*/
 	width: 87%;
 }
 
-/* Edit_confirm、Confirm画面のanswersクラスのpタグ*/
+/* Edit_confirm、Confirm、Delete_confirm画面のanswersクラスのpタグ*/
 .answers p {
 	/*要素に収まるように改行*/
 	overflow-wrap: break-word;

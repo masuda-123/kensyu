@@ -32,7 +32,7 @@
 			<!-- エラーメッセージを表示  -->
 				<p class="error"><%= errorMessage %></p>
 			<% } %>
-			<div class="reg_question_area">
+			<div class="question_area">
 				<!-- "問題:"を表示  -->
 				<label>問題:</label>
 				<!-- 問題文を表示  -->
@@ -40,7 +40,7 @@
 				<!-- 隠し入力欄に、問題文を設定  -->
 				<input type="hidden" id="question" name="question" value="<%= question %>">
 			</div>
-			<div class="reg_answers_area">
+			<div class="answers_area">
 				<!-- "答え:"を表示  -->
 				<label>答え:</label>
 				<div class="answers">
