@@ -45,8 +45,9 @@ public class Result extends Base {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
+		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ;
+			return ; //trueだった場合return
 		}
 		
 		int[] questions_id = Stream.of(request.getParameterValues("questions_id")).mapToInt(Integer::parseInt).toArray();

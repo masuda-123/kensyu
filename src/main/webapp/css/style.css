@@ -257,38 +257,6 @@ body {
 	height: 20px;
 }
 
-
-
-.question_form_area p {
-	width: 90%;
-	overflow-wrap: break-word;
-}
-
-.question_form {
-	width: 90%;
-}
-
-.question_form p {
-	width: 95%;
-	overflow-wrap: break-word;
-}
-
-
-.answer_form p {
-	width: 100%;
-	overflow-wrap: break-word;
-}
-
-.answer_form_list {
-	width: 90%;
-}
-
-.answer_form_list p {
-	width: 100%;
-	overflow-wrap: break-word;
-	margin-bottom: 10px;
-}
-
 label {
 	margin-right: 10px;
 }
