@@ -38,24 +38,30 @@ public class RegisterComplete extends Base {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
+		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ;
+			return ; //trueだった場合return
 		}
 		try {
+			//QuestionsDaoオブジェクトを作成
 			QuestionsDao queDao = new QuestionsDao();
+			//CorrectAnswersDaoオブジェクトを作成
 			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
-			
+			//フォームから渡された値を、変数questionに格納
 			String question = request.getParameter("question");
+			//フォームから渡された値を、配列answersに格納
 			String[] answers = request.getParameterValues("answer");
 			
-			//questionの登録とquestions_idを取得
+			///register_questionメソッドを呼び出して、問題を登録し、questionIdを取得
 			int questionId = queDao.register_question(question);
-			//answersの登録
+			//register_answersメソッドを呼び出して、答えを登録
 			ansDao.register_answers(questionId, answers);
-			
+			//../ListのURLにリダイレクトする
 			response.sendRedirect("../List");
 			return;
+		//try文の中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
+			//スタックトレースを出力する
 			e.printStackTrace();
 		}
 	}
