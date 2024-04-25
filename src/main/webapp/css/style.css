@@ -277,6 +277,11 @@ label {
 	text-decoration: none;
 }
 
+/* Result画面のh2タグ*/
+h2 {
+	text-align: center;
+}
+
 p {
 	margin: 0;
 }
@@ -284,10 +289,6 @@ p {
 .error {
 	padding-top:10px;
 	color: red;
-}
-
-h2 {
-	text-align: center;
 }
 
 table {
