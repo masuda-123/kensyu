@@ -7,7 +7,9 @@
 %>
     
 <%
+	/*リクエストスコープから登録してある問題を取得*/
 	ArrayList<QuestionsBean> queList = (ArrayList<QuestionsBean>)request.getAttribute("queList");
+	/* 問題の順番をランダムに入れ替える  */
 	Collections.shuffle(queList);
 %>
 
@@ -16,28 +18,37 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Test</title>
+		<!-- cssを読み込む  -->
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
 	</head>
 	<body>
+		<!-- logoutやtopボタンを読み込む  -->
 		<%@ include file="Header.jsp"%>
+		<!-- formタグで入力されたデータを./Test/Resultにpostで送信する  -->
 		<form action ="./Test/Result" method="post">
-			<% int i = 0; %>
+			<!-- 問題番号を格納する変数を宣言  -->
+			<% int queNum = 0; %>
+			<!-- 問題の数だけ処理を繰り返す  -->
 			<% for (QuestionsBean que : queList) { %>
-				<div class="question_area">
-			    	<label for="question"><%= ++i %></label>
-			    	<p><%= que.getQuestion() %></p>
-			    	<input type="hidden" id="questions_id" name="questions_id" value="<%= que.getId() %>">
+				<div class="test_question_area">
+					<!-- 問題番号を表示  -->
+					<label><%= ++queNum %></label>
+					<!-- 問題文表示  -->
+					<p><%= que.getQuestion() %></p>
+					<!-- 隠し入力欄に、問題idを設定  -->
+					<input type="hidden" id="questions_id" name="questions_id" value="<%= que.getId() %>">
 				</div>
-				<div class="answer_area">
-					<label for="answer">回答:</label>
-					<div class="answer_form_list">
-						<div class="answer_form">
-				    		<input type="text" id="answer" name="answer">
-				    	</div>
-			    	</div>
+				<div class="test_answers_area">
+					<!-- 入力欄に対して"回答"を表示  -->
+					<label for="answer">回答</label>
+					<div class="test_answer_form">
+						<!-- 答えを入力する欄 -->
+						<input type="text" id="answer" name="answer">
+					</div>
 				</div>
 			<% } %>
-			<div class="btn_area">
+			<div class="bottom_btn_area">
+				<!-- フォームデータを送信するボタン  -->
 				<input type="submit" value="採点">
 			</div>
 		</form>
