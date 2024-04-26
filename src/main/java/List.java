@@ -52,8 +52,8 @@ public class List extends Base {
 			request.setAttribute("ansList", ansList);
 				
 			if(queList.isEmpty()) { //登録されている問題がなかった場合
-				//Top画面に遷移
-				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
+				//Register画面に遷移
+				RequestDispatcher rd = request.getRequestDispatcher("/Register.jsp");
 				rd.forward(request, response);
 				return;
 			} else { //登録されている問題があった場合

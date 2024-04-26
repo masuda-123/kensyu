@@ -13,7 +13,7 @@ import kensyu.UsersDao;
 class UsersDaoTest {
 
 	@Test
-	@DisplayName("search_idメソッドに、登録されていないuserIdを引数として渡した場合、戻り値にidやユーザー名、パスワードがセットされない")
+	@DisplayName("search_idメソッドに、登録されていないuserIdを引数として渡した場合、レコードが取得できないこと")
 	public void notSetField() {
 		try {
 			UsersDao dao = new UsersDao();
@@ -28,7 +28,7 @@ class UsersDaoTest {
 	}
 	
 	@Test
-	@DisplayName("search_idメソッドに、登録されているuserIdを引数として渡した場合、戻り値に該当するidやユーザー名、パスワードがセットされる")
+	@DisplayName("search_idメソッドに、登録されているuserIdを引数として渡した場合、レコードを取得できること")
 	public void setField() {
 		try {
 			UsersDao dao = new UsersDao();
