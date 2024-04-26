@@ -39,19 +39,15 @@ public class Confirm extends Base {
 		
 		//Baseクラスでログインしているかどうかを確認
 		if (super.isCheckLogin(request, response)) {
-			return ;
+			return ; //trueだった場合return
 		}
-		//フォームから渡された値を、変数questionに格納
+		//フォームから渡された値を、それぞれ変数に格納
 		String question = request.getParameter("question");
-		//フォームから渡された値を、配列answersに格納
 		String[] answers = request.getParameterValues("answer");
-		//リクエストスコープへquestionを格納
 		request.setAttribute("question", question);
-		//リクエストスコープへanswersを格納
 		request.setAttribute("answers", answers);
-		//エラーメッセージを格納する変数を宣言
+		
 		String errorMessage = "";
-		//エラーメッセージを改行させるかどうか判断する際に利用する変数を宣言
 		boolean isNewLine = false;
 		
 		if(question.isEmpty()) {  //問題文が空だった場合
@@ -93,9 +89,9 @@ public class Confirm extends Base {
 		}
 		//リクエストスコープへerrorMessageを格納
 		request.setAttribute("errorMessage", errorMessage);
-		//画面の遷移先としてConfirm画面を定義
+		
+		//Confirm画面に遷移
 		RequestDispatcher rd = request.getRequestDispatcher("/Confirm.jsp");
-		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);
 	}
 }
