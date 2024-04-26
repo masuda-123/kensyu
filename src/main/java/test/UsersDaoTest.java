@@ -14,7 +14,7 @@ class UsersDaoTest {
 
 	@Test
 	@DisplayName("search_idメソッドに、登録されていないuserIdを引数として渡した場合、レコードが取得できないこと")
-	public void notSetField() {
+	public void notGetRecord() {
 		try {
 			UsersDao dao = new UsersDao();
 			UsersBean user = dao.search_id(4);
@@ -29,7 +29,7 @@ class UsersDaoTest {
 	
 	@Test
 	@DisplayName("search_idメソッドに、登録されているuserIdを引数として渡した場合、レコードを取得できること")
-	public void setField() {
+	public void getRecord() {
 		try {
 			UsersDao dao = new UsersDao();
 			UsersBean user = dao.search_id(1);
