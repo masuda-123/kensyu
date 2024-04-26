@@ -6,13 +6,10 @@
 %>
     
 <%
-	/*リクエストスコープから正解の問題数を取得*/
+	/*リクエストスコープから値を取得*/
 	int correctQueCnt = (int)request.getAttribute("correctQueCnt");
-	/*リクエストスコープから問題数を取得*/
 	int queCnt = (int)request.getAttribute("queCnt");
-	/*リクエストスコープから点数を取得*/
 	int point = (int)request.getAttribute("point");
-	/*リクエストスコープからユーザー名を取得*/
 	String userName = (String)request.getAttribute("userName");
 	/* Dateオブジェクトを作成  */
 	Date dateTime = new Date();

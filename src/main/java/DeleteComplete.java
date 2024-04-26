@@ -43,11 +43,10 @@ public class DeleteComplete extends Base {
 			return ; //trueだった場合return
 		}
 		try {
-			//QuestionsDaoオブジェクトを作成
 			QuestionsDao queDao = new QuestionsDao();
-			//CorrectAnswersDaoオブジェクトを作成
 			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
-			//フォームから渡された値を、intがたに変換し、変数questionIdに格納
+			
+			//フォームから渡された値を、変数に格納
 			int questionId = Integer.parseInt(request.getParameter("questionId"));
 			
 			//delete_questionメソッドを呼び出して、問題を削除
@@ -55,12 +54,11 @@ public class DeleteComplete extends Base {
 			//delete_answersメソッドを呼び出して、答えを削除
 			ansDao.delete_answers(questionId);
 			
-			//./ListのURLにリダイレクトする
+			//List画面にリダイレクトする
 			response.sendRedirect("./List");
-			return;
-		//try文の中で例外が発生した場合、catch句に処理が移る
+			
 		} catch (Exception e) {
-			//スタックトレースを出力する
+			//スタックトレースを出力
 			e.printStackTrace();
 		}
 	}

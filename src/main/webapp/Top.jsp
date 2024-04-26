@@ -14,11 +14,11 @@
 		<button onclick="location.href='./Logout'">logout</button>
 	</div>
 	<div class="menu_area">
-		<!-- ボタンを押下後、List画面に遷移させる  -->
+		<!-- List画面に遷移させるボタン  -->
 		<button onclick="location.href='./List'">問題と答えを確認・登録する ></button>
-		<!-- ボタンを押下後、Test画面に遷移させる  -->
+		<!-- Test画面に遷移させるボタン  -->
 		<button onclick="location.href='./Test'">テストをする ></button>
-		<!-- ボタンを押下後、History画面に遷移させる  -->
+		<!-- History画面に遷移させるボタン  -->
 		<button onclick="location.href='./History'">過去の採点結果をみる ></button>
 	</div>
 </body>

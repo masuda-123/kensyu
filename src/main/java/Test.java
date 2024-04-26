@@ -37,29 +37,25 @@ public class Test extends Base {
 			return ; //trueだった場合return
 		}
 		try {
-			//QuestionsDaoオブジェクトを作成
 			QuestionsDao queDao = new QuestionsDao();
 			//findAllメソッドを呼び出し、登録されている問題を取得
 			ArrayList<QuestionsBean> queList = queDao.findAll();
-			//リクエストスコープへqueListを格納
+			//次の遷移先の表示に必要な値をリクエストスコープにセット
 			request.setAttribute("queList", queList);
 			
 			if(queList.isEmpty()) { //登録されている問題がなかった場合
-				//画面の遷移先として、Top画面を定義
+				//Top画面に遷移
 				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
-				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
 				return;
 			} else { //登録されている問題があった場合
-				//画面の遷移先として、Test画面を定義
+				//Test画面に遷移
 				RequestDispatcher rd = request.getRequestDispatcher("/Test.jsp");
-				//foward(...)で定義された転送先に処理が移る
 				rd.forward(request, response);
 				return;
 			}
-		//try文の中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
-			//スタックトレースを出力する
+			//スタックトレースを出力
 			e.printStackTrace();
 		}
 	}

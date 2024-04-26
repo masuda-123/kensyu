@@ -42,35 +42,32 @@ public class Delete_confirm extends Base {
 		try {
 			//URLパラメータからquestionIdを取得
 			int questionId = Integer.parseInt(request.getParameter("id"));
-			//QuestionsDaoオブジェクトを作成
+			
 			QuestionsDao queDao = new QuestionsDao();
 			//search_idメソッドを呼び出して、questionIdと一致するレコードを取得
 			QuestionsBean question = queDao.search_id(questionId);
-			//リクエストスコープへquestionを格納
-			request.setAttribute("question", question.getQuestion());
-			//リクエストスコープへquestionIdを格納
-			request.setAttribute("questionId", questionId);
-			//CorrectAnswersDaoオブジェクトを作成
+
 			CorrectAnswersDao ansDao = new CorrectAnswersDao();
 			//search_question_idメソッドを呼び出して、questionIdと一致するレコードを取得
 			ArrayList<CorrectAnswersBean> ansList = ansDao.search_questions_id(questionId);
-			//ansListを格納する配列を宣言
+			
+			//asListをArrayList型から配列に変換
 			String[] answers = new String[ansList.size()];
-			//ansListの要素数分処理を繰り返す
 			for(int i = 0; i < ansList.size(); i++) {
-				//ansListの中のanswerを配列に格納
 				answers[i] = ansList.get(i).getAnswer();
 			}
-			//リクエストスコープへanswersを格納
+			
+			//次の遷移先の表示に必要な値をリクエストスコープにセット
+			request.setAttribute("question", question.getQuestion());
+			request.setAttribute("questionId", questionId);
 			request.setAttribute("answers", answers);
-			//画面の遷移先としてDelete_confirm画面を定義
+			
+			//Delete_confirm画面に遷移
 			RequestDispatcher rd = request.getRequestDispatcher("/Delete_confirm.jsp");
-			//foward(...)で定義された転送先に処理が移る
 			rd.forward(request, response);
-			return;
-		//try文の中で例外が発生した場合、catch句に処理が移る
+			
 		} catch (Exception e) {
-			//スタックトレースを出力する
+			//スタックトレースを出力
 			e.printStackTrace();
 		}
 	}

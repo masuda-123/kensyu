@@ -33,9 +33,8 @@ public class Top extends Base {
 		if (super.isCheckLogin(request, response)) {
 			return ; //trueだった場合return
 		}
-		//画面の遷移先としてTop画面を定義
+		//Top画面に遷移
 		RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
-		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);
 	}
 

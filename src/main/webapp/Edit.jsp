@@ -5,11 +5,9 @@
 %>
 
 <%
-	/*リクエストスコープから問題を取得*/
+	/*リクエストスコープから値を取得*/
 	String question = (String)request.getAttribute("question");
-	/*リクエストスコープから問題idを取得*/
 	int questionId = (int)request.getAttribute("questionId");
-	/*リクエストスコープから問題に紐づく答えを取得*/
 	ArrayList<CorrectAnswersBean> answers = (ArrayList<CorrectAnswersBean>)request.getAttribute("answers");
 %>
 
@@ -22,9 +20,8 @@
 		<script type="text/javascript">
 			 var i = <%= answers.size() %>;
 		</script>
-		<!-- 追加ボタンを押した際の処理を記載したjsファイルを読み込む  -->
+		<!-- jsファイルを読み込む  -->
 		<script src="<%= request.getContextPath() %>/js/add_answer_form.js"></script>
-		<!-- 削除ボタンを押した際の処理を記載したjsファイルを読み込む  -->
 		<script src="<%= request.getContextPath() %>/js/delete_answer_form.js"></script>
 		<!-- cssを読み込む -->
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
@@ -34,22 +31,20 @@
 		<%@ include file="Header.jsp"%>
 		<!-- formタグで入力されたデータを./Edit/Confirmにpostで送信する  -->
 		<form action="./Edit/Confirm" method="post">
-			<!-- 問題のidを表示  -->
 			<div class="question_id_area">
 				<label>問題番号:</label>
+				<!-- 問題のidを表示  -->
 				<p><%= questionId %></p>
 			</div>
 			<!-- 隠し入力欄に、問題idを設定  -->
 			<input type="hidden" id="questionId" name="questionId" value="<%= questionId %>">
 			<div class="question_form_area">
-				<!-- 入力欄に対して"問題:"を表示  -->
 				<label for="question">問題:</label>
 				<!-- 問題文を入力する欄（初期値として問題文を設定）  -->
 				<textarea id="question" name="question"><%= question %></textarea>
 			</div>
 			
 			<div class="answer_forms_area">
-				<!-- 入力欄に対して"答え:"を表示  -->
 				<label for="answer">答え:</label>
 				<div class="answer_forms">
 					<!-- 答えの数だけ処理を繰り返す  -->

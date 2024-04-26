@@ -33,9 +33,8 @@ public class Register extends Base {
 		if (super.isCheckLogin(request, response)) {
 			return ; //trueだった場合return
 		}
-		//画面の遷移先としてRegister画面を定義
+		//Register画面に遷移
 		RequestDispatcher rd = request.getRequestDispatcher("/Register.jsp");
-		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);
 	}
 

@@ -26,7 +26,6 @@
 		<%@ include file="Header.jsp"%>
 		<!-- formタグで入力されたデータを./Test/Resultにpostで送信する  -->
 		<form action ="./Test/Result" method="post">
-			<!-- 問題番号を格納する変数を宣言  -->
 			<% int queNum = 0; %>
 			<!-- 問題の数だけ処理を繰り返す  -->
 			<% for (QuestionsBean que : queList) { %>
@@ -39,7 +38,6 @@
 					<input type="hidden" id="questions_id" name="questions_id" value="<%= que.getId() %>">
 				</div>
 				<div class="test_answers_area">
-					<!-- 入力欄に対して"回答"を表示  -->
 					<label for="answer">回答</label>
 					<div class="test_answer_form">
 						<!-- 答えを入力する欄 -->

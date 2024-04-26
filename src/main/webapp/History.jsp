@@ -7,9 +7,8 @@
 %>
 
 <%
-	/* リクエストスコープから履歴を取得  */
+	/* リクエストスコープから値を取得  */
 	ArrayList<HistoriesBean> hisList = (ArrayList<HistoriesBean>)request.getAttribute("hisList");
-	/* リクエストスコープからユーザー名を取得 */
 	String userName = (String)request.getAttribute("userName");
 	/* SimpleDateFormatオブジェクトを作成し、フォーマットを設定  */
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -26,9 +25,7 @@
 		<!-- logoutやtopボタンを読み込む  -->
 		<%@ include file="Header.jsp"%>
 		<h2>履歴</h2>
-		<!-- 表形式で表示  -->
 		<table>
-			<!-- 表の見出しを設定  -->
 			 <tr>
 			 	<th>氏名</th>
 			 	<th>得点</th>
