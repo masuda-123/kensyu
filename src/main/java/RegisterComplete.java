@@ -43,25 +43,23 @@ public class RegisterComplete extends Base {
 			return ; //trueだった場合return
 		}
 		try {
-			//QuestionsDaoオブジェクトを作成
 			QuestionsDao queDao = new QuestionsDao();
-			//CorrectAnswersDaoオブジェクトを作成
 			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
-			//フォームから渡された値を、変数questionに格納
+			
+			//フォームから渡された値を、それぞれ変数に格納
 			String question = request.getParameter("question");
-			//フォームから渡された値を、配列answersに格納
 			String[] answers = request.getParameterValues("answer");
 			
 			///register_questionメソッドを呼び出して、問題を登録し、questionIdを取得
 			int questionId = queDao.register_question(question);
 			//register_answersメソッドを呼び出して、答えを登録
 			ansDao.register_answers(questionId, answers);
-			//../ListのURLにリダイレクトする
+			
+			//List画面にリダイレクトする
 			response.sendRedirect("../List");
-			return;
-		//try文の中で例外が発生した場合、catch句に処理が移る
+			
 		} catch (Exception e) {
-			//スタックトレースを出力する
+			//スタックトレースを出力
 			e.printStackTrace();
 		}
 	}

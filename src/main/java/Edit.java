@@ -41,26 +41,23 @@ public class Edit extends Base {
 		try {
 			//URLパラメータからquestionIdを取得
 			int questionId = Integer.parseInt(request.getParameter("id"));
-			//QuestionsDaoオブジェクトを作成
+			
 			QuestionsDao queDao = new QuestionsDao();
 			//search_idメソッドを呼び出して、questionIdと一致するレコードを取得
 			QuestionsBean question = queDao.search_id(questionId);
-			//リクエストスコープへquestionを格納
-			request.setAttribute("question", question.getQuestion());
-			//リクエストスコープへquestionIdを格納
-			request.setAttribute("questionId", questionId);
-			//CorrectAnswersDaoオブジェクトを作成
+			
 			CorrectAnswersDao ansDao = new CorrectAnswersDao();
 			//search_question_idメソッドを呼び出して、questionIdと一致するレコードを取得
 			ArrayList<CorrectAnswersBean> answers = ansDao.search_questions_id(questionId);
-			//リクエストスコープへanswersを格納
+			
+			//次の遷移先の表示に必要な値をリクエストスコープにセット
+			request.setAttribute("question", question.getQuestion());
+			request.setAttribute("questionId", questionId);
 			request.setAttribute("answers", answers);
-			//画面の遷移先としてEdit画面を定義
+			
+			//Edit画面に遷移
 			RequestDispatcher rd = request.getRequestDispatcher("/Edit.jsp");
-			//foward(...)で定義された転送先に処理が移る
 			rd.forward(request, response);
-			return;
-		//try文の中で例外が発生した場合、catch句に処理が移る
 		} catch (Exception e) {
 			//スタックトレースを出力する
 			e.printStackTrace();

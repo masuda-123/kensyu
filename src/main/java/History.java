@@ -44,10 +44,9 @@ public class History extends Base {
 		try {
 			//セッションの取得
 			HttpSession session = request.getSession(false);
-			//セッションからuserIdを取得し、int型に変換し、変数userIdに格納
+			//セッションからuserIdを取得し、変数に格納
 			int userId = (int)session.getAttribute("userId");
 			
-			//HisotiresDaoオブジェクトを作成
 			HistoriesDao hisDao = new HistoriesDao();
 			//search_userIdメソッドを呼び出し、ユーザーの履歴を取得
 			ArrayList<HistoriesBean> hisList = hisDao.search_userId(userId);
@@ -56,25 +55,21 @@ public class History extends Base {
 			Comparator<HistoriesBean> compare = Comparator.comparing(HistoriesBean::getCreatedAt);
 			//指定した条件で並び替える
 			hisList.sort(compare);
-				
-			//UsersDaoオブジェクトを作成
+			
 			UsersDao dao = new UsersDao();
 			//search_idメソッドを呼び出し、userIdに一致するレコードを取得
 			UsersBean user = dao.search_id(userId);
 			
-			//リクエストスコープへhisListを格納
+			//次の遷移先の表示に必要な値をリクエストスコープにセット
 			request.setAttribute("hisList", hisList);
-			//リクエストスコープへユーザー名を格納
 			request.setAttribute("userName", user.getName());
 			
-			//画面の遷移先として、History画面を定義
+			//History画面に遷移
 			RequestDispatcher rd = request.getRequestDispatcher("/History.jsp");
-			//foward(...)で定義された転送先に処理が移る
 			rd.forward(request, response);
-			return;
-		//try文の中で例外が発生した場合、catch句に処理が移る
+			
 		} catch (Exception e) {
-			//スタックトレースを出力する
+			//スタックトレースを出力
 			e.printStackTrace();
 		}
 	}

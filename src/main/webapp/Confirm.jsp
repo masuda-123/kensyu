@@ -3,11 +3,9 @@
 %>
     
 <%
-	/*リクエストスコープから問題を取得*/
+	/*リクエストスコープから値を取得*/
 	String question = (String)request.getAttribute("question");
-	/*リクエストスコープから答えを取得*/
 	String[] answers = (String[])request.getAttribute("answers");
-	/*リクエストスコープからエラーメッセージを取得*/
 	String errorMessage = (String)request.getAttribute("errorMessage");
 %>
 <!DOCTYPE html>
@@ -33,7 +31,6 @@
 				<p class="error"><%= errorMessage %></p>
 			<% } %>
 			<div class="question_area">
-				<!-- "問題:"を表示  -->
 				<label>問題:</label>
 				<!-- 問題文を表示  -->
 				<p><%= question %></p>
@@ -41,7 +38,6 @@
 				<input type="hidden" id="question" name="question" value="<%= question %>">
 			</div>
 			<div class="answers_area">
-				<!-- "答え:"を表示  -->
 				<label>答え:</label>
 				<div class="answers">
 					<!-- 答えの数だけ繰り返す  -->

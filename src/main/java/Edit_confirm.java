@@ -42,27 +42,13 @@ public class Edit_confirm extends Base {
 			return ; //trueだった場合return
 		}
 		
-		//フォームから渡された値を、変数questionに格納
+		//フォームから渡された値を、それぞれ変数に格納
 		String question = request.getParameter("question");
-		//フォームから渡された値を、int型に変換して変数questionIdに格納
 		String questionId = request.getParameter("questionId");
-		//フォームから渡された値を、配列answersに格納
 		String[] answers = request.getParameterValues("answer");
-		//フォームから渡された値を、配列answersIdに格納
 		String[] answersId = request.getParameterValues("answerId");
 		
-		//リクエストスコープへquestionを格納
-		request.setAttribute("question", question);
-		//リクエストスコープへanswersを格納
-		request.setAttribute("answers", answers);
-		//リクエストスコープへquestionIdを格納
-		request.setAttribute("questionId", questionId);
-		//リクエストスコープへanswersIdを格納
-		request.setAttribute("answersId", answersId);
-		
-		//エラーメッセージを格納する変数を宣言
 		String errorMessage = "";
-		//エラーメッセージを改行させるかどうか判断する際に利用する変数を宣言
 		boolean isNewLine = false;
 		
 		if(question.isEmpty()) { //問題文が空だった場合
@@ -102,11 +88,16 @@ public class Edit_confirm extends Base {
 				errorMessage += "<br>";
 			}
 		}
-		//リクエストスコープへerrorMessageを格納
+		
+		//次の遷移先の表示に必要な値をリクエストスコープにセット
+		request.setAttribute("question", question);
+		request.setAttribute("answers", answers);
+		request.setAttribute("questionId", questionId);
+		request.setAttribute("answersId", answersId);
 		request.setAttribute("errorMessage", errorMessage);
-		//画面の遷移先としてEdit_confirm画面を定義
+		
+		//Edit_confirm画面に遷移
 		RequestDispatcher rd = request.getRequestDispatcher("/Edit_confirm.jsp");
-		//foward(...)で定義された転送先に処理が移る
 		rd.forward(request, response);
 	}
 

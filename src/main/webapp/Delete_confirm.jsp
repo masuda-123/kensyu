@@ -4,11 +4,9 @@
 %>
 
 <%
-	/*リクエストスコープから問題を取得*/
+	/*リクエストスコープから値を取得*/
 	String question = (String)request.getAttribute("question");
-	/*リクエストスコープから問題idを取得*/
 	int questionId = (int)request.getAttribute("questionId");
-	/*リクエストスコープから答えを取得*/
 	String[] answers = (String[])request.getAttribute("answers");
 %>
 
@@ -26,7 +24,6 @@
 		<!-- formタグで入力されたデータを./DeleteCompleteにpostで送信  -->
 		<form action="./DeleteComplete" method="post">
 			<div class="question_area">
-				<!-- "問題:"を表示  -->
 				<label>問題:</label>
 				<!-- 問題文を表示  -->
 				<p><%= question %></p>
@@ -34,7 +31,6 @@
 				<input type="hidden" id="questionId" name="questionId" value=<%= questionId %>>
 			</div>
 			<div class="answers_area">
-				<!-- "答え:"を表示  -->
 				<label>答え:</label>
 				<div class="answers">
 					<!-- 答えの数だけ繰り返す  -->

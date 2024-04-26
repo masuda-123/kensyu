@@ -63,7 +63,7 @@ public class List extends Base {
 				return;
 			}
 		} catch (Exception e) {
-			//スタックトレースを出力する
+			//スタックトレースを出力
 			e.printStackTrace();
 		}
 	}

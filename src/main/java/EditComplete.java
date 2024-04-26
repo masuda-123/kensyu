@@ -47,17 +47,13 @@ public class EditComplete extends Base {
 			return ; //trueだった場合return
 		}
 		try {
-			//QuestionsDaoオブジェクトを作成
 			QuestionsDao queDao = new QuestionsDao();
-			//CorrectAnswersDaoオブジェクトを作成
 			CorrectAnswersDao ansDao = new CorrectAnswersDao(); 
-			//フォームから渡された値を、変数questionに格納
+			
+			//フォームから渡された値を、それぞれ変数に格納
 			String question = request.getParameter("question");
-			//フォームから渡された値を、配列answersに格納
 			String[] answers = request.getParameterValues("answer");
-			//フォームから渡された値を、int型に変換して変数questionIdに格納
 			int questionId = Integer.parseInt(request.getParameter("questionId"));
-			//フォームから渡された値を、int型に変換して、配列answersIdに格納
 			int[] answersId =  Stream.of(request.getParameterValues("answerId")).mapToInt(Integer::parseInt).toArray();
 			
 			//update_questionメソッドを呼び出して、問題を更新
@@ -81,10 +77,9 @@ public class EditComplete extends Base {
 					}
 				}
 			}
-			//./ListのURLにリダイレクトする
+			//List画面にリダイレクト
 			response.sendRedirect("./List");
-			return;
-		//try文の中で例外が発生した場合、catch句に処理が移る
+
 		} catch (Exception e) {
 			//スタックトレースを出力する
 			e.printStackTrace();

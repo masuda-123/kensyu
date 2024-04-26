@@ -12,13 +12,11 @@
 		<!-- formタグで入力されたデータを./Loginにpostで送信する  -->
 		<form action="./Login" method="post">
 			<div class="form">
-				<!-- 入力欄に対して"ID:"を表示  -->
 				<label for="userId">ID:</label>
 				<!-- userIdを入力する欄  -->
 				<input type="number" id="userId" name="userId">
 			</div>
 			<div class="form">
-				<!-- 入力欄に対して"ID:"を表示  -->
 				<label for="password">pw:</label>
 				<!-- パスワードを入力する欄  -->
 				<input type="password" id="password" name="password">

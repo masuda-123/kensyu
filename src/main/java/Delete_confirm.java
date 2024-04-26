@@ -62,9 +62,8 @@ public class Delete_confirm extends Base {
 			request.setAttribute("questionId", questionId);
 			request.setAttribute("answers", answers);
 			
-			//画面の遷移先としてDelete_confirm画面を定義
+			//Delete_confirm画面に遷移
 			RequestDispatcher rd = request.getRequestDispatcher("/Delete_confirm.jsp");
-			//foward(...)で定義された転送先に処理が移る
 			rd.forward(request, response);
 			
 		} catch (Exception e) {

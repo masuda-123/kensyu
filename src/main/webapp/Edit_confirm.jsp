@@ -2,15 +2,11 @@
     pageEncoding="UTF-8"
 %>
 <%
-	/*リクエストスコープから問題を取得*/
+	/*リクエストスコープから値を取得*/
 	String question = (String)request.getAttribute("question");
-	/*リクエストスコープから答えを取得*/
 	String[] answers = (String[])request.getAttribute("answers");
-	/*リクエストスコープから問題idを取得*/
 	String questionId = (String)request.getAttribute("questionId");
-	/*リクエストスコープから答えidを取得*/
 	String[] answersId = (String[])request.getAttribute("answersId");
-	/*リクエストスコープからエラーメッセージを取得*/
 	String errorMessage = (String)request.getAttribute("errorMessage");
 %>
 <!DOCTYPE html>
@@ -35,15 +31,14 @@
 				<!-- エラーメッセージを表示  -->
 				<p class="error"><%= errorMessage %></p>
 			<% } %>
-			<!-- 問題idを表示  -->
 			<div class="question_id_area">
 				<label>問題番号:</label>
+				<!-- 問題idを表示  -->
 				<p><%= questionId %></p>
 			</div>
 			<!-- 隠し入力欄に、問題idを設定  -->
 			<input type="hidden" id="questionId" name="questionId" value="<%= questionId %>">
 			<div class="edit_question_area">
-				<!-- "問題:"を表示  -->
 				<label>問題:</label>
 				<!-- 問題文を表示  -->
 				<p><%= question %></p>
@@ -51,7 +46,6 @@
 				<input type="hidden" id="question" name="question" value="<%= question %>">
 			</div>
 			<div class="edit_answers_area">
-				<!-- "答え:"を表示  -->
 				<label>答え:</label>
 				<div class="answers">
 					<!-- 答えの数だけ繰り返す  -->

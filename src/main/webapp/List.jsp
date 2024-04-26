@@ -7,9 +7,8 @@
     
     
  <%
- 	/*リクエストスコープから登録してある問題を取得*/
+ 	/*リクエストスコープから値を取得*/
  	ArrayList<QuestionsBean> queList = (ArrayList<QuestionsBean>)request.getAttribute("queList");
- 	/*リクエストスコープから登録してある答えを取得*/
  	ArrayList<CorrectAnswersBean> ansList = (ArrayList<CorrectAnswersBean>)request.getAttribute("ansList");
 %>
 
@@ -24,7 +23,7 @@
 	<body>
 		<!-- logoutやtopボタンを読み込む  -->
 		<%@ include file="Header.jsp"%>
-		<!-- ボタンを押下後、Register画面に遷移させる  -->
+		<!-- Register画面に遷移させるボタン  -->
 		<button class="new_btn" onclick="location.href='./Register'" >新規登録</button>
 		<!-- 問題の数だけ処理を繰り返す  -->
 		<% for (QuestionsBean que : queList) { %>
@@ -36,7 +35,6 @@
 						<!-- 問題文を表示  -->
 						<p><%= que.getQuestion() %></p>
 					</div>
-					<!-- 答えの番号を格納する変数を宣言  -->
 					<% int cnt = 0; %>
 					<!-- 答えの数だけ処理を繰り返す  -->
 					<div class="list_answers_area">
@@ -49,9 +47,9 @@
 					</div>
 				</div>
 				<div>
-					<!-- ボタンを押下後、Edit画面に遷移させる（パラメータに問題のidを設定）  -->
+					<!-- Edit画面に遷移させる（パラメータに問題のidを設定）ボタン  -->
 					<a href="./Edit?id=<%= que.getId() %>"><button>編集</button></a>
-					<!-- ボタンを押下後、Delete_confirm画面に遷移させる（パラメータに問題のidを設定）  -->
+					<!-- Delete_confirm画面に遷移させる（パラメータに問題のidを設定）ボタン  -->
 					<a href="./Delete_confirm?id=<%= que.getId() %>"><button>削除</button></a>
 				</div>
 			</div>
