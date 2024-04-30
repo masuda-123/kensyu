@@ -13,8 +13,8 @@ import kensyu.UsersDao;
 class UsersDaoTest {
 
 	@Test
-	@DisplayName("search_idメソッドに、登録されていないuserIdを引数として渡した場合、レコードが取得できないこと")
-	public void notGetRecord() {
+	@DisplayName("search_idメソッドに、登録されていないuserIdを引数として渡した場合、ユーザーが取得できないこと")
+	public void notGetUser() {
 		try {
 			UsersDao dao = new UsersDao();
 			UsersBean user = dao.search_id(4);
@@ -28,8 +28,8 @@ class UsersDaoTest {
 	}
 	
 	@Test
-	@DisplayName("search_idメソッドに、登録されているuserIdを引数として渡した場合、レコードを取得できること")
-	public void getRecord() {
+	@DisplayName("search_idメソッドに、登録されているuserIdを引数として渡した場合、ユーザーを取得できること")
+	public void getUser() {
 		try {
 			UsersDao dao = new UsersDao();
 			UsersBean user = dao.search_id(1);
