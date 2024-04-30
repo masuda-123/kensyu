@@ -62,7 +62,7 @@ class QuestionsDaoTest {
 	}
 	
 	@Test
-	@DisplayName("register_questionメソッドで、問題ができること、delete_questionメソッドで問題の削除ができること")
+	@DisplayName("register_questionメソッドで、問題が登録できること")
 	public void registerQuestion() {
 		try {
 			QuestionsDao dao = new QuestionsDao();
@@ -70,13 +70,26 @@ class QuestionsDaoTest {
 			dao.register_question(question);
 			ArrayList<QuestionsBean> queList = dao.findAll();
 			
+			assertThat(queList.size(), is(4));
 			assertThat(queList.get(3).getQuestion(), is("test4"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@DisplayName("delete_questionメソッドで、問題の削除ができること")
+	public void deleteQuestion() {
+		try {
+			QuestionsDao dao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = dao.findAll();
 			
-			int questionId = queList.get(3).getId();
+			int questionId = queList.get(queList.size() - 1).getId();
 			dao.delete_question(questionId);
 			ArrayList<QuestionsBean> queList2 = dao.findAll();
 			
 			assertThat(queList2.size(), is(3));
+			assertThat(queList2.get(queList2.size() - 1).getQuestion(), is(not("test4")));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
