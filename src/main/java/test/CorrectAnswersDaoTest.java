@@ -51,7 +51,7 @@ class CorrectAnswersDaoTest {
 	
 	@Test
 	@Order(1)
-	@DisplayName("register_answersメソッドで、questionIdを引数として渡した場合、答えが登録できること")
+	@DisplayName("register_answersメソッドで、答えが登録できること")
 	public void registerAnswers() {
 		try {
 			QuestionsDao queDao = new QuestionsDao();
@@ -104,7 +104,6 @@ class CorrectAnswersDaoTest {
 			assertThat(ansList.get(ansList.size() - 3).getAnswer(), is("a"));
 			assertThat(ansList.get(ansList.size() - 2).getAnswer(), is("b"));
 			assertThat(ansList.get(ansList.size() - 1).getAnswer(), is("c"));
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -146,6 +145,90 @@ class CorrectAnswersDaoTest {
 		}
 	}
 	
+	@Test
+	@Order(6)
+	@DisplayName("register_answerメソッドで、答えが1件登録できること")
+	public void registerAnswer() {
+		try {
+			QuestionsDao queDao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = queDao.findAll();
+			
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
+			String answer = "A";
+			ansDao.register_answer(queList.get(queList.size() - 1).getId(), answer);
+			
+			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
+			
+			assertThat(ansList2.size() - ansList.size(), is(1));
+			assertThat(ansList2.get(ansList2.size() -1).getAnswer(), is("A"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
-
+	@Test
+	@Order(7)
+	@DisplayName("update_answerメソッドで、登録されているanswerIdを引数として渡した場合、答えが1件更新されること")
+	public void updateAnswer() {
+		try {	
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
+			String answer = "B";
+			ansDao.update_answer(ansList.get(ansList.size() - 1).getId(), answer);
+			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
+			
+			assertThat(ansList2.get(ansList2.size() -1).getAnswer(), is("B"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@Order(8)
+	@DisplayName("update_answerメソッドで、登録されていないanswerIdを引数として渡した場合、答えが更新されないこと")
+	public void notUpdateAnswer() {
+		try {
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			String answer = "C";
+			ansDao.update_answer(10, answer);
+			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
+			
+			assertThat(ansList2.get(ansList2.size() -1).getAnswer(), is(not("C")));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@Order(9)
+	@DisplayName("delete_answerメソッドで、登録されていないanswerIdを引数として渡した場合、答えが削除できないこと")
+	public void notDeleteAnswer() {
+		try {
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
+			ansDao.delete_answer(10);
+			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
+			
+			assertThat(ansList.size() - ansList2.size(), is(0));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@Order(10)
+	@DisplayName("delete_answerメソッドで、登録されているanswerIdを引数として渡した場合、答えが1件削除できること")
+	public void deleteAnswer() {
+		try {
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
+			ansDao.delete_answer(ansList.get(ansList.size() - 1).getId());
+			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
+			
+			assertThat(ansList.size() - ansList2.size(), is(1));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

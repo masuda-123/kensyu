@@ -23,7 +23,6 @@ class QuestionsDaoTest {
 	@DisplayName("register_questionメソッドで、問題が登録できること")
 	public void registerQuestion() {
 		try {
-			
 			QuestionsDao dao = new QuestionsDao();
 			ArrayList<QuestionsBean> queList = dao.findAll();
 			String question = "testtest";
@@ -51,6 +50,7 @@ class QuestionsDaoTest {
 		try {
 			QuestionsDao dao = new QuestionsDao();
 			QuestionsBean question = dao.search_id(4);
+			
 			assertThat(question.getId(), is(0));
 			assertNull(question.getQuestion());
 		} catch (Exception e) {
@@ -92,7 +92,6 @@ class QuestionsDaoTest {
 			
 			assertThat(queList.size() - queList2.size(), is(3));
 			assertThat(queList2.get(queList2.size() - 1).getQuestion(), is(not("testtest")));
-			
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
