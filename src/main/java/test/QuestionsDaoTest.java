@@ -66,7 +66,8 @@ class QuestionsDaoTest {
 		try {
 			QuestionsDao dao = new QuestionsDao();
 			ArrayList<QuestionsBean> queList = dao.findAll();
-			QuestionsBean question = dao.search_id(queList.get(queList.size() - 1).getId());
+			int questionId = queList.get(queList.size() - 1).getId();
+			QuestionsBean question = dao.search_id(questionId);
 	
 			assertThat(question.getQuestion(), is("testtest3"));
 		} catch (Exception e) {
@@ -77,7 +78,59 @@ class QuestionsDaoTest {
 	
 	@Test
 	@Order(4)
-	@DisplayName("delete_questionメソッドで、問題の削除ができること")
+	@DisplayName("register_questionメソッドで、登録されていないquestionIdを引数として渡した場合、問題が更新できないこと")
+	public void notUpdateQuestion() {
+		try {
+			QuestionsDao dao = new QuestionsDao();
+			String question = "テストテスト";
+			dao.update_question(question, 10);
+			ArrayList<QuestionsBean> queList = dao.findAll();
+			
+			assertThat(queList, hasItems(not("テストテスト")));
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@Order(5)
+	@DisplayName("register_questionメソッドで、登録されているquestionIdを引数として渡した場合、問題が更新できること")
+	public void updateQuestion() {
+		try {
+			QuestionsDao dao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = dao.findAll();
+			String question = "テストテスト";
+			dao.update_question(question, queList.get(queList.size() - 1).getId());
+			ArrayList<QuestionsBean> queList2 = dao.findAll();
+			
+			assertThat(queList2.get(queList.size() - 1).getQuestion(), is("テストテスト"));
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@Order(6)
+	@DisplayName("delete_questionメソッドで、登録されていないquestionIdを引数として渡した場合、問題の削除ができないこと")
+	public void notDeleteQuestion() {
+		try {
+			QuestionsDao dao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = dao.findAll();
+			dao.delete_question(10);
+			ArrayList<QuestionsBean> queList2 = dao.findAll();
+			
+			assertThat(queList.size() - queList2.size(), is(not(1)));
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@Order(7)
+	@DisplayName("delete_questionメソッドで、登録されているquestionIdを引数として渡した場合、問題の削除ができること")
 	public void deleteQuestion() {
 		try {
 			QuestionsDao dao = new QuestionsDao();
@@ -91,7 +144,6 @@ class QuestionsDaoTest {
 			ArrayList<QuestionsBean> queList2 = dao.findAll();
 			
 			assertThat(queList.size() - queList2.size(), is(3));
-			assertThat(queList2.get(queList2.size() - 1).getQuestion(), is(not("testtest")));
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

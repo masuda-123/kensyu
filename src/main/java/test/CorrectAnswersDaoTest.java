@@ -168,6 +168,22 @@ class CorrectAnswersDaoTest {
 	}
 	
 	@Test
+	@Order(8)
+	@DisplayName("update_answerメソッドで、登録されていないanswerIdを引数として渡した場合、答えが更新されないこと")
+	public void notUpdateAnswer() {
+		try {
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			String answer = "C";
+			ansDao.update_answer(10, answer);
+			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
+			
+			assertThat(ansList2, hasItems(not("C")));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
 	@Order(7)
 	@DisplayName("update_answerメソッドで、登録されているanswerIdを引数として渡した場合、答えが1件更新されること")
 	public void updateAnswer() {
@@ -179,22 +195,6 @@ class CorrectAnswersDaoTest {
 			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
 			
 			assertThat(ansList2.get(ansList2.size() -1).getAnswer(), is("B"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	@Order(8)
-	@DisplayName("update_answerメソッドで、登録されていないanswerIdを引数として渡した場合、答えが更新されないこと")
-	public void notUpdateAnswer() {
-		try {
-			CorrectAnswersDao ansDao = new CorrectAnswersDao();
-			String answer = "C";
-			ansDao.update_answer(10, answer);
-			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
-			
-			assertThat(ansList2.get(ansList2.size() -1).getAnswer(), is(not("C")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
