@@ -60,5 +60,26 @@ class QuestionsDaoTest {
 			e.printStackTrace();
 		}
 	}
-
+	
+	@Test
+	@DisplayName("register_questionメソッドで、問題ができること、delete_questionメソッドで問題の削除ができること")
+	public void registerQuestion() {
+		try {
+			QuestionsDao dao = new QuestionsDao();
+			String question = "test4";
+			dao.register_question(question);
+			ArrayList<QuestionsBean> queList = dao.findAll();
+			
+			assertThat(queList.get(3).getQuestion(), is("test4"));
+			
+			int questionId = queList.get(3).getId();
+			dao.delete_question(questionId);
+			ArrayList<QuestionsBean> queList2 = dao.findAll();
+			
+			assertThat(queList2.size(), is(3));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
