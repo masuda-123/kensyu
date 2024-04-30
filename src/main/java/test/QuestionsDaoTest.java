@@ -20,7 +20,7 @@ class QuestionsDaoTest {
 	
 	@Test
 	@Order(1)
-	@DisplayName("register_questionメソッドで、問題が登録でき、findAllメソッドで、登録した問題を取得できること")
+	@DisplayName("register_questionメソッドで、問題が登録できること")
 	public void registerQuestion() {
 		try {
 			
@@ -46,8 +46,8 @@ class QuestionsDaoTest {
 	
 	@Test
 	@Order(2)
-	@DisplayName("search_idメソッドに、登録されていないquestionIdを引数として渡した場合、レコードが取得できないこと")
-	public void notGetRecord() {
+	@DisplayName("search_idメソッドに、登録されていないquestionIdを引数として渡した場合、問題が取得できないこと")
+	public void notGetQuestion() {
 		try {
 			QuestionsDao dao = new QuestionsDao();
 			QuestionsBean question = dao.search_id(4);
@@ -61,8 +61,8 @@ class QuestionsDaoTest {
 	
 	@Test
 	@Order(3)
-	@DisplayName("search_idメソッドに、登録されているquestionIdを引数として渡した場合、レコードを取得できること")
-	public void getRecord() {
+	@DisplayName("search_idメソッドに、登録されているquestionIdを引数として渡した場合、問題が取得できること")
+	public void getQuestion() {
 		try {
 			QuestionsDao dao = new QuestionsDao();
 			ArrayList<QuestionsBean> queList = dao.findAll();

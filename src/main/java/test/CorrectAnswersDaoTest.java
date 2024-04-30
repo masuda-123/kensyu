@@ -6,17 +6,77 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import kensyu.CorrectAnswersBean;
 import kensyu.CorrectAnswersDao;
+import kensyu.QuestionsBean;
+import kensyu.QuestionsDao;
 
+@TestMethodOrder(OrderAnnotation.class) 
 class CorrectAnswersDaoTest {
 	
+	
+	@BeforeAll
+	@DisplayName("テスト用の問題データを作成")
+	static void registerQuestion() {
+		try {
+			QuestionsDao dao = new QuestionsDao();
+			String question = "test";
+			dao.register_question(question);
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+	}
+	
+	@AfterAll
+	@DisplayName("テスト用の問題データを削除")
+	static void deleteQuestion() {
+		try {
+			QuestionsDao dao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = dao.findAll();
+			dao.delete_question(queList.get(queList.size() - 1).getId());
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
-	@DisplayName("search_questions_idメソッドに、登録されていないquestionIdを引数として渡した場合、レコードが取得できないこと")
-	public void notGetRecord() {
+	@Order(1)
+	@DisplayName("register_answersメソッドで、questionIdを引数として渡した場合、答えが登録できること")
+	public void registerAnswers() {
+		try {
+			QuestionsDao queDao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = queDao.findAll();
+			
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
+			String[] answers = {"a", "b", "c"};
+			ansDao.register_answers(queList.get(queList.size() - 1).getId(), answers);
+			
+			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
+			
+			assertThat(ansList2.size() - ansList.size(), is(3));
+			assertThat(ansList2.get(ansList2.size() -3).getAnswer(), is("a"));
+			assertThat(ansList2.get(ansList2.size() -2).getAnswer(), is("b"));
+			assertThat(ansList2.get(ansList2.size() -1).getAnswer(), is("c"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	@Order(2)
+	@DisplayName("search_questions_idメソッドに、登録されていないquestionIdを引数として渡した場合、答えが取得できないこと")
+	public void notGetAnswers() {
 		try {
 			CorrectAnswersDao dao = new CorrectAnswersDao();
 			ArrayList<CorrectAnswersBean> answers = dao.search_questions_id(10);
@@ -31,21 +91,19 @@ class CorrectAnswersDaoTest {
 	}
 	
 	@Test
-	@DisplayName("search_questions_idメソッドに、登録されているquestionIdを引数として渡した場合、レコードを取得できること")
-	public void getRecord() {
+	@Order(3)
+	@DisplayName("search_questions_idメソッドに、登録されているquestionIdを引数として渡した場合、答えを取得できること")
+	public void getAnswers() {
 		try {
-			CorrectAnswersDao dao = new CorrectAnswersDao();
-			ArrayList<CorrectAnswersBean> ansList = dao.search_questions_id(1);
+			QuestionsDao queDao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = queDao.findAll();
 			
-			assertThat(ansList.get(0).getId(), is(1));
-			assertThat(ansList.get(0).getAnswer(), is("aa"));
-			assertThat(ansList.get(0).getQuestionsId(), is(1));
-			assertThat(ansList.get(1).getId(), is(2));
-			assertThat(ansList.get(1).getAnswer(), is("bb"));
-			assertThat(ansList.get(1).getQuestionsId(), is(1));
-			assertThat(ansList.get(2).getId(), is(3));
-			assertThat(ansList.get(2).getAnswer(), is("cc"));
-			assertThat(ansList.get(2).getQuestionsId(), is(1));
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> ansList = ansDao.search_questions_id(queList.get(queList.size() - 1).getId());
+			
+			assertThat(ansList.get(ansList.size() - 3).getAnswer(), is("a"));
+			assertThat(ansList.get(ansList.size() - 2).getAnswer(), is("b"));
+			assertThat(ansList.get(ansList.size() - 1).getAnswer(), is("c"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,34 +111,41 @@ class CorrectAnswersDaoTest {
 	}
 	
 	@Test
-	@DisplayName("findAllメソッドで、全ての答えが取得できること")
-	public void getAllAnswers() {
+	@Order(4)
+	@DisplayName("delete_answersメソッドで、登録されていないquestionIdを引数として渡した場合、答えが削除できないこと")
+	public void notDeleteAnswers() {
 		try {
-			CorrectAnswersDao dao = new CorrectAnswersDao();
-			ArrayList<CorrectAnswersBean> ansList = dao.findAll();
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
+			ansDao.delete_answers(10);
+			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
 			
-			assertThat(ansList.get(0).getId(), is(1));
-			assertThat(ansList.get(0).getAnswer(), is("aa"));
-			assertThat(ansList.get(1).getId(), is(2));
-			assertThat(ansList.get(1).getAnswer(), is("bb"));
-			assertThat(ansList.get(2).getId(), is(3));
-			assertThat(ansList.get(2).getAnswer(), is("cc"));
-			assertThat(ansList.get(3).getId(), is(4));
-			assertThat(ansList.get(3).getAnswer(), is("AA"));
-			assertThat(ansList.get(4).getId(), is(5));
-			assertThat(ansList.get(4).getAnswer(), is("BB"));
-			assertThat(ansList.get(5).getId(), is(6));
-			assertThat(ansList.get(5).getAnswer(), is("CC"));
-			assertThat(ansList.get(6).getId(), is(7));
-			assertThat(ansList.get(6).getAnswer(), is("あ"));
-			assertThat(ansList.get(7).getId(), is(8));
-			assertThat(ansList.get(7).getAnswer(), is("い"));
-			assertThat(ansList.get(8).getId(), is(9));
-			assertThat(ansList.get(8).getAnswer(), is("う"));
-			
+			assertThat(ansList.size() - ansList2.size(), is(0));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	@Order(5)
+	@DisplayName("delete_answersメソッドで、登録されているquestionIdを引数として渡した場合、答えが削除できること")
+	public void deleteAnswers() {
+		try {
+			QuestionsDao queDao = new QuestionsDao();
+			ArrayList<QuestionsBean> queList = queDao.findAll();
+			
+			CorrectAnswersDao ansDao = new CorrectAnswersDao();
+			ArrayList<CorrectAnswersBean> ansList = ansDao.findAll();
+			ansDao.delete_answers(queList.get(queList.size() - 1).getId());
+			ArrayList<CorrectAnswersBean> ansList2 = ansDao.findAll();
+			
+			assertThat(ansList.size() - ansList2.size(), is(3));
+			assertThat(ansList2.get(ansList2.size() - 1).getAnswer(), is(not("c")));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 }
