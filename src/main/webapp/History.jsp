@@ -23,7 +23,7 @@
 	</head>
 	<body>
 		<!-- logoutやtopボタンを読み込む  -->
-		<%@ include file="Header.jsp"%>
+		<%@ include file="./common/Header.jsp"%>
 		<h2>履歴</h2>
 		<table>
 			 <tr>
