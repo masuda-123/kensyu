@@ -96,8 +96,8 @@ p {
 
 /* List画面のlist_question_areaクラスのpタグ*/
 .list_question_area p {
-	/*幅を全体の87%にする*/
-	width: 87%;
+	/*幅を全体の80%にする*/
+	width: 80%;
 	/*はみ出た部分を非表示に*/
 	overflow: hidden;
 	/*はみ出た部分を...で省略*/
