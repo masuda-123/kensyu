@@ -7,7 +7,7 @@ public class Validation {
 		String errorMessage = "";
 		boolean isNewLine = false;
 		
-		if(question.isEmpty()) { //問題文が空だった場合
+		if(question.isEmpty() || question.isBlank()) { //問題文が空もしくはブランクだった場合
 			//エラーメッセージに文字列を追加
 			errorMessage += "※問題を入力してください。";
 			//改行するようtrueを格納
@@ -28,7 +28,7 @@ public class Validation {
 		for(int i = 0; i < answers.length; i++) {
 			//初期値に戻す
 			isNewLine = false;
-			if(answers[i].isEmpty()) { 	//答えが空だった場合
+			if(answers[i].isEmpty() || answers[i].isBlank()) { 	//答えが空もしくはブランクだった場合
 				//エラーメッセージに文字列を追加
 				errorMessage += "※答え" + (i+1) + "が未入力です。";
 				//改行するようtrueを格納
