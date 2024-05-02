@@ -13,9 +13,9 @@ public class CorrectAnswersBean {
 	 * コンストラクタで、id、question_id、answerに値をセット
 	 */
 	public CorrectAnswersBean (int id, int questions_id, String answer){
-			this.id = id;
-			this.questions_id = questions_id;
-			this.answer = answer;
+		this.id = id;
+		this.questions_id = questions_id;
+		this.answer = answer;
 	}
 	
 	/** 引数無しのコンストラクタ **/

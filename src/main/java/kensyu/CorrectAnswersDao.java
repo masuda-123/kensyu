@@ -35,7 +35,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 				int id = rs.getInt("id");
 				int questions_id = rs.getInt("questions_id");
 				String answer = rs.getString("answer");
-				//CorrectAnswersBeanオブジェクトを作成し、コンストラクタに値を渡す
+				//オブジェクトを作成し、コンストラクタに値を渡す
 				CorrectAnswersBean bean = new CorrectAnswersBean(id, questions_id, answer);
 				//listにオブジェクトを追加
 				list.add(bean);
@@ -76,7 +76,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 				int id = rs.getInt("id");
 				int questions_id = rs.getInt("questions_id");
 				String answer = rs.getString("answer");
-				//CorrectAnswersBeanオブジェクトを作成し、コンストラクタに値を渡す
+				//オブジェクトを作成し、コンストラクタに値を渡す
 				CorrectAnswersBean bean = new CorrectAnswersBean(id, questions_id, answer);
 				//listにオブジェクトを追加
 				list.add(bean);
@@ -117,7 +117,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 				int id = rs.getInt("id");
 				int questions_id = rs.getInt("questions_id");
 				String answer = rs.getString("answer");
-				//CorrectAnswersBeanオブジェクトを作成し、コンストラクタに値を渡す
+				//オブジェクトを作成し、コンストラクタに値を渡す
 				CorrectAnswersBean bean = new CorrectAnswersBean(id, questions_id, answer);
 				//listにオブジェクトを追加
 				list.add(bean);
