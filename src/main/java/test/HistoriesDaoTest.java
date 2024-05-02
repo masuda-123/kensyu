@@ -15,20 +15,15 @@ class HistoriesDaoTest {
 
 	@Test
 	@DisplayName("register_historyメソッドで、答えが登録できること")
-	void registerHistory() {
-		try {
-			int userId = 1;
-			int point = 77;
-			HistoriesDao hisDao = new HistoriesDao();
-			ArrayList<HistoriesBean> hisList= hisDao.search_userId(userId);
-			hisDao.register_history(userId, point);
-			ArrayList<HistoriesBean> hisList2 = hisDao.search_userId(userId);
-			assertThat(hisList2.size() - hisList.size(), is(1));
-			assertThat(hisList.get(hisList.size() - 1).getPoint(), is(77));
+	void registerHistory() throws Exception {
+		int userId = 1;
+		int point = 77;
+		HistoriesDao hisDao = new HistoriesDao();
+		ArrayList<HistoriesBean> hisList= hisDao.search_userId(userId);
+		hisDao.register_history(userId, point);
+		ArrayList<HistoriesBean> hisList2 = hisDao.search_userId(userId);
 			
-		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
+		assertThat(hisList2.size() - hisList.size(), is(1));
+		assertThat(hisList.get(hisList.size() - 1).getPoint(), is(77));
 	}
 }
