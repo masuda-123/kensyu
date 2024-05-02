@@ -22,7 +22,7 @@ public class QuestionsDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//questions の全てのレコードからidとquestionを取得
+		//questions からidとquestionを取得
 		String sql = "SELECT id, question FROM questions";
 		
 		/** PreparedStatement オブジェクトの取得とsqlの実行**/
@@ -58,7 +58,7 @@ public class QuestionsDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//questions から id が一致するレコードのidとquestionを取得
+		//questions からidとquestionを取得（条件：idが一致するもの）
 		String sql = "SELECT id, question FROM questions WHERE id = ? ";
 		
 		/** PreparedStatement オブジェクトの取得**/
@@ -139,7 +139,7 @@ public class QuestionsDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//questions の id が一致しているデータを削除
+		//questions からデータを削除（条件：idが一致するもの）
 		String sql = "DELETE FROM questions WHERE id = ?";
 		
 		/** PreparedStatement オブジェクトの取得**/
@@ -164,7 +164,7 @@ public class QuestionsDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//questions の id が一致しているデータを更新
+		//questions のデータを更新（条件：idが一致するもの）
 		String sql = "UPDATE questions SET question = ?, updated_at = CURRENT_TIMESTAMP() WHERE id = ?;";
 		
 		/** PreparedStatement オブジェクトの取得**/

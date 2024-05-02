@@ -21,7 +21,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		// correct_answers の全てのレコードからidとquestions_id、answerを取得
+		// correct_answers からidとquestions_id、answerを取得
 		String sql = "SELECT id, questions_id, answer FROM correct_answers";
 		
 		/** PreparedStatement オブジェクトの取得とsqlの実行**/
@@ -58,7 +58,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//correct_answers から、questions_id が一致するレコードのidとquestions_id、answerを取得
+		//correct_answers からidとquestions_id、answerを取得（条件：question_idが一致すること）
 		String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE questions_id = ? ";
 		
 		/** PreparedStatement オブジェクトの取得**/
@@ -99,7 +99,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//correct_answers から、answer が一致するレコードのidとquestions_id、answerを取得
+		//correct_answers からidとquestions_id、answerを取得（条件：answerが一致するもの）
 		String sql = "SELECT id, questions_id, answer FROM correct_answers WHERE answer = ? ";
 		
 		/** PreparedStatement オブジェクトの取得**/
@@ -169,7 +169,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//correct_answers の question_id が一致しているデータを削除
+		//correct_answers のデータを削除（条件：question_idが一致するもの）
 		String sql = "DELETE FROM correct_answers WHERE questions_id = ?";
 		
 		/** PreparedStatement オブジェクトの取得**/
@@ -194,7 +194,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//correct_answers の id が一致しているデータを更新
+		//correct_answers のデータを更新（条件：idが一致するもの）
 		String sql = "UPDATE correct_answers SET answer = ?, updated_at = CURRENT_TIMESTAMP() WHERE id = ?;";
 		
 		/** PreparedStatement オブジェクトの取得**/
@@ -246,7 +246,7 @@ public class CorrectAnswersDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//correct_answers の id が一致しているデータを削除
+		//correct_answers のデータを削除（条件：idが一致するもの）
 		String sql = "DELETE FROM correct_answers WHERE id = ?";
 		
 		/** PreparedStatement オブジェクトの取得**/

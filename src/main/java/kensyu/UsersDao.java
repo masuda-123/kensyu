@@ -10,6 +10,7 @@ public class UsersDao extends ConnectionDao {
 	 * コンストラクタ（戻り値のない）
 	 */
 	public UsersDao() throws Exception {
+		//DBと接続する
 		setConnection();
 	}
 
