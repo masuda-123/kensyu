@@ -94,6 +94,7 @@ public class Result extends Base {
 			request.setAttribute("queCnt", questionsId.length);
 			request.setAttribute("point", point);
 			request.setAttribute("userName", user.getName());
+			request.setAttribute("date", hisDao.getStringCurrentTimestamp());
 			
 			//Result画面に遷移
 			RequestDispatcher rd = request.getRequestDispatcher("/Result.jsp");

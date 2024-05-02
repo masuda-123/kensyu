@@ -11,10 +11,7 @@
 	int queCnt = (int)request.getAttribute("queCnt");
 	int point = (int)request.getAttribute("point");
 	String userName = (String)request.getAttribute("userName");
-	/* Dateオブジェクトを作成  */
-	Date dateTime = new Date();
-	/* SimpleDateFormatオブジェクトを作成し、フォーマットを設定  */
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	String date = (String)request.getAttribute("date");
 %>
 
 <!DOCTYPE html>
@@ -41,8 +38,8 @@
 		<p><%= point %>点でした。</p>
 		
 		<div class="bottom_menu_area">
-			<!-- 現在日時を yyyy/MM/dd HH:mm:ss の形式で表示  -->
-			<p><%= sdf.format(dateTime) %></p>
+			<!-- 現在日時を表示  -->
+			<p><%= date %></p>
 			<!-- History画面に遷移するボタン  -->
 			<a href='../History'">採点結果履歴へ</a>
 		</div>
