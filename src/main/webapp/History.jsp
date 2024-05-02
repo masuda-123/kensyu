@@ -25,23 +25,29 @@
 		<!-- logoutやtopボタンを読み込む  -->
 		<%@ include file="./common/Header.jsp"%>
 		<h2>履歴</h2>
-		<table>
-			 <tr>
-			 	<th>氏名</th>
-			 	<th>得点</th>
-			 	<th>採点時間</th>
-			 </tr>
-			 <!-- 履歴の数だけ繰り返す  -->
-			 <% for(HistoriesBean his : hisList) { %>
+		<!-- 履歴が登録されていない場合  -->
+		<% if(hisList.isEmpty()) {  %>
+			<p>履歴が登録されていません</p>
+		<!-- 履歴が登録されている場合  -->
+		<% } else { %>
+			<table>
 				 <tr>
-				 	<!-- ユーザー名を表示  -->
-				 	<td><%= userName %></td>
-				 	<!-- 点数を表示  -->
-				 	<td><%= his.getPoint() %>点</td>
-				 	<!-- 採点日時を yyyy/MM/dd HH:mm;ss の形式で表示  -->
-				 	<td><%= sdf.format(his.getCreatedAt()) %></td>
+				 	<th>氏名</th>
+				 	<th>得点</th>
+				 	<th>採点時間</th>
 				 </tr>
-			<% } %>
-		</table>
+				 <!-- 履歴の数だけ繰り返す  -->
+				 <% for(HistoriesBean his : hisList) { %>
+					 <tr>
+					 	<!-- ユーザー名を表示  -->
+					 	<td><%= userName %></td>
+					 	<!-- 点数を表示  -->
+					 	<td><%= his.getPoint() %>点</td>
+					 	<!-- 採点日時を yyyy/MM/dd HH:mm;ss の形式で表示  -->
+					 	<td><%= sdf.format(his.getCreatedAt()) %></td>
+					 </tr>
+				<% } %>
+			</table>
+		<% } %>
 	</body>
 </html>

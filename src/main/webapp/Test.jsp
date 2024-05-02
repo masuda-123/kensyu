@@ -23,32 +23,38 @@
 	</head>
 	<body>
 		<!-- logoutやtopボタンを読み込む  -->
-		<%@ include file="Header.jsp"%>
-		<!-- formタグで入力されたデータを./Test/Resultにpostで送信する  -->
-		<form action ="./Test/Result" method="post">
-			<% int queNum = 0; %>
-			<!-- 問題の数だけ処理を繰り返す  -->
-			<% for (QuestionsBean que : queList) { %>
-				<div class="test_question_area">
-					<!-- 問題番号を表示  -->
-					<label><%= ++queNum %></label>
-					<!-- 問題文表示  -->
-					<p><%= que.getQuestion() %></p>
-					<!-- 隠し入力欄に、問題idを設定  -->
-					<input type="hidden" id="questions_id" name="questions_id" value="<%= que.getId() %>">
-				</div>
-				<div class="test_answers_area">
-					<label for="answer">回答</label>
-					<div class="test_answer_form">
-						<!-- 答えを入力する欄 -->
-						<input type="text" id="answer" name="answer">
+		<%@ include file="./common/Header.jsp"%>
+		<!-- 問題が登録されていない場合  -->
+		<% if(queList.isEmpty()){  %>
+			<p>問題が登録されていません</p>
+		<!-- 問題が登録されている場合  -->
+		<% } else { %>
+			<!-- formタグで入力されたデータを./Test/Resultにpostで送信する  -->
+			<form action ="./Test/Result" method="post">
+				<% int queNum = 0; %>
+				<!-- 問題の数だけ処理を繰り返す  -->
+				<% for (QuestionsBean que : queList) { %>
+					<div class="test_question_area">
+						<!-- 問題番号を表示  -->
+						<label><%= ++queNum %></label>
+						<!-- 問題文表示  -->
+						<p><%= que.getQuestion() %></p>
+						<!-- 隠し入力欄に、問題idを設定  -->
+						<input type="hidden" id="questions_id" name="questions_id" value="<%= que.getId() %>">
 					</div>
+					<div class="test_answers_area">
+						<label for="answer">回答</label>
+						<div class="test_answer_form">
+							<!-- 答えを入力する欄 -->
+							<input type="text" id="answer" name="answer">
+						</div>
+					</div>
+				<% } %>
+				<div class="bottom_btn_area">
+					<!-- フォームデータを送信するボタン  -->
+					<input type="submit" value="採点">
 				</div>
-			<% } %>
-			<div class="bottom_btn_area">
-				<!-- フォームデータを送信するボタン  -->
-				<input type="submit" value="採点">
-			</div>
-		</form>
+			</form>
+		<% } %>
 	</body>
 </html>

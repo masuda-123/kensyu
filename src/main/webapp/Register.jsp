@@ -20,7 +20,7 @@
 	
 	<body>
 		<!-- logoutやtopボタンを読み込む  -->
-		<%@ include file="Header.jsp"%>
+		<%@ include file="./common/Header.jsp"%>
 		<!-- formタグで入力されたデータを./Register/Confirmにpostで送信する  -->
 		<form action="./Register/Confirm" method="post">
 			<div class="question_form_area">
