@@ -74,7 +74,7 @@ public class QuestionsDao extends ConnectionDao {
 				//実行結果からデータを取得し、各フィールドに格納
 				int id = rs.getInt("id");
 				String question = rs.getString("question");
-				//QuestionsBean型のbeanにselect文の結果を格納
+				//QuestionsBean型のbeanに実行結果を格納
 				bean.setId(id);
 				bean.setQuestion(question);
 			}

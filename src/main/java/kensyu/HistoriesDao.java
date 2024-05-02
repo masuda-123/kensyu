@@ -23,7 +23,7 @@ public class HistoriesDao extends ConnectionDao {
 		if (con == null) {
 			setConnection();
 		}
-		//histories から user_id が一致するレコードのidとuser_id, point, created_atを取得
+		//histories から user_id が一致するレコード（delete_atが空で）のidとuser_id, point, created_atを取得
 		String sql = "SELECT id, user_id, point, created_at FROM histories WHERE deleted_at is null and user_id = ? ";
 		
 		/** PreparedStatement オブジェクトの取得**/
