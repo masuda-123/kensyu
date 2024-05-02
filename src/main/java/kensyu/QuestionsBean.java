@@ -9,7 +9,7 @@ public class QuestionsBean {
 	private Timestamp updated_at;
 
 	/**
-	 * コンストラクタでで、id、questionに値をセット
+	 * コンストラクタで、id、questionに値をセット
 	 */
 	public QuestionsBean (int id, String question){
 		this.id = id;
