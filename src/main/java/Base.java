@@ -41,15 +41,19 @@ public class Base extends HttpServlet {
 	
 	/**
 	 * ログインチェック判定
-	 * @return ログイン用セッションの値がない場合はtrue、
 	 */
 	protected boolean isCheckLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	  HttpSession session = request.getSession(false);
-	  if (session == null || (session.getAttribute("userId")) == null){
+		//セッションを取得
+		HttpSession session = request.getSession(false);
+		//セッションが空だった場合もしくは、セッションにuserIdが格納されていない場合
+		if (session == null || (session.getAttribute("userId")) == null){
+			//Login画面に遷移
 			RequestDispatcher dispatch = request.getRequestDispatcher("/Login.jsp");
 			dispatch.forward(request, response);
+			//trueを返す
 			return true;
 		}
+		//セッションにuserIdがある場合、falseを返す
 		return false;
 	}
 

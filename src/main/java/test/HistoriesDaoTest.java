@@ -14,21 +14,22 @@ import kensyu.HistoriesDao;
 class HistoriesDaoTest {
 
 	@Test
-	@DisplayName("register_historyメソッドで、答えが登録できること")
-	void registerHistory() {
-		try {
-			int userId = 1;
-			int point = 77;
-			HistoriesDao hisDao = new HistoriesDao();
-			ArrayList<HistoriesBean> hisList= hisDao.search_userId(userId);
-			hisDao.register_history(userId, point);
-			ArrayList<HistoriesBean> hisList2 = hisDao.search_userId(userId);
-			assertThat(hisList2.size() - hisList.size(), is(1));
-			assertThat(hisList.get(hisList.size() - 1).getPoint(), is(77));
-			
-		} catch (Exception e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
+	@DisplayName("register_historyメソッドで、履歴が登録できること")
+	void registerHistory() throws Exception {
+		//登録されているuser_idを変数に格納
+		int userId = 1;
+		int point = 77;
+		HistoriesDao hisDao = new HistoriesDao();
+		//渡したuser_idと一致する履歴データを取得
+		ArrayList<HistoriesBean> hisList= hisDao.search_userId(userId);
+		//履歴を登録
+		hisDao.register_history(userId, point);
+		//登録後、再度渡したuser_idと一致する履歴データを取得
+		ArrayList<HistoriesBean> hisList2 = hisDao.search_userId(userId);
+		
+		//登録前と後で、データが増えていることを確認
+		assertThat(hisList2.size() - hisList.size(), is(1));
+		//細心の履歴データが、先程登録した内容であることを確認
+		assertThat(hisList2.get(hisList2.size() - 1).getPoint(), is(77));
 	}
 }

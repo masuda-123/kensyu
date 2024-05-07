@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kensyu.Validation;
 
 /**
  * Servlet implementation class Confirm
@@ -47,46 +48,10 @@ public class Confirm extends Base {
 		request.setAttribute("question", question);
 		request.setAttribute("answers", answers);
 		
-		String errorMessage = "";
-		boolean isNewLine = false;
+		//Validationクラスで問題文や答えの文字数などをチェックし、エラーメッセージを取得
+		Validation val = new Validation();
+		String errorMessage = val.validate(question, answers);
 		
-		if(question.isEmpty()) {  //問題文が空だった場合
-			//エラーメッセージに文字列を追加
-			errorMessage += "※問題を入力してください。";
-			//改行するようtrueを格納
-			isNewLine = true;
-		} else if(question.length() > 500) { //問題文の文字数が500文字を超えていた場合
-			//エラーメッセージに文字列を追加
-			errorMessage += "※問題の文字数が制限（500文字）を超えています。";
-			//改行するようtrueを格納
-			isNewLine = true;
-		}
-		
-		if (isNewLine) { // trueだった場合
-			//エラーメッセージにbrタグを追加し、改行させる
-			errorMessage += "<br>";
-		}
-		
-		//答えの数だけ処理を繰り返す
-		for(int i = 0; i < answers.length; i++) {
-			//初期値に戻す
-			isNewLine = false;
-			if(answers[i].isEmpty()) { 	//答えが空だった場合
-				//エラーメッセージに文字列を追加
-				errorMessage += "※答え" + (i+1) + "が未入力です。";
-				//改行するようtrueを格納
-				isNewLine = true;
-			}else if(answers[i].length() > 200) { //answerの文字数が200文字を超えていた場合
-				//エラーメッセージに文字列を追加
-				errorMessage += "※答え" + (i+1) + "の文字数が制限（200文字）を超えています。";
-				//改行するようtrueを格納
-				isNewLine = true;
-			}
-			if (isNewLine) { // エラーメッセージが存在したら改行を追加
-				//エラーメッセージにbrタグを追加し、改行させる
-				errorMessage += "<br>";
-			}
-		}
 		//リクエストスコープへerrorMessageを格納
 		request.setAttribute("errorMessage", errorMessage);
 		

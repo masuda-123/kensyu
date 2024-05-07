@@ -42,18 +42,9 @@ public class Test extends Base {
 			ArrayList<QuestionsBean> queList = queDao.findAll();
 			//次の遷移先の表示に必要な値をリクエストスコープにセット
 			request.setAttribute("queList", queList);
-			
-			if(queList.isEmpty()) { //登録されている問題がなかった場合
-				//Top画面に遷移
-				RequestDispatcher rd = request.getRequestDispatcher("/Top.jsp");
-				rd.forward(request, response);
-				return;
-			} else { //登録されている問題があった場合
-				//Test画面に遷移
-				RequestDispatcher rd = request.getRequestDispatcher("/Test.jsp");
-				rd.forward(request, response);
-				return;
-			}
+			//Test画面に遷移
+			RequestDispatcher rd = request.getRequestDispatcher("/Test.jsp");
+			rd.forward(request, response);
 		} catch (Exception e) {
 			//スタックトレースを出力
 			e.printStackTrace();

@@ -22,7 +22,7 @@
 	</head>
 	<body>
 		<!-- logoutやtopボタンを読み込む  -->
-		<%@ include file="Header.jsp"%>
+		<%@ include file="./common/Header.jsp"%>
 		<!-- Register画面に遷移させるボタン  -->
 		<button class="new_btn" onclick="location.href='./Register'" >新規登録</button>
 		<!-- 問題の数だけ処理を繰り返す  -->

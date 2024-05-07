@@ -20,7 +20,7 @@
 	</head>
 	<body>
 		<!-- logoutやtopボタンを読み込む  -->
-		<%@ include file="Header.jsp"%>
+		<%@ include file="./common/Header.jsp"%>
 		<!-- formタグで入力されたデータを./DeleteCompleteにpostで送信  -->
 		<form action="./DeleteComplete" method="post">
 			<div class="question_area">
