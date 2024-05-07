@@ -2,12 +2,13 @@ package kensyu;
 
 public class Validation {
 	
+	public static final int MAX_QUESTION = 500;
+	public static final int MAX_ANSWER = 200;
+	
 	public String validate(String question, String[] answers) {
 		
 		String errorMessage = "";
 		boolean isNewLine = false;
-		final int MAX_QUESTION = 500;
-		final int MAX_ANSWER = 200;
 		
 		if(question.isEmpty() || question.isBlank()) { //問題文が空もしくはブランクだった場合
 			//エラーメッセージに文字列を追加
